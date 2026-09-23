@@ -295,6 +295,7 @@ body {
 }
 .place-photo img.in-view { opacity: 1; transform: translateY(0) scale(1); }
 .place-photo img:hover { filter: brightness(1.06); }
+.place-photo--portrait img { aspect-ratio: 3 / 4; object-position: center 18%; }
 .place-name {
   font-family: 'Noto Serif KR'; font-weight: 700; font-size: 17px; color: var(--forest-900);
   margin-bottom: 6px;
@@ -727,8 +728,10 @@ body.dark-mode .font-controls { background: var(--terracotta); }
     </div>
 
     <div class="place-card">
+      <div class="place-photo place-photo--portrait"><img src="images/places/tsoi.jpg" alt="빅토르 최 동상"></div>
       <div class="place-name">빅토르 최 동상</div>
       <p class="place-desc">고려인 3세이자 옛 소련 록 음악의 전설로 불리는 가수 빅토르 최를 기리는 동상이 세워진 곳입니다. 그가 출연한 영화 '이글라'의 마지막 장면이 촬영된 거리이기도 하며, 2018년 그의 밴드 '끼노' 멤버와 현지 팬들이 참석한 가운데 동상 제막식이 열렸습니다. 지금도 그의 노래 가사가 새겨진 벽 앞에서 그를 추모하는 발길이 끊이지 않는 명소입니다.</p>
+      <p class="place-credit">사진: 지인 제공</p>
     </div>
 
     <div class="place-card">
