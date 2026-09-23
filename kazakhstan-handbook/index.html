@@ -283,6 +283,25 @@ body {
   text-align: center; line-height: 1.6;
 }
 
+/* ── 명소 카드 ── */
+.place-card { margin: 34px 0 4px; }
+.place-card:first-of-type { margin-top: 4px; }
+.place-photo { margin: 0 0 14px; overflow: hidden; border-radius: 6px; }
+.place-photo img {
+  width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block;
+  opacity: 0; transform: translateY(18px) scale(1.02);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  cursor: zoom-in;
+}
+.place-photo img.in-view { opacity: 1; transform: translateY(0) scale(1); }
+.place-photo img:hover { filter: brightness(1.06); }
+.place-name {
+  font-family: 'Noto Serif KR'; font-weight: 700; font-size: 17px; color: var(--forest-900);
+  margin-bottom: 6px;
+}
+.place-desc { font-size: 14.5px; line-height: 1.85; color: var(--text-black); }
+.place-credit { margin-top: 6px; font-size: 11.5px; color: var(--text-gray); }
+
 /* ── 명단 / 역할 ── */
 .sublist-head {
   font-family: 'Noto Serif KR'; font-weight: 700; font-size: 15.5px; color: var(--forest-900);
@@ -381,9 +400,10 @@ body {
 .index-tab--01 { background: var(--terracotta); }
 .index-tab--02 { background: var(--forest-700); }
 .index-tab--03 { background: var(--forest-900); }
-.index-tab--04 { background: #A9832E; }
-.index-tab--05 { background: #8C5A4A; }
-.index-tab--06 { background: #6E4A34; }
+.index-tab--04 { background: var(--forest-line); }
+.index-tab--05 { background: #A9832E; }
+.index-tab--06 { background: #8C5A4A; }
+.index-tab--07 { background: #6E4A34; }
 @media (min-width: 1041px) {
   .index-tabs.font-lg { left: calc(50% + 391px); }
   .index-tabs.font-sm { left: calc(50% + 313px); }
@@ -516,9 +536,10 @@ body.dark-mode .font-controls { background: var(--terracotta); }
   <a class="index-tab index-tab--01" href="#article-01"><span><span class="roman">Ⅰ</span>참석자</span></a>
   <a class="index-tab index-tab--02" href="#article-02"><span><span class="roman">Ⅱ</span>비상연락</span></a>
   <a class="index-tab index-tab--03" href="#article-03"><span><span class="roman">Ⅲ</span>주요일정</span></a>
-  <a class="index-tab index-tab--04" href="#article-04"><span><span class="roman">Ⅳ</span>역할분담</span></a>
-  <a class="index-tab index-tab--05" href="#article-05"><span><span class="roman">Ⅴ</span>준비물</span></a>
-  <a class="index-tab index-tab--06" href="#article-06"><span><span class="roman">Ⅵ</span>참고자료</span></a>
+  <a class="index-tab index-tab--04" href="#article-04"><span><span class="roman">Ⅳ</span>명소안내</span></a>
+  <a class="index-tab index-tab--05" href="#article-05"><span><span class="roman">Ⅴ</span>역할분담</span></a>
+  <a class="index-tab index-tab--06" href="#article-06"><span><span class="roman">Ⅵ</span>준비물</span></a>
+  <a class="index-tab index-tab--07" href="#article-07"><span><span class="roman">Ⅶ</span>참고자료</span></a>
 </div>
 
 <div class="email-wrap">
@@ -559,21 +580,29 @@ body.dark-mode .font-controls { background: var(--terracotta); }
       <li><a href="#article-04">
         <span class="index-num">04</span>
         <span class="index-text">
-          <span class="index-title">참석자 역할 분담</span>
-          <span class="index-sub">함께 준비하는 여덟 가지 역할</span>
+          <span class="index-title">카자흐스탄 명소 안내</span>
+          <span class="index-sub">함께 둘러볼 알마티의 대표 명소 7곳</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
       <li><a href="#article-05">
         <span class="index-num">05</span>
         <span class="index-text">
-          <span class="index-title">준비물 세부사항</span>
-          <span class="index-sub">개별 준비물과 수화물 안내</span>
+          <span class="index-title">참석자 역할 분담</span>
+          <span class="index-sub">함께 준비하는 여덟 가지 역할</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
       <li><a href="#article-06">
         <span class="index-num">06</span>
+        <span class="index-text">
+          <span class="index-title">준비물 세부사항</span>
+          <span class="index-sub">개별 준비물과 수화물 안내</span>
+        </span>
+        <span class="index-arrow">→</span>
+      </a></li>
+      <li><a href="#article-07">
+        <span class="index-num">07</span>
         <span class="index-text">
           <span class="index-title">참고자료</span>
           <span class="index-sub">참고 글 3편</span>
@@ -654,10 +683,68 @@ body.dark-mode .font-controls { background: var(--terracotta); }
 
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
-  <!-- 04. 참석자 역할 분담 -->
+  <!-- 04. 카자흐스탄 명소 안내 -->
   <div class="article" id="article-04">
     <div class="article-head">
       <div class="article-num">04</div>
+      <div class="article-heading">
+        <div class="article-title">카자흐스탄 명소 안내</div>
+        <div class="article-byline">함께 둘러볼 알마티의 대표 명소 7곳</div>
+      </div>
+    </div>
+  </div>
+  <div class="body-copy">
+
+    <div class="place-card">
+      <div class="place-photo"><img src="images/places/zenkov.jpg" alt="젠코프 대성당"></div>
+      <div class="place-name">젠코프 대성당</div>
+      <p class="place-desc">나무못 하나 없이 목재만으로 지어진 러시아 정교회 성당으로, 파스텔톤의 화려한 색채와 정교한 목조 건축 양식을 자랑합니다. 1907년 완공 당시 세계에서 두 번째로 높은 목조 건축물이었으며, 1911년 규모 8이 넘는 대지진에도 거의 손상되지 않아 뛰어난 내진 설계로 유명합니다. 지금도 알마티 시민들의 신앙과 일상이 함께 살아 숨 쉬는 판필로프 공원 안에 자리하고 있습니다.</p>
+    </div>
+
+    <div class="place-card">
+      <div class="place-photo"><img src="images/places/museum.jpg" alt="국립 중앙박물관"></div>
+      <div class="place-name">국립 중앙박물관</div>
+      <p class="place-desc">카자흐스탄의 고대 유목 문화부터 근현대사까지 아우르는 다양한 유물과 자료를 소장한 국립 박물관입니다. 황금 인간(Golden Man) 복제품을 비롯한 스키타이 시대의 화려한 황금 유물이 전시되어 있어 중앙아시아 초원 문명의 정수를 만날 수 있습니다. 독립 이후의 현대사 전시관도 함께 마련되어 있어, 카자흐스탄이라는 나라를 폭넓게 이해하는 데 큰 도움이 됩니다.</p>
+    </div>
+
+    <div class="place-card">
+      <div class="place-photo"><img src="images/places/arbat.jpg" alt="아르바트 거리"></div>
+      <div class="place-name">아르바트 거리</div>
+      <p class="place-desc">질베크 졸르(Zhibek Zholy) 거리에 조성된 보행자 전용 거리로, 노천 카페와 기념품 상점, 거리 공연이 어우러져 활기찬 분위기를 느낄 수 있습니다. 이름은 모스크바의 유명한 보행자 거리 '아르바트'에서 따온 것으로, 거리 곳곳에서 화가와 거리 예술가들의 작품을 구경하는 재미도 쏠쏠합니다. 현지 젊은이들과 관광객들이 즐겨 찾는 알마티의 대표적인 만남의 장소이자 산책로입니다.</p>
+    </div>
+
+    <div class="place-card">
+      <div class="place-photo"><img src="images/places/bazaar.jpg" alt="그린 바자르"></div>
+      <div class="place-name">그린 바자르</div>
+      <p class="place-desc">알마티에서 가장 크고 오래된 재래시장으로, 신선한 농산물과 견과류, 말고기·양고기 등 현지 특산품이 가득합니다. 활기찬 흥정 소리와 다채로운 상품들 속에서 카자흐스탄 사람들의 생생한 일상을 체험할 수 있는 곳입니다. 특히 고려인 상인들이 만든 김치와 당근채를 파는 코너도 있어, 중앙아시아 속 한인 이주 역사의 흔적을 만나볼 수 있습니다.</p>
+      <p class="place-credit">사진: Halit Edib Özcan (CC BY-SA 3.0, Wikimedia Commons)</p>
+    </div>
+
+    <div class="place-card">
+      <div class="place-photo"><img src="images/places/koktobe.jpg" alt="코크토베"></div>
+      <div class="place-name">코크토베</div>
+      <p class="place-desc">케이블카를 타고 해발 1,100m 언덕 위로 올라가면 톈산산맥을 배경으로 펼쳐진 알마티 시내 전경을 한눈에 담을 수 있습니다. 정상에는 놀이공원과 전망대, 식당가가 함께 있어 남녀노소 누구나 즐기기 좋습니다. 해 질 무렵 도시 전체가 붉게 물드는 노을 풍경은 알마티 여행에서 손꼽히는 장관으로 꼽힙니다.</p>
+    </div>
+
+    <div class="place-card">
+      <div class="place-name">빅토르 최 동상</div>
+      <p class="place-desc">고려인 3세이자 옛 소련 록 음악의 전설로 불리는 가수 빅토르 최를 기리는 동상이 세워진 곳입니다. 그가 출연한 영화 '이글라'의 마지막 장면이 촬영된 거리이기도 하며, 2018년 그의 밴드 '끼노' 멤버와 현지 팬들이 참석한 가운데 동상 제막식이 열렸습니다. 지금도 그의 노래 가사가 새겨진 벽 앞에서 그를 추모하는 발길이 끊이지 않는 명소입니다.</p>
+    </div>
+
+    <div class="place-card">
+      <div class="place-photo"><img src="images/places/charyn.jpg" alt="차른 계곡"></div>
+      <div class="place-name">차른 계곡</div>
+      <p class="place-desc">미국 그랜드캐니언을 닮았다 하여 '카자흐스탄의 그랜드캐니언'이라 불리는 협곡으로, 붉은 사암이 수백만 년에 걸쳐 침식되며 만들어낸 웅장한 지형을 자랑합니다. 특히 성벽처럼 솟은 기암괴석이 3km 가까이 늘어선 '성곽의 계곡(Valley of Castles)' 구간이 장관을 이루어 사진 명소로도 손꼽힙니다. 계곡 아래로는 차른 강이 흐르고 있어, 트레킹을 마친 뒤 시원한 강가에서 쉬어갈 수도 있습니다.</p>
+    </div>
+
+  </div>
+
+  <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+
+  <!-- 05. 참석자 역할 분담 -->
+  <div class="article" id="article-05">
+    <div class="article-head">
+      <div class="article-num">05</div>
       <div class="article-heading">
         <div class="article-title">참석자 역할 분담</div>
         <div class="article-byline">함께 준비하는 여덟 가지 역할</div>
@@ -693,9 +780,9 @@ body.dark-mode .font-controls { background: var(--terracotta); }
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
   <!-- 05. 준비물 세부사항 -->
-  <div class="article" id="article-05">
+  <div class="article" id="article-06">
     <div class="article-head">
-      <div class="article-num">05</div>
+      <div class="article-num">06</div>
       <div class="article-heading">
         <div class="article-title">준비물 세부사항</div>
         <div class="article-byline">개별 준비물과 수화물 안내</div>
@@ -716,9 +803,9 @@ body.dark-mode .font-controls { background: var(--terracotta); }
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
   <!-- 06. 참고자료 -->
-  <div class="article" id="article-06">
+  <div class="article" id="article-07">
     <div class="article-head">
-      <div class="article-num">06</div>
+      <div class="article-num">07</div>
       <div class="article-heading">
         <div class="article-title">참고자료</div>
         <div class="article-byline">평화세상에 실렸던 참고 글 3편</div>
@@ -963,7 +1050,7 @@ body.dark-mode .font-controls { background: var(--terracotta); }
     overlay.classList.remove('show');
     lbImg.src = '';
   }
-  document.querySelectorAll('.photo-grid img, .photo-single img').forEach(function(img) {
+  document.querySelectorAll('.photo-grid img, .photo-single img, .place-photo img').forEach(function(img) {
     img.addEventListener('click', function() {
       openLightbox(img.src, img.alt);
     });
@@ -976,7 +1063,7 @@ body.dark-mode .font-controls { background: var(--terracotta); }
     if (e.key === 'Escape') closeLightbox();
   });
 
-  var photoImgs = document.querySelectorAll('.photo-grid img, .photo-single img');
+  var photoImgs = document.querySelectorAll('.photo-grid img, .photo-single img, .place-photo img');
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
