@@ -255,6 +255,20 @@ body {
 .note-box { margin: 30px 28px 8px; }
 .note-box strong { color: var(--forest-900); }
 
+/* ── 항공권 명단 표 ── */
+.table-scroll { overflow-x: auto; margin: 4px 0 18px; -webkit-overflow-scrolling: touch; }
+.ticket-table { border-collapse: collapse; width: 100%; min-width: 780px; font-size: 12.5px; white-space: nowrap; }
+.ticket-table th, .ticket-table td { padding: 9px 10px; border-bottom: 1px solid var(--border-light); text-align: center; }
+.ticket-table thead th {
+  background: var(--forest-900); color: var(--white); font-weight: 700;
+  font-size: 12px; letter-spacing: 0.2px; white-space: nowrap;
+}
+.ticket-table tbody tr:last-child td { border-bottom: none; }
+.ticket-table td:nth-child(2) { text-align: left; font-family: 'Noto Sans KR'; }
+.ticket-table td:nth-child(3) { text-align: left; font-weight: 700; color: var(--forest-900); }
+.ticket-table tr.diff-row td { background: var(--terracotta-light); }
+.ticket-table tr.special-row td { background: #E4E9EE; }
+
 /* ── 사진 ── */
 .photo-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
@@ -399,12 +413,13 @@ body {
   margin-bottom: 8px;
 }
 .index-tab--01 { background: var(--terracotta); }
-.index-tab--02 { background: var(--forest-700); }
-.index-tab--03 { background: var(--forest-900); }
-.index-tab--04 { background: var(--forest-line); }
-.index-tab--05 { background: #A9832E; }
-.index-tab--06 { background: #8C5A4A; }
-.index-tab--07 { background: #6E4A34; }
+.index-tab--02 { background: #3E6B8C; }
+.index-tab--03 { background: var(--forest-700); }
+.index-tab--04 { background: var(--forest-900); }
+.index-tab--05 { background: var(--forest-line); }
+.index-tab--06 { background: #A9832E; }
+.index-tab--07 { background: #8C5A4A; }
+.index-tab--08 { background: #6E4A34; }
 @media (min-width: 1041px) {
   .index-tabs.font-lg { left: calc(50% + 391px); }
   .index-tabs.font-sm { left: calc(50% + 313px); }
@@ -535,12 +550,13 @@ body.dark-mode .font-controls { background: var(--terracotta); }
 
 <div class="index-tabs">
   <a class="index-tab index-tab--01" href="#article-01"><span><span class="roman">Ⅰ</span>참석자</span></a>
-  <a class="index-tab index-tab--02" href="#article-02"><span><span class="roman">Ⅱ</span>비상연락</span></a>
-  <a class="index-tab index-tab--03" href="#article-03"><span><span class="roman">Ⅲ</span>주요일정</span></a>
-  <a class="index-tab index-tab--04" href="#article-04"><span><span class="roman">Ⅳ</span>명소안내</span></a>
-  <a class="index-tab index-tab--05" href="#article-05"><span><span class="roman">Ⅴ</span>역할분담</span></a>
-  <a class="index-tab index-tab--06" href="#article-06"><span><span class="roman">Ⅵ</span>준비물</span></a>
-  <a class="index-tab index-tab--07" href="#article-07"><span><span class="roman">Ⅶ</span>참고자료</span></a>
+  <a class="index-tab index-tab--02" href="#article-02"><span><span class="roman">Ⅱ</span>항공권명단</span></a>
+  <a class="index-tab index-tab--03" href="#article-03"><span><span class="roman">Ⅲ</span>비상연락</span></a>
+  <a class="index-tab index-tab--04" href="#article-04"><span><span class="roman">Ⅳ</span>주요일정</span></a>
+  <a class="index-tab index-tab--05" href="#article-05"><span><span class="roman">Ⅴ</span>명소안내</span></a>
+  <a class="index-tab index-tab--06" href="#article-06"><span><span class="roman">Ⅵ</span>역할분담</span></a>
+  <a class="index-tab index-tab--07" href="#article-07"><span><span class="roman">Ⅶ</span>준비물</span></a>
+  <a class="index-tab index-tab--08" href="#article-08"><span><span class="roman">Ⅷ</span>참고자료</span></a>
 </div>
 
 <div class="email-wrap">
@@ -565,45 +581,53 @@ body.dark-mode .font-controls { background: var(--terracotta); }
       <li><a href="#article-02">
         <span class="index-num">02</span>
         <span class="index-text">
-          <span class="index-title">비상 연락 및 주소</span>
-          <span class="index-sub">현지 연락처와 숙소 안내</span>
+          <span class="index-title">항공권 명단</span>
+          <span class="index-sub">아시아나항공 · 인천(ICN) ⇄ 알마티(ALA)</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
       <li><a href="#article-03">
         <span class="index-num">03</span>
         <span class="index-text">
-          <span class="index-title">주요 일정</span>
-          <span class="index-sub">2026.9.27(일) ~ 10.3(토), 6박 7일</span>
+          <span class="index-title">비상 연락 및 주소</span>
+          <span class="index-sub">현지 연락처와 숙소 안내</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
       <li><a href="#article-04">
         <span class="index-num">04</span>
         <span class="index-text">
-          <span class="index-title">카자흐스탄 명소 안내</span>
-          <span class="index-sub">함께 둘러볼 알마티와 근교의 대표 명소 9곳</span>
+          <span class="index-title">주요 일정</span>
+          <span class="index-sub">2026.9.27(일) ~ 10.3(토), 6박 7일</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
       <li><a href="#article-05">
         <span class="index-num">05</span>
         <span class="index-text">
-          <span class="index-title">참석자 역할 분담</span>
-          <span class="index-sub">함께 준비하는 여덟 가지 역할</span>
+          <span class="index-title">카자흐스탄 명소 안내</span>
+          <span class="index-sub">함께 둘러볼 알마티와 근교의 대표 명소 9곳</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
       <li><a href="#article-06">
         <span class="index-num">06</span>
         <span class="index-text">
-          <span class="index-title">준비물 세부사항</span>
-          <span class="index-sub">개별 준비물과 수화물 안내</span>
+          <span class="index-title">참석자 역할 분담</span>
+          <span class="index-sub">함께 준비하는 여덟 가지 역할</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
       <li><a href="#article-07">
         <span class="index-num">07</span>
+        <span class="index-text">
+          <span class="index-title">준비물 세부사항</span>
+          <span class="index-sub">개별 준비물과 수화물 안내</span>
+        </span>
+        <span class="index-arrow">→</span>
+      </a></li>
+      <li><a href="#article-08">
+        <span class="index-num">08</span>
         <span class="index-text">
           <span class="index-title">참고자료</span>
           <span class="index-sub">참고 글 3편</span>
@@ -642,10 +666,54 @@ body.dark-mode .font-controls { background: var(--terracotta); }
 
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
-  <!-- 02. 비상 연락 및 주소 -->
+  <!-- 02. 항공권 명단 -->
   <div class="article" id="article-02">
     <div class="article-head">
       <div class="article-num">02</div>
+      <div class="article-heading">
+        <div class="article-title">항공권 명단</div>
+        <div class="article-byline">아시아나항공 · 인천(ICN) ⇄ 알마티(ALA) · 가는편 OZ0577 · 오는편 OZ0578</div>
+      </div>
+    </div>
+  </div>
+  <div class="body-copy">
+    <div class="table-scroll">
+      <table class="ticket-table">
+        <thead>
+          <tr>
+            <th>No</th><th>영문 이름</th><th>한글 이름</th><th>항공권 번호</th><th>예약번호</th>
+            <th>가는편 날짜</th><th>가는편 시간</th><th>오는편 날짜</th><th>오는편 시간</th><th>좌석등급</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>KIM/SUNGKUK MR</td><td>김성국</td><td>9885030155389</td><td>F3IUQB</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
+          <tr><td>2</td><td>KIM/JOOYONG MR</td><td>김주용</td><td>9885030155390</td><td>F3IUQB</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
+          <tr><td>3</td><td>PARK/YOUNSOK MS</td><td>박연숙</td><td>9885030155391</td><td>F3IUQB</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
+          <tr><td>4</td><td>PARK/JAENA MS</td><td>박재나</td><td>9885030155392</td><td>F3IUQB</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
+          <tr><td>5</td><td>PARK/JUNGRIM MS</td><td>박정림</td><td>9885030155393</td><td>F3IUQB</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
+          <tr><td>6</td><td>SO/JAEWOONG MR</td><td>소재웅</td><td>9885030155396</td><td>F3J763</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
+          <tr><td>7</td><td>RYU/HEESEOK MR</td><td>유희석</td><td>9885030155397</td><td>F3J763</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
+          <tr><td>8</td><td>YUN/SHINYOUNG MR</td><td>윤신영</td><td>9885030155399</td><td>F3J763</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
+          <tr><td>9</td><td>HONG/SANGTAE MR</td><td>홍상태</td><td>9885030155400</td><td>F3J763</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
+          <tr class="diff-row"><td>10</td><td>YOUN/MOOJIN MR</td><td>윤무진</td><td>9885030246776</td><td>FKJBBL</td><td>09.28(월)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
+          <tr class="diff-row"><td>11</td><td>CHO/SOYOUNG MS</td><td>조소영</td><td>9885030514884</td><td>E4KAS7</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(V)</td></tr>
+          <tr class="special-row"><td>12</td><td>AHN/HONGCHEOL MR</td><td>안홍철</td><td>1804825411936</td><td>HQRH4R(KE:D9RAH7)</td><td>09.23(수)</td><td>ICN 16:35 → TAS 20:15 (KE5949)</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30(익일) (KE5948)</td><td>일반석(K/U)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note-box">
+      ※ 노란색 음영(No.10, No.11) 인원은 예약번호·가는편 날짜·좌석등급이 다른 인원과 다릅니다.<br>
+      ※ No.12 안홍철 님은 개인 발권(대한항공 공동운항)으로, 오는편은 그룹과 동일한 항공편이나 가는편은 9.23 인천 출발·타슈켄트(TAS) 도착으로 그룹(9.27, 알마티)과 전혀 다른 여정입니다.<br>
+      ※ 탑승 전 여권상 영문 이름과 항공권 이름 스펠 일치 여부를 반드시 확인하세요.
+    </div>
+  </div>
+
+  <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+
+  <!-- 03. 비상 연락 및 주소 -->
+  <div class="article" id="article-03">
+    <div class="article-head">
+      <div class="article-num">03</div>
       <div class="article-heading">
         <div class="article-title">비상 연락 및 주소</div>
         <div class="article-byline">예기치 못한 상황에 대비해 반드시 확인해 두세요</div>
@@ -661,9 +729,9 @@ body.dark-mode .font-controls { background: var(--terracotta); }
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
   <!-- 03. 주요 일정 -->
-  <div class="article" id="article-03">
+  <div class="article" id="article-04">
     <div class="article-head">
-      <div class="article-num">03</div>
+      <div class="article-num">04</div>
       <div class="article-heading">
         <div class="article-title">주요 일정</div>
         <div class="article-byline">2026.9.27(일) ~ 10.3(토) · 현지 사정에 따라 변경될 수 있음</div>
@@ -685,9 +753,9 @@ body.dark-mode .font-controls { background: var(--terracotta); }
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
   <!-- 04. 카자흐스탄 명소 안내 -->
-  <div class="article" id="article-04">
+  <div class="article" id="article-05">
     <div class="article-head">
-      <div class="article-num">04</div>
+      <div class="article-num">05</div>
       <div class="article-heading">
         <div class="article-title">카자흐스탄 명소 안내</div>
         <div class="article-byline">함께 둘러볼 알마티와 근교의 대표 명소 9곳</div>
@@ -756,9 +824,9 @@ body.dark-mode .font-controls { background: var(--terracotta); }
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
   <!-- 05. 참석자 역할 분담 -->
-  <div class="article" id="article-05">
+  <div class="article" id="article-06">
     <div class="article-head">
-      <div class="article-num">05</div>
+      <div class="article-num">06</div>
       <div class="article-heading">
         <div class="article-title">참석자 역할 분담</div>
         <div class="article-byline">함께 준비하는 여덟 가지 역할</div>
@@ -794,9 +862,9 @@ body.dark-mode .font-controls { background: var(--terracotta); }
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
   <!-- 05. 준비물 세부사항 -->
-  <div class="article" id="article-06">
+  <div class="article" id="article-07">
     <div class="article-head">
-      <div class="article-num">06</div>
+      <div class="article-num">07</div>
       <div class="article-heading">
         <div class="article-title">준비물 세부사항</div>
         <div class="article-byline">개별 준비물과 수화물 안내</div>
@@ -817,9 +885,9 @@ body.dark-mode .font-controls { background: var(--terracotta); }
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
   <!-- 06. 참고자료 -->
-  <div class="article" id="article-07">
+  <div class="article" id="article-08">
     <div class="article-head">
-      <div class="article-num">07</div>
+      <div class="article-num">08</div>
       <div class="article-heading">
         <div class="article-title">참고자료</div>
         <div class="article-byline">평화세상에 실렸던 참고 글 3편</div>
