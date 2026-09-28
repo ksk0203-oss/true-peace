@@ -382,8 +382,17 @@ body {
   flex-direction: column;
   gap: 8px;
   z-index: 40;
+  /* 탭이 늘어나도 화면 밖으로 잘리지 않도록 높이를 제한하고 필요한 만큼만 스크롤 */
+  max-height: calc(100vh - 16px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 6px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+.index-tabs::-webkit-scrollbar { width: 0; height: 0; }
 .index-tab {
+  flex-shrink: 0;
   writing-mode: vertical-rl;
   text-orientation: mixed;
   color: var(--white);
@@ -393,7 +402,7 @@ body {
   letter-spacing: 3px;
   text-decoration: none;
   padding: 16px 9px;
-  min-height: 96px;
+  min-height: 86px;
   border-radius: 0 10px 10px 0;
   box-shadow: 2px 3px 8px rgba(18,51,58,0.18);
   display: flex;
@@ -421,6 +430,7 @@ body {
 .index-tab--08 { background: #8C5A4A; }
 .index-tab--09 { background: #5B7A6E; }
 .index-tab--10 { background: #6E4A34; }
+.index-tab--11 { background: #5A5F7A; }
 @media (min-width: 1041px) {
   .index-tabs.font-lg { left: calc(50% + 391px); }
   .index-tabs.font-sm { left: calc(50% + 313px); }
@@ -529,6 +539,54 @@ body {
 body.dark-mode .float-btn { background: var(--terracotta); }
 body.dark-mode .font-controls { background: var(--terracotta); }
 
+/* ── 11. 개인별 메모 ── */
+.memo-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 2px 0 20px; }
+.memo-meta label { font-family: 'Noto Serif KR'; font-size: 13.5px; font-weight: 700; color: var(--forest-700); flex-shrink: 0; }
+.memo-input, .memo-ta {
+  font-family: 'Noto Sans KR', sans-serif; font-size: 14px; line-height: 1.7;
+  color: var(--text-black); background: var(--white);
+  border: 1px solid var(--border-light); border-radius: 8px; padding: 10px 12px;
+  -webkit-appearance: none; appearance: none;
+}
+.memo-input { flex: 1 1 180px; min-width: 0; }
+.memo-ta { display: block; width: 100%; min-height: 78px; resize: vertical; overflow: hidden; }
+.memo-input:focus, .memo-ta:focus {
+  outline: none; border-color: var(--forest-700); box-shadow: 0 0 0 2px rgba(44,107,115,0.14);
+}
+.memo-input::placeholder, .memo-ta::placeholder { color: var(--text-gray); opacity: 0.6; }
+
+.memo-card {
+  border: 1px solid var(--border-light); border-left: 3px solid var(--sage);
+  border-radius: 8px; padding: 14px 16px 16px; margin-bottom: 14px; background: var(--off-white);
+}
+.memo-card-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 9px; }
+.memo-day { font-family: 'Noto Serif KR'; font-size: 14.5px; font-weight: 700; color: var(--forest-900); flex-shrink: 0; }
+.memo-plan { font-size: 12.5px; line-height: 1.5; color: var(--text-gray); }
+
+.memo-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 18px; }
+.memo-btn {
+  font-family: 'Noto Sans KR'; font-size: 13px; font-weight: 700; cursor: pointer;
+  padding: 9px 15px; border-radius: 8px;
+  border: 1px solid var(--forest-700); background: var(--forest-700); color: #FFFFFF;
+  transition: opacity 0.15s;
+}
+.memo-btn:hover { opacity: 0.85; }
+.memo-btn--ghost { background: transparent; color: var(--forest-700); }
+.memo-btn--danger { background: transparent; border-color: var(--terracotta); color: var(--terracotta); }
+.memo-status { font-size: 12.5px; color: var(--text-gray); margin-left: auto; }
+
+body.dark-mode .memo-meta label, body.dark-mode .memo-day { color: #9FC9CD; }
+body.dark-mode .memo-btn { background: var(--forest-line); border-color: var(--forest-line); }
+body.dark-mode .memo-btn--ghost { background: transparent; color: #8FBFC4; border-color: #8FBFC4; }
+body.dark-mode .memo-btn--danger { background: transparent; color: #E2937A; border-color: #E2937A; }
+body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
+  border-color: #8FBFC4; box-shadow: 0 0 0 2px rgba(143,191,196,0.18);
+}
+
+@media (max-width: 640px) {
+  .memo-status { margin-left: 0; width: 100%; }
+}
+
 /* ── 인쇄(Ctrl+P) 시 버튼/팝업류는 숨기고 본문만 깔끔하게 출력 ── */
 @media print {
   body.dark-mode { background: #fff !important; color: #101010 !important; }
@@ -543,6 +601,9 @@ body.dark-mode .font-controls { background: var(--terracotta); }
   .photo-grid img, .photo-single img { opacity: 1 !important; transform: none !important; }
   .article-title, .article-num { opacity: 1 !important; transform: none !important; }
   .hero-title-text { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .memo-actions { display: none !important; }
+  .memo-card { page-break-inside: avoid; background: #fff !important; }
+  .memo-input, .memo-ta { background: #fff !important; color: #101010 !important; border-color: #C9C4BA !important; }
   .article, .body-copy, p.body-text { page-break-inside: avoid; }
 }
 </style>
@@ -560,6 +621,7 @@ body.dark-mode .font-controls { background: var(--terracotta); }
   <a class="index-tab index-tab--08" href="#article-08"><span><span class="roman">Ⅷ</span>준비물</span></a>
   <a class="index-tab index-tab--09" href="#article-09"><span><span class="roman">Ⅸ</span>기행문</span></a>
   <a class="index-tab index-tab--10" href="#article-10"><span><span class="roman">Ⅹ</span>참고자료</span></a>
+  <a class="index-tab index-tab--11" href="#article-11"><span><span class="roman">Ⅺ</span>개인메모</span></a>
 </div>
 
 <div class="email-wrap">
@@ -650,6 +712,14 @@ body.dark-mode .font-controls { background: var(--terracotta); }
         <span class="index-text">
           <span class="index-title">참고자료</span>
           <span class="index-sub">참고 글 3편</span>
+        </span>
+        <span class="index-arrow">→</span>
+      </a></li>
+      <li><a href="#article-11">
+        <span class="index-num">11</span>
+        <span class="index-text">
+          <span class="index-title">개인별 메모</span>
+          <span class="index-sub">일정별로 남기는 나만의 기록</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
@@ -1112,6 +1182,101 @@ body.dark-mode .font-controls { background: var(--terracotta); }
       <p class="body-text">그러나 현재는 자본과 노동이 국경을 자유로이 넘나들게 되어 버렸기 때문에 과거와는 다른 새로운 교육 이념을 세워야 한다. 전문가들은 이를 두고 한국어 교육이 민족교육이냐 시민교육이냐로 나눠서 생각해야 한다고 봤고, 민족교육이라고 하면 모국 사회와의 연계를 강조하고, 시민교육이라고 하면 현지 사회와의 연계를 더욱 중요시해야 한다고 지적했다. 요컨대, 변화된 국제사회와 높아진 한국의 경제력과 위상 속에서 한국어 교육은 일종의 사회 교육이 되어야 한다. 즉, 한국어를 통해 민족 정서만 전달할 것이 아니라 한국어를 통해서 의사소통의 능력을 교육의 중심에 놓아야 한다.</p>
       <p class="body-text">그러나 고려인 사회가 현지에서 높은 위상을 차지하고 있는 카자흐스탄에서는 한국어 교육을 민족 교육의 일환으로 보는 시각이 여전히 중요함을 강조하고 싶다. 높은 단계의 한국어 구사자를 키우는 것보다 비록 기초적인 단계에 머물지라도 한국인의 정체성을 일깨워주는 것에 교육목표를 둘 필요가 있다. 특히, 고려인 차세대들을 대상으로 하는 한글학교 배가 운동을 벌이는 것이 필요하다. 그래서 이러한 실용적 측면의 교육수요에 부응함과 동시에 고려인 차세대들에게 민족 정체성을 유지, 신장시켜주는 데 동포사회나 모국이 다시 한 번 관심을 기울여야 한다. 정규 학교나 대학에서의 한국어 교육 외 카자흐스탄 경향 각지에 개설된 한글학교의 교원들은 민족어로서의 한국어 교육에 대한 개념을 정립하고 이에 중점을 두고 교육을 해야 한다. 특히, 카자흐스탄 고려인 사회에서 존경받는 홍범도 장군의 활동을 수업현장에서 녹여내는 사례와 같이 카자흐스탄에서는 세계시민들이 접근하는 또 하나의 랭귀지로서의 한국어 교육을 넘어 민족어로서의 한국어 교육을 좀 더 강화할 필요가 있다.</p>
 
+  </div>
+
+  <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+
+  <!-- 11. 개인별 메모 -->
+  <div class="article" id="article-11">
+    <div class="article-head">
+      <div class="article-num">11</div>
+      <div class="article-heading">
+        <div class="article-title">개인별 메모</div>
+        <div class="article-byline">일정별로 남기는 나만의 기록 · 적는 즉시 자동 저장됩니다</div>
+      </div>
+    </div>
+  </div>
+  <div class="body-copy">
+
+    <div class="note-box">
+      <strong>메모는 이 기기(브라우저)에만 저장됩니다</strong> — 다른 분에게 보이지 않고 서버로 전송되지도 않습니다. 다만 브라우저 기록·캐시를 지우거나 다른 기기에서 열면 메모가 보이지 않으니, 남기고 싶은 내용은 아래 <strong>메모 전체 복사</strong>나 <strong>파일로 저장</strong>으로 따로 보관해 주세요.
+    </div>
+
+    <div class="memo-meta">
+      <label for="memoWriter">작성자</label>
+      <input class="memo-input" type="text" id="memoWriter" placeholder="이름을 입력하세요" autocomplete="name">
+    </div>
+
+    <div class="memo-card">
+      <div class="memo-card-head">
+        <span class="memo-day">9/27(일)</span>
+        <span class="memo-plan">저녁 알마티 도착</span>
+      </div>
+      <textarea class="memo-ta" data-memo="d0927" data-memo-label="9/27(일)" aria-label="9/27(일) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
+    </div>
+    <div class="memo-card">
+      <div class="memo-card-head">
+        <span class="memo-day">9/28(월)</span>
+        <span class="memo-plan">오전 침볼락 · 오후 고려문화원 방문</span>
+      </div>
+      <textarea class="memo-ta" data-memo="d0928" data-memo-label="9/28(월)" aria-label="9/28(월) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
+    </div>
+    <div class="memo-card">
+      <div class="memo-card-head">
+        <span class="memo-day">9/29(화)</span>
+        <span class="memo-plan">우슈토베 방문</span>
+      </div>
+      <textarea class="memo-ta" data-memo="d0929" data-memo-label="9/29(화)" aria-label="9/29(화) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
+    </div>
+    <div class="memo-card">
+      <div class="memo-card-head">
+        <span class="memo-day">9/30(수)</span>
+        <span class="memo-plan">쿨사이 호수 · 차른 계곡 · 카인디 호수 (수~목 이틀 일정)</span>
+      </div>
+      <textarea class="memo-ta" data-memo="d0930" data-memo-label="9/30(수)" aria-label="9/30(수) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
+    </div>
+    <div class="memo-card">
+      <div class="memo-card-head">
+        <span class="memo-day">10/1(목)</span>
+        <span class="memo-plan">쿨사이 호수 · 차른 계곡 · 카인디 호수 (수~목 이틀 일정)</span>
+      </div>
+      <textarea class="memo-ta" data-memo="d1001" data-memo-label="10/1(목)" aria-label="10/1(목) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
+    </div>
+    <div class="memo-card">
+      <div class="memo-card-head">
+        <span class="memo-day">10/2(금)</span>
+        <span class="memo-plan">오전 사과농장 · 시내 관광 · 현판식과 교제 후 공항으로</span>
+      </div>
+      <textarea class="memo-ta" data-memo="d1002" data-memo-label="10/2(금)" aria-label="10/2(금) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
+    </div>
+    <div class="memo-card">
+      <div class="memo-card-head">
+        <span class="memo-day">10/3(토)</span>
+        <span class="memo-plan">오전 인천공항 도착</span>
+      </div>
+      <textarea class="memo-ta" data-memo="d1003" data-memo-label="10/3(토)" aria-label="10/3(토) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
+    </div>
+    <div class="memo-card">
+      <div class="memo-card-head">
+        <span class="memo-day">자유 메모</span>
+        <span class="memo-plan">날짜와 상관없이 남기고 싶은 이야기</span>
+      </div>
+      <textarea class="memo-ta" data-memo="free" data-memo-label="자유 메모" aria-label="자유 메모" placeholder="돌아와서 나눌 이야기, 준비물 메모, 연락처 등 무엇이든 적어두세요."></textarea>
+    </div>
+
+    <div class="memo-actions">
+      <button type="button" class="memo-btn" id="memoCopyBtn">메모 전체 복사</button>
+      <button type="button" class="memo-btn memo-btn--ghost" id="memoDownloadBtn">파일로 저장</button>
+      <button type="button" class="memo-btn memo-btn--danger" id="memoClearBtn">전체 지우기</button>
+      <span class="memo-status" id="memoStatus">적으면 자동으로 저장됩니다</span>
+    </div>
+
+  </div>
+
+  <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+
+  <div class="body-copy">
+
     <div class="sublist-head">사역 소개</div>
     <p class="body-text" style="font-size: 16.2px;">사단법인 참된평화를만드는사람들은 기독교 관점에서 평화 사역을 하기 위해서 설립된 NGO입니다. 평화를 만들기 위한 연구, 교육, 사업이 균형을 이룰 수 있도록 한국 사회와 동북 및 중앙 아시아 지역에 나눔과 봉사를 통해서 평화를 만들어 가고 있습니다.</p>
     <p class="sublist-body"><strong>1. 평화를 만드는 연구와 교육</strong><br>
@@ -1339,6 +1504,140 @@ body.dark-mode .font-controls { background: var(--terracotta); }
       heroLogo.style.transform = 'scale(1)';
     });
   }
+})();
+</script>
+
+<script>
+(function() {
+  var STORE_KEY = 'kzh-memo-v1';
+  var writer = document.getElementById('memoWriter');
+  var statusEl = document.getElementById('memoStatus');
+  var fields = Array.prototype.slice.call(document.querySelectorAll('.memo-ta[data-memo]'));
+  if (!writer || !statusEl || !fields.length) return;
+
+  var canStore = (function() {
+    try {
+      localStorage.setItem('kzh-memo-test', '1');
+      localStorage.removeItem('kzh-memo-test');
+      return true;
+    } catch (e) { return false; }
+  })();
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function setStatus(msg) { statusEl.textContent = msg; }
+
+  function autoGrow(ta) {
+    ta.style.height = 'auto';
+    ta.style.height = Math.max(78, ta.scrollHeight) + 'px';
+  }
+
+  function collect() {
+    var data = { writer: writer.value };
+    fields.forEach(function(ta) { data[ta.getAttribute('data-memo')] = ta.value; });
+    return data;
+  }
+
+  function load() {
+    if (!canStore) { setStatus('이 브라우저에서는 저장할 수 없습니다'); return; }
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      var data = null;
+      try { data = JSON.parse(raw); } catch (e) { data = null; }
+      if (data && typeof data === 'object') {
+        if (typeof data.writer === 'string') writer.value = data.writer;
+        fields.forEach(function(ta) {
+          var v = data[ta.getAttribute('data-memo')];
+          if (typeof v === 'string') ta.value = v;
+        });
+        setStatus('저장된 메모를 불러왔습니다');
+      }
+    }
+    fields.forEach(autoGrow);
+  }
+
+  var saveTimer = null;
+  function save() {
+    if (!canStore) return;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function() {
+      try {
+        localStorage.setItem(STORE_KEY, JSON.stringify(collect()));
+        var t = new Date();
+        setStatus('저장됨 · ' + pad(t.getHours()) + ':' + pad(t.getMinutes()));
+      } catch (e) {
+        setStatus('저장 공간이 부족해 저장하지 못했습니다');
+      }
+    }, 400);
+  }
+
+  function asText() {
+    var lines = ['카자흐스탄 평화기행 · 개인 메모'];
+    var name = writer.value.trim();
+    lines.push('작성자: ' + (name || '(이름 없음)'));
+    lines.push('');
+    var any = false;
+    fields.forEach(function(ta) {
+      var v = ta.value.trim();
+      if (!v) return;
+      any = true;
+      lines.push('[' + ta.getAttribute('data-memo-label') + ']');
+      lines.push(v);
+      lines.push('');
+    });
+    return any ? lines.join('\n').replace(/\n+$/, '') : '';
+  }
+
+  writer.addEventListener('input', save);
+  fields.forEach(function(ta) {
+    ta.addEventListener('input', function() { autoGrow(ta); save(); });
+  });
+
+  document.getElementById('memoCopyBtn').addEventListener('click', function() {
+    var text = asText();
+    if (!text) { setStatus('아직 작성한 메모가 없습니다'); return; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        setStatus('메모를 복사했습니다. 붙여넣기 해주세요');
+      }).catch(function() {
+        window.prompt('아래 내용을 복사해 주세요:', text);
+      });
+    } else {
+      window.prompt('아래 내용을 복사해 주세요:', text);
+    }
+  });
+
+  document.getElementById('memoDownloadBtn').addEventListener('click', function() {
+    var text = asText();
+    if (!text) { setStatus('아직 작성한 메모가 없습니다'); return; }
+    var name = writer.value.trim().replace(/[\\/:*?"<>|\s]+/g, '');
+    var fileName = '카자흐스탄메모' + (name ? '-' + name : '') + '.txt';
+    try {
+      var blob = new Blob(['\ufeff' + text], { type: 'text/plain;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+      setStatus('파일로 저장했습니다');
+    } catch (e) {
+      window.prompt('저장이 지원되지 않아 내용을 표시합니다. 복사해 주세요:', text);
+    }
+  });
+
+  document.getElementById('memoClearBtn').addEventListener('click', function() {
+    if (!window.confirm('작성한 메모를 모두 지웁니다. 되돌릴 수 없습니다. 계속할까요?')) return;
+    writer.value = '';
+    fields.forEach(function(ta) { ta.value = ''; autoGrow(ta); });
+    if (canStore) { try { localStorage.removeItem(STORE_KEY); } catch (e) {} }
+    setStatus('메모를 모두 지웠습니다');
+  });
+
+  window.addEventListener('beforeprint', function() { fields.forEach(autoGrow); });
+
+  load();
 })();
 </script>
 
