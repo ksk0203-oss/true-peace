@@ -45,6 +45,45 @@ body.dark-mode {
   --terracotta-light: #3A2A22;
 }
 body { transition: background 0.2s, color 0.2s; }
+/* ── 다크모드 텍스트 대비 보정 (1) ──
+   forest-900/700는 라이트 모드용 짙은 남색이라, 카드/본문 배경만 어둡게 바뀌는
+   다크모드에서는 텍스트가 배경에 묻힌다. 제목·강조 텍스트를 밝은 톤으로 바꾼다. */
+body.dark-mode .index-title,
+body.dark-mode .article-title,
+body.dark-mode .pullquote p,
+body.dark-mode .section-title,
+body.dark-mode .note-box strong,
+body.dark-mode .ticket-table td:nth-child(3),
+body.dark-mode .place-name,
+body.dark-mode .sublist-head,
+body.dark-mode .role-title,
+body.dark-mode .contact-name,
+body.dark-mode .acct-row span:last-child,
+body.dark-mode .qr-label,
+body.dark-mode .qr-donate-link,
+body.dark-mode .closing-verse,
+body.dark-mode .tl-year {
+  color: #9FC9CD;
+}
+
+/* ── 다크모드 텍스트 대비 보정 (2) ──
+   --white 변수는 "카드 표면색"과 "고정색 배지 위의 흰 글자"라는 두 가지 뜻으로
+   함께 쓰이는데, 다크모드에서 --white 자체가 어두운 색으로 바뀌면서 forest-900/
+   terracotta 등 밝기가 바뀌지 않는 배경(원형 숫자, 세로 탭, 우측 하단 버튼, 히어로
+   제목, 라이트박스 닫기 버튼) 위의 글자가 배경에 묻혀 버린다. 이 요소들은 배경색이
+   고정이므로 다크모드에서도 원래의 흰색/짙은 남색을 그대로 강제한다. */
+body.dark-mode .hero-title-text,
+body.dark-mode .index-num,
+body.dark-mode .article-num,
+body.dark-mode .ticket-table thead th,
+body.dark-mode .index-tab,
+body.dark-mode .float-btn {
+  color: #FFFFFF;
+}
+body.dark-mode .lightbox-close {
+  background: #FFFFFF;
+  color: #12333A;
+}
 body.dark-mode .closing-logo img { background:#fff; padding:8px; border-radius:8px; }
 body.dark-mode .qr-box img { background:#ffffff !important; }
 * { margin:0; padding:0; box-sizing:border-box; }
