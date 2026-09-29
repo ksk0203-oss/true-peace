@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>연해주 · 항일독립운동의 본거지 — 고려인 이주와 정착의 역사</title>
-<meta name="description" content="연해주 고려인의 이주(1863)부터 항일독립운동, 문화운동, 1937년 강제이주, 중앙아시아 정착까지 — 전시 패널을 옮긴 한국어·러시아어 웹 전시.">
+<meta name="description" content="1863년 두만강을 건넌 13가구에서 항일독립운동, 1937년 강제이주, 중앙아시아 정착까지 — 연해주 고려인의 역사를 연도별로 정리한 전시 패널 웹판.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="연해주 · 항일독립운동의 본거지">
-<meta property="og:description" content="고려인 이주·항일운동·강제이주·정착의 역사 (한국어·러시아어 전시 패널 웹판)">
+<meta property="og:description" content="고려인 이주·항일운동·강제이주·정착의 역사를 연도별로 정리한 전시 웹페이지">
 <meta property="og:image" content="https://ksk0203-oss.github.io/true-peace/yeonhaeju-exhibit/images/og-thumbnail.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -19,495 +19,520 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
 :root{
-  --paper:#f3eee4; --paper2:#e9e2d3; --card:#fbf8f2; --ink:#1d1b18; --mute:#6b655b;
-  --line:#d6cdb9; --red:#9a2f2a; --navy:#1f2f45; --gold:#a8843c;
-  --serif:'Noto Serif KR',serif; --sans:'Pretendard',system-ui,sans-serif;
+  --paper:#f5f1e8; --card:#fffdf8; --ink:#211f1b; --sub:#5d574d; --line:#ddd4c0;
+  --serif:'Noto Serif KR',serif; --sans:'Pretendard',system-ui,-apple-system,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:64px}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.8;font-size:17px;word-break:keep-all;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;scroll-padding-top:60px}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.95;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
-a{color:inherit}
+.wrap{max-width:1080px;margin:auto;padding:0 22px}
 
-/* language toggle */
-body[data-lang="ko"] .ru{display:none!important}
-body[data-lang="ru"] .ko{display:none!important}
-.ru{font-size:.92em;color:#4a453d;word-break:normal;overflow-wrap:anywhere}
-.ko + .ru,.txt .ru{margin-top:.9em;padding-left:14px;border-left:3px solid var(--gold)}
-body[data-lang="ru"] .ko + .ru,body[data-lang="ru"] .txt .ru{border-left:0;padding-left:0;margin-top:0}
+/* ── 시대별 색상 ── */
+.e1{--band:#e6dcc1;--bandink:#2b2412;--ac:#8a6d2f;--soft:#f5f1e8}
+.e2{--band:#1a2a45;--bandink:#fff;--ac:#c0443a;--soft:#f7f3ee}
+.e3{--band:#1f4d52;--bandink:#fff;--ac:#1f6f75;--soft:#f1f4f0}
+.e4{--band:#232327;--bandink:#f1ede4;--ac:#b8862f;--soft:#eeebe6}
+.e5{--band:#27472f;--bandink:#fff;--ac:#2f7a44;--soft:#f0f3e8}
 
-/* nav */
-nav{position:sticky;top:0;z-index:50;background:rgba(243,238,228,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-nav .in{max-width:1100px;margin:auto;display:flex;align-items:center;gap:6px;padding:8px 16px;overflow-x:auto;scrollbar-width:none}
+/* ── 상단 내비 ── */
+nav{position:sticky;top:0;z-index:50;background:rgba(245,241,232,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .in{max-width:1080px;margin:auto;display:flex;gap:4px;padding:8px 14px;overflow-x:auto;scrollbar-width:none}
 nav .in::-webkit-scrollbar{display:none}
-nav a{white-space:nowrap;text-decoration:none;font-size:14px;font-weight:600;padding:6px 12px;border-radius:99px;color:var(--navy)}
-nav a:hover{background:var(--paper2)}
-.lang{margin-left:auto;display:flex;gap:2px;background:var(--paper2);border-radius:99px;padding:3px;flex:none}
-.lang button{border:0;background:none;font:600 13px var(--sans);padding:5px 11px;border-radius:99px;cursor:pointer;color:var(--mute)}
-.lang button[aria-pressed=true]{background:var(--navy);color:#fff}
+nav a{flex:none;text-decoration:none;color:var(--ink);font-size:14px;font-weight:600;line-height:1.2;padding:7px 13px;border-radius:99px;text-align:center;border:1px solid transparent}
+nav a small{display:block;font-weight:500;font-size:11.5px;color:var(--sub)}
+nav a.on{background:var(--ink);color:#fff}
+nav a.on small{color:#d8d2c2}
 
-/* hero */
-.hero{background:linear-gradient(rgba(20,30,46,.78),rgba(20,30,46,.9)),url(images/ussuriysk-gate.jpg) center/cover;color:#fff;padding:96px 20px 84px;text-align:center}
-.hero .kick{letter-spacing:.2em;font-size:14px;color:#e7cf9a;font-weight:600}
-.hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(64px,16vw,140px);line-height:1.1;margin:10px 0 6px;letter-spacing:.04em}
-.hero .sub{font-size:clamp(16px,3.6vw,22px);opacity:.92}
-.hero .names{max-width:760px;margin:36px auto 0;font-size:16px;line-height:2;opacity:.95}
-.hero .names b{color:#f1dca8;font-weight:600}
-.hero .names .ru{color:#dcd6c8;border:0;padding:0;margin-top:.6em;font-size:14.5px}
+/* ── 히어로 ── */
+.hero{position:relative;background:#141c2b url(images/ussuriysk-gate.jpg) center/cover;color:#fff;text-align:center;padding:110px 22px 96px}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(14,20,32,.72),rgba(14,20,32,.92))}
+.hero>*{position:relative}
+.hero .kick{letter-spacing:.32em;font-size:14px;color:#e8d29c;font-weight:600}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(78px,20vw,168px);line-height:1.05;margin:14px 0 22px;letter-spacing:.03em}
+.hero .who{max-width:640px;margin:auto;font-size:18px;line-height:2;color:#ece6d6}
+.hero .who b{color:#f4dfa4;font-weight:600}
 
-.wrap{max-width:1100px;margin:auto;padding:0 20px}
+/* ── 시대 카드 개요 ── */
+.eras{display:grid;grid-template-columns:repeat(5,1fr);margin-top:-44px;position:relative;z-index:2;border-radius:10px;overflow:hidden;box-shadow:0 12px 30px rgba(20,20,30,.22)}
+.eras a{background:var(--band);color:var(--bandink);text-decoration:none;padding:22px 18px 20px;transition:.2s;display:block;line-height:1.5}
+.eras a:hover{filter:brightness(1.15)}
+.eras b{display:block;font-family:var(--serif);font-size:24px;line-height:1.2}
+.eras .n{font-size:12.5px;opacity:.75;letter-spacing:.06em}
+.eras span:last-child{display:block;font-size:15px;margin-top:6px;opacity:.95}
+@media(max-width:820px){.eras{grid-template-columns:1fr 1fr;margin-top:-30px}.eras a:last-child{grid-column:1/-1}}
 
-/* timeline */
-.tl{padding:56px 0 24px}
-.tl h2{font-family:var(--serif);font-size:26px;text-align:center;margin-bottom:4px}
-.tl .note{text-align:center;color:var(--mute);font-size:14px;margin-bottom:30px}
-.tl ol{list-style:none;position:relative;max-width:640px;margin:auto;padding-left:0}
-.tl ol::before{content:"";position:absolute;left:116px;top:6px;bottom:6px;width:2px;background:var(--line)}
-.tl li{display:grid;grid-template-columns:104px 1fr;gap:26px;padding:7px 0;position:relative;font-size:15.5px;line-height:1.55}
-.tl li::before{content:"";position:absolute;left:111px;top:14px;width:11px;height:11px;border-radius:50%;background:var(--red);border:2px solid var(--paper)}
-.tl time{font-weight:700;color:var(--navy);text-align:right;font-variant-numeric:tabular-nums}
-.tl li.dark::before{background:var(--navy)}
+/* ── 연표 ── */
+.tl{padding:70px 0 20px}
+.tl h2,.maph h2{font-family:var(--serif);font-size:clamp(26px,4.4vw,34px);text-align:center;margin-bottom:6px}
+.tl .note{text-align:center;color:var(--sub);font-size:15px;margin-bottom:34px}
+.tl ol{list-style:none;max-width:680px;margin:auto;position:relative}
+.tl ol::before{content:"";position:absolute;left:127px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl li{display:grid;grid-template-columns:112px 1fr;gap:28px;padding:6px 0;font-size:16.5px;line-height:1.6;position:relative}
+.tl li::before{content:"";position:absolute;left:122px;top:14px;width:12px;height:12px;border-radius:50%;background:var(--dot);border:2px solid var(--paper)}
+.tl time{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;color:var(--dot);font-size:15px}
+.tl .e1{--dot:#8a6d2f}.tl .e2{--dot:#c0443a}.tl .e3{--dot:#1f6f75}.tl .e4{--dot:#a5761f}.tl .e5{--dot:#2f7a44}
 
-/* sections */
-section.ch{padding:72px 0 40px;border-top:1px solid var(--line)}
-.chead{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;margin-bottom:8px}
-.chead .num{font-family:var(--serif);font-weight:900;font-size:clamp(34px,7vw,56px);color:var(--red);line-height:1}
-.chead h2{font-family:var(--serif);font-weight:900;font-size:clamp(28px,5.6vw,46px);line-height:1.25}
-.chead .yr{font-size:clamp(18px,3vw,26px);color:var(--mute);font-family:var(--serif)}
-.chead-ru{color:var(--mute);font-weight:600;margin-bottom:34px}
-h3{font-family:var(--serif);font-weight:700;font-size:clamp(22px,3.6vw,30px);line-height:1.4;margin:0 0 14px}
-h3 small{font-family:var(--sans);font-size:.6em;font-weight:500;color:var(--mute);margin-left:8px}
-.h3ru{font-weight:700;color:#3b372f;margin:-6px 0 14px;font-size:17px;word-break:normal}
-.lead{font-family:var(--serif);font-size:clamp(20px,3.2vw,26px);line-height:1.6;color:var(--navy);margin-bottom:22px}
-.txt{max-width:68ch}
-.txt p + p{margin-top:.8em}
+/* ── 시대 섹션 ── */
+.era{margin-top:70px;background:var(--soft)}
+.eh{background:var(--band);color:var(--bandink);padding:64px 0 56px;position:relative;overflow:hidden}
+.eh::after{content:attr(data-n);position:absolute;right:-.06em;bottom:-.22em;font-family:var(--serif);font-weight:900;font-size:clamp(180px,32vw,340px);line-height:1;opacity:.07;pointer-events:none}
+.eh .roman{display:inline-block;font-weight:700;font-size:14px;letter-spacing:.2em;border:1px solid currentColor;border-radius:99px;padding:2px 14px;margin-bottom:16px;opacity:.85}
+.eh .yr{font-family:var(--serif);font-weight:900;font-size:clamp(46px,10.5vw,100px);line-height:1.05;letter-spacing:-.01em}
+.eh h2{font-family:var(--serif);font-weight:700;font-size:clamp(26px,4.8vw,40px);line-height:1.35;margin-top:8px}
+.eh p{max-width:640px;margin-top:16px;font-size:18px;opacity:.92;line-height:1.85}
 
-.split{display:grid;grid-template-columns:1fr;gap:28px;margin:34px 0}
-@media(min-width:900px){.split{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:44px;align-items:start}.split.rev{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}.split.rev>.pics{order:-1}}
-.pics{display:grid;gap:18px;align-content:start}
-.pics.sticky{position:sticky;top:76px}
+.blk{padding:60px 0 12px}
+.blk+.blk{border-top:1px solid var(--line)}
+.tag{display:inline-block;background:var(--ac);color:#fff;font-weight:700;font-size:14px;border-radius:99px;padding:2px 14px;margin-bottom:12px;line-height:1.8}
+h3{font-family:var(--serif);font-weight:700;font-size:clamp(24px,4vw,32px);line-height:1.4;margin-bottom:18px}
+.row{display:grid;grid-template-columns:1fr;gap:34px;align-items:start}
+@media(min-width:900px){.row{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:56px}.row.rev{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}.row.rev .pics{order:-1}.row.even{grid-template-columns:1fr 1fr}}
+.txt p{margin-bottom:1.05em;max-width:38em}
+.txt p:last-child{margin-bottom:0}
+mark{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--ac) 28%,transparent) 58%);color:inherit;padding:0 1px;font-weight:600}
+.pics{display:grid;gap:26px;align-content:start}
+.pics.stick{position:sticky;top:76px}
 
-figure{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;box-shadow:0 2px 10px rgba(40,30,10,.07)}
-figure button{display:block;width:100%;border:0;padding:0;background:#222;cursor:zoom-in;position:relative}
-figure button::after{content:"⤢";position:absolute;right:8px;top:8px;background:rgba(0,0,0,.55);color:#fff;border-radius:4px;width:26px;height:26px;display:grid;place-items:center;font-size:15px;opacity:0;transition:.2s}
-figure button:hover::after,figure button:focus-visible::after{opacity:1}
-figure img{width:100%;height:auto;filter:sepia(.12)}
-figcaption{padding:12px 14px 14px;font-size:14px;line-height:1.65;color:#3b372f}
-figcaption .ru{font-size:.93em;color:#5a544a;margin-top:.6em;padding-left:10px;border-left:2px solid var(--gold)}
-body[data-lang="ru"] figcaption .ru{border:0;padding:0;margin:0}
-figcaption b{display:block;margin-bottom:2px;color:var(--navy)}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media(max-width:560px){.pair{grid-template-columns:1fr}}
-.pair.three{grid-template-columns:repeat(3,1fr)}
-.pair.three img{aspect-ratio:2/3;object-fit:cover}
+/* 사진: 여백 없이 사진만 */
+figure{margin:0}
+figure button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:6px;overflow:hidden;box-shadow:0 6px 20px rgba(30,25,10,.2);line-height:0}
+figure img{width:100%;height:auto;transition:transform .5s}
+figure button:hover img{transform:scale(1.025)}
+figcaption{margin-top:12px;font-size:15px;line-height:1.7;color:var(--sub);padding-left:12px;border-left:3px solid var(--ac)}
+figcaption b{color:var(--ink);font-weight:700;display:block}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:560px){.duo{grid-template-columns:1fr}}
 
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:28px 0}
-.stat{background:var(--navy);color:#fff;border-radius:8px;padding:18px 16px}
-.stat b{display:block;font-family:var(--serif);font-size:clamp(26px,4vw,34px);color:#f1dca8;line-height:1.2}
-.stat span{font-size:13.5px;opacity:.9;display:block;margin-top:4px;line-height:1.45}
-.stat.red{background:var(--red)}
+/* 숫자 카드 */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:36px 0 8px}
+.stat{background:var(--band);color:var(--bandink);border-radius:10px;padding:20px 18px;line-height:1.4}
+.stat b{display:block;font-family:var(--serif);font-size:clamp(28px,4.4vw,38px);line-height:1.15;margin-bottom:6px;color:#f4dfa4}
+.e1 .stat b{color:#6e5520}
+.stat span{font-size:14.5px;opacity:.92}
 
-.quote{font-family:var(--serif);font-size:clamp(20px,3.4vw,28px);line-height:1.7;padding:34px 28px;background:var(--navy);color:#fff;border-radius:8px;margin:34px 0}
-.quote p+p{margin-top:.9em}
-.quote .ru{font-family:var(--sans);color:#d9d2c0;font-size:15.5px;border-color:var(--gold)}
-.quote em{font-style:normal;color:#f1dca8}
+/* 큰 인용 */
+.quote{background:var(--band);color:var(--bandink);border-radius:12px;padding:44px clamp(22px,5vw,56px);margin:44px 0 12px;font-family:var(--serif);font-size:clamp(21px,3.6vw,30px);line-height:1.75}
+.quote p+p{margin-top:1em}
+.quote em{font-style:normal;color:#f4dfa4}
 
-.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:26px 24px}
-.hero-tag{display:inline-block;background:var(--red);color:#fff;font-size:13px;font-weight:600;padding:2px 12px;border-radius:99px;margin-bottom:10px}
-.hanja{font-family:var(--serif);font-weight:500;color:var(--mute);margin-left:10px;font-size:.7em}
-.longru{max-height:9.5em;overflow:hidden;position:relative;transition:max-height .3s}
-.longru::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3.2em;background:linear-gradient(transparent,var(--paper))}
-.longru.open{max-height:none}.longru.open::after{display:none}
-.more{margin-top:8px;border:1px solid var(--line);background:none;border-radius:99px;padding:4px 14px;font:600 13px var(--sans);cursor:pointer;color:var(--navy)}
-body[data-lang="ko"] .more{display:none}
+/* 인물 카드 */
+.person{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:clamp(20px,3.4vw,36px);margin-bottom:26px;box-shadow:0 4px 18px rgba(30,25,10,.06)}
+.person h3{margin-bottom:6px}
+.person .life{font-family:var(--serif);color:var(--sub);font-size:.62em;font-weight:500;margin-left:8px}
+.person .role{color:var(--ac);font-weight:700;margin-bottom:6px}
 
-.mapbox{margin:26px 0}
-.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;margin-top:14px}
-.legend i{display:inline-block;width:26px;height:5px;border-radius:3px;vertical-align:middle;margin-right:6px}
+.person .row.even{display:block}
+.person .txt p{max-width:none}
+.person .pics{grid-template-columns:1fr 1fr;margin-top:30px;gap:22px}
+@media(max-width:640px){.person .pics{grid-template-columns:1fr}}
+.person .row.even .txt+.pics figure:only-child{max-width:420px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:15px}
+.legend i{display:inline-block;width:28px;height:5px;border-radius:3px;vertical-align:middle;margin-right:8px}
+.maph{padding:80px 0 20px}
+.maph .note{text-align:center;color:var(--sub);margin:4px auto 26px;max-width:640px}
+.maph figure button{box-shadow:0 8px 28px rgba(30,25,10,.22)}
 
-footer{margin-top:64px;background:var(--navy);color:#cfd6e2;padding:44px 20px;font-size:14px;line-height:1.8;text-align:center}
-footer p{max-width:720px;margin:auto}
-footer p+p{margin-top:.6em;opacity:.8}
+footer{margin-top:80px;background:#1a2233;color:#c9d0de;padding:48px 22px;font-size:15px;line-height:1.85;text-align:center}
+footer p{max-width:680px;margin:auto}footer p+p{margin-top:.7em;opacity:.8}
 
 dialog{border:0;background:transparent;max-width:100vw;max-height:100vh;width:100%;height:100%;padding:0}
-dialog::backdrop{background:rgba(10,10,10,.92)}
-dialog .box{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:12px}
+dialog::backdrop{background:rgba(10,10,10,.93)}
+dialog .box{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:14px}
 dialog img{max-width:100%;max-height:82vh;object-fit:contain;border-radius:4px}
-dialog .cap{color:#e5e0d3;font-size:14px;max-width:760px;text-align:center}
-dialog .x{position:absolute;right:16px;top:12px;font-size:32px;line-height:1;color:#fff;background:none;border:0;cursor:pointer}
+dialog .cap{color:#e8e3d6;font-size:15px;line-height:1.6;max-width:760px;text-align:center}
+dialog .x{position:absolute;right:16px;top:10px;font-size:34px;line-height:1;color:#fff;background:none;border:0;cursor:pointer}
 
 @media(max-width:600px){
-  body{font-size:16px}
-  .tl ol::before{left:95px}.tl li{grid-template-columns:84px 1fr;gap:22px}.tl li::before{left:90px}
-  .card{padding:20px 16px}.quote{padding:26px 18px}
+  body{font-size:17px}
+  .tl ol::before{left:91px}.tl li{grid-template-columns:82px 1fr;gap:24px}.tl li::before{left:86px}.tl time{font-size:13.5px}
+  .eh{padding:48px 0 42px}.blk{padding-top:46px}
 }
 </style>
 </head>
-<body data-lang="both">
+<body>
 
-<nav>
-  <div class="in">
-    <a href="#top">처음</a><a href="#c1">Ⅰ 이주·정착</a><a href="#c2">Ⅱ 항일운동</a><a href="#heroes">인물</a><a href="#c3">Ⅲ 문화운동</a><a href="#c4">Ⅳ 강제이주</a><a href="#c5">Ⅴ 황무지에서</a><a href="#map">이주 지도</a>
-    <div class="lang" role="group" aria-label="언어 선택">
-      <button data-l="both" aria-pressed="true">한·Рус</button>
-      <button data-l="ko" aria-pressed="false">한국어</button>
-      <button data-l="ru" aria-pressed="false">Русский</button>
-    </div>
-  </div>
-</nav>
+<nav><div class="in" id="nav">
+  <a href="#top">처음</a>
+  <a href="#e1">Ⅰ<small>1863~</small></a>
+  <a href="#e2">Ⅱ<small>1905~1922</small></a>
+  <a href="#e3">Ⅲ<small>1923~1937</small></a>
+  <a href="#e4">Ⅳ<small>1937~1953</small></a>
+  <a href="#e5">Ⅴ<small>1938~</small></a>
+  <a href="#map">지도</a>
+</div></nav>
 
 <header class="hero" id="top">
-  <div class="kick">항일독립운동의 본거지 · ЦЕНТР АНТИЯПОНСКОГО ДВИЖЕНИЯ</div>
+  <div class="kick">항일독립운동의 본거지</div>
   <h1>연해주</h1>
-  <div class="sub ru">Приморский край</div>
-  <div class="names">
-    <div class="ko"><b>최재형, 안중근, 이동휘, 홍범도, 김 알렉산드라, 김경천, 이상설, 이위종</b> 등 연해주에서 활동</div>
-    <div class="ru">Приморский край, центр антияпонского движения за независимость. Лидеры движения Чхве Джэ Хён, Ан Джун Гын, Ли Дон Хви, Хон Бом До, Ким Александра, Ким Гён Чхон, Ли Сан Соль, Ли Ви Чжон и др.</div>
-  </div>
+  <p class="who"><b>최재형, 안중근, 이동휘, 홍범도, 김 알렉산드라, 김경천, 이상설, 이위종</b> 등이 연해주에서 활동했습니다.</p>
 </header>
 
 <div class="wrap">
+  <div class="eras">
+    <a class="e1" href="#e1"><span class="n">Ⅰ</span><b>1863~</b><span>이주와 정착</span></a>
+    <a class="e2" href="#e2"><span class="n">Ⅱ</span><b>1905~1922</b><span>항일운동</span></a>
+    <a class="e3" href="#e3"><span class="n">Ⅲ</span><b>1923~1937</b><span>문화운동</span></a>
+    <a class="e4" href="#e4"><span class="n">Ⅳ</span><b>1937~1953</b><span>강제이주와 시련의 극복</span></a>
+    <a class="e5" href="#e5"><span class="n">Ⅴ</span><b>1938~</b><span>황무지에서 피워낸 민족혼</span></a>
+  </div>
 
-<!-- TIMELINE -->
-<div class="tl">
-  <h2>연표로 보는 연해주</h2>
-  <p class="note">전시 패널 본문에 나온 연도를 모아 정리한 요약입니다</p>
-  <ol>
-    <li><time>1863</time><span>함경도 13가구가 두만강을 건너 연해주 정착</span></li>
-    <li><time>1894</time><span>홍범도, 항일무장투쟁 시작</span></li>
-    <li><time>1905</time><span>을사늑약 — 최재형, 국권회복에 헌신</span></li>
-    <li><time>1919.3</time><span>블라디보스토크·우수리스크에서 독립선언서 낭독 (3.17~18)</span></li>
-    <li><time>1920.4</time><span>일본군의 4월 참변 — 최재형 총살</span></li>
-    <li><time>1920.6~10</time><span>봉오동전투 · 청산리 대첩</span></li>
-    <li><time>1922.10</time><span>일본군 철수, 고려인 부대 무장해제 (10.25)</span></li>
-    <li><time>1923</time><span>모국어 신문 《선봉》 창간</span></li>
-    <li><time>1925</time><span>소비에트 러시아–일본 국교 수립, 항일운동 금지</span></li>
-    <li><time>1931~32</time><span>고려사범대학교(1931) · 고려극장(1932) 설립</span></li>
-    <li class="dark"><time>1937</time><span>스탈린 강제이주 명령(8.21) → 중앙아시아로</span></li>
-    <li><time>1938</time><span>《선봉》이 《레닌기치》로 복간 (5.15, 크즐오르다)</span></li>
-    <li><time>1938~</time><span>황무지를 옥토로 — 집단농장과 민족문화 부흥</span></li>
-  </ol>
+  <div class="tl">
+    <h2>연표로 보는 연해주</h2>
+    <p class="note">전시 패널 본문에 나온 연도를 모아 정리했습니다</p>
+    <ol>
+      <li class="e1"><time>1863</time><span>함경도 13가구가 두만강을 건너 연해주에 정착</span></li>
+      <li class="e2"><time>1894</time><span>홍범도, 항일무장투쟁의 길에 들어서다</span></li>
+      <li class="e2"><time>1905</time><span>을사늑약 — 최재형, 국권회복에 헌신</span></li>
+      <li class="e2"><time>1919.3</time><span>블라디보스토크·우수리스크에서 독립선언서 낭독 (3.17~18)</span></li>
+      <li class="e2"><time>1920.4</time><span>일본군의 4월 참변 — 최재형 총살</span></li>
+      <li class="e2"><time>1920.6~10</time><span>봉오동전투 · 청산리 대첩</span></li>
+      <li class="e2"><time>1922.10.25</time><span>일본군 철수, 고려인 부대 무장해제</span></li>
+      <li class="e3"><time>1923</time><span>모국어 신문 《선봉》 창간</span></li>
+      <li class="e3"><time>1925</time><span>소비에트 러시아–일본 국교 수립, 항일운동 금지</span></li>
+      <li class="e3"><time>1931 · 1932</time><span>고려사범대학교 · 고려극장 설립</span></li>
+      <li class="e4"><time>1937.8.21</time><span>스탈린, 강제이주 명령서에 서명 (9.9 이주 시작)</span></li>
+      <li class="e5"><time>1938.5.15</time><span>《선봉》이 《레닌기치》로 복간 (크즐오르다)</span></li>
+      <li class="e5"><time>1938~</time><span>황무지를 옥토로 — 집단농장과 민족문화 부흥</span></li>
+      <li class="e5"><time>1991</time><span>《레닌기치》, 《고려일보》로 제호 변경</span></li>
+    </ol>
+  </div>
 </div>
 
-<!-- CHAPTER I -->
-<section class="ch" id="c1">
-  <div class="chead"><span class="num">Ⅰ</span><h2>이주와 정착</h2><span class="yr">1863~</span></div>
-  <div class="chead-ru ru">Первые переселенцы (1863~)</div>
+<!-- ═══════════ Ⅰ 1863~ ═══════════ -->
+<section class="era e1" id="e1">
+  <div class="eh" data-n="1863"><div class="wrap">
+    <span class="roman">Ⅰ</span>
+    <div class="yr">1863~</div>
+    <h2>이주와 정착</h2>
+    <p>기근과 자연재해를 피해 두만강을 건넌 사람들이 연해주에 터를 잡기 시작했습니다.</p>
+  </div></div>
 
-  <div class="split">
-    <div>
-      <h3>기근과 자연재해를 피해 연해주로!</h3>
-      <div class="h3ru ru">Спасение от голода и стихийных бедствий – Приморский край</div>
-      <div class="txt">
-        <div class="ko"><p>고려인의 역사는 기근에 시달리던 함경도 주민 13가구가 두만강을 건너 러시아 연해주 지신허 강변으로 들어가 농사를 짓고 살아간 1863년부터 시작된다. 국경지방 조선인들은 잦은 자연재해로 생계가 어려워지자 이를 피해 연이어 두만강을 건넜다.</p>
-        <p>연해주 고려인 인구는 1882년에 10,137명, 1904년 들어 고려인 정착지가 32개 마을로 늘면서 1906년에는 3만 4,399명, 1912년에는 5만 9,715명으로 증가했다. 통계에 잡히지 않은 30%의 비공식 인구까지 포함하면 1910년 무렵의 고려인 수는 8만~10만 명에 이르렀을 것으로 보인다.</p></div>
-        <div class="ru"><p>История переселения корейцев начинается в 1863 году, когда 13 семей жителей Хамгён-до, спасаясь от голода, пересекли реку Туманган и вышли на берег реки Тизинхэ в Российском Приморье, и, осев в этих местах, начали заниматься земледелием. В след за ними все чаще пересекают реку Туман обездоленные жители приграничных районов, страдавших от неурожая вследствие частых стихийных бедствий.</p>
-        <p>Корейское население в Приморье достигало 10 137 в 1882 году, в 1904 году насчитывалось 32 корейские деревни а население увеличилось до 34 399 в 1906 году и 59 715 в 1912 году. С учетом 30% нелегальной части населения, которая не отражается в официальной статистике, к 1910 году число корейцев предположительно …</p>
-        <p style="font-size:.85em;color:var(--mute)">(패널 원문이 사진에 가려 여기서 끝납니다)</p></div>
+  <div class="wrap">
+    <div class="blk">
+      <div class="row">
+        <div class="txt">
+          <span class="tag">1863~1912</span>
+          <h3>기근과 자연재해를 피해 연해주로!</h3>
+          <p>고려인의 역사는 기근에 시달리던 <mark>함경도 주민 13가구가 두만강을 건너</mark> 러시아 연해주 지신허 강변으로 들어가 농사를 짓고 살아간 <mark>1863년</mark>부터 시작된다.</p>
+          <p>국경지방 조선인들은 잦은 자연재해로 생계가 어려워지자 이를 피해 연이어 두만강을 건넜다.</p>
+          <p>연해주 고려인 인구는 1882년에 10,137명, 1904년 들어 고려인 정착지가 32개 마을로 늘면서 1906년에는 3만 4,399명, 1912년에는 5만 9,715명으로 증가했다. 통계에 잡히지 않은 30%의 비공식 인구까지 포함하면 1910년 무렵의 고려인 수는 <mark>8만~10만 명</mark>에 이르렀을 것으로 보인다.</p>
+        </div>
+        <div class="pics">
+          <figure><button type="button"><img src="images/early-settlers.jpg" alt="고려인 초기 이주민" loading="lazy"></button>
+            <figcaption>러시아 황실에서 편찬한 「다채로운 러시아」(1895년)에 실린 고려인 초기 이주민들의 모습. 여기에는 당시 고려인들의 생활상이 박물학적으로 기록되어 있다.</figcaption></figure>
+          <figure><button type="button"><img src="images/settler-family.jpg" alt="정선달의 가족" loading="lazy"></button>
+            <figcaption>연해주 초기 이주민 정선달의 가족. 정선달은 일찍이 연해주로 이주하여 집안을 일으키고 러시아정교회 신부로 활동했다. 이주한 뒤 생활의 안정을 되찾고 오랜 시일이 지나서 찍은 사진이다. (1922년 무렵)</figcaption></figure>
+        </div>
       </div>
-    </div>
-    <div class="pics">
-      <figure><button type="button"><img src="images/early-settlers.jpg" alt="「다채로운 러시아」에 실린 고려인 초기 이주민" loading="lazy"></button>
-        <figcaption><div class="ko">러시아 황실에서 편찬한 「다채로운 러시아」(1895년)에 실린 고려인 초기 이주민들의 모습. 여기에는 당시 고려인들의 생활상이 박물학적으로 기록되어 있다.</div>
-        <div class="ru">Появление первых корейских переселенцев в «Живописной России» (1895 г.), составленной Российской императорской семьей. В этой книге описывается жизнь российских корейцев в естественном, музейном стиле.</div></figcaption></figure>
-      <figure><button type="button"><img src="images/settler-family.jpg" alt="정선달의 가족" loading="lazy"></button>
-        <figcaption><div class="ko">연해주 초기 이주민 정선달의 가족. 정선달은 일찍이 연해주로 이주하여 집안을 일으키고 러시아정교회 신부로 활동했다. 이 사진은 그가 이주한 뒤 생활의 안정을 되찾고 오랜 시일이 지나서 찍은 것이다. (1922년 무렵)</div>
-        <div class="ru">Семья Чон Сон Даля, одного из первых переселенцев в Приморскую провинцию. Чон Сон Даль рано переехал в Приморье, обзавелся семьей и служил православным священником. Эта фотография была сделана спустя много времени после того, как он обрел стабильность в своей жизни после переезда. (около 1922 г.)</div></figcaption></figure>
-    </div>
-  </div>
-
-  <div class="stats">
-    <div class="stat"><b>1863</b><span>13가구, 두만강을 건너다</span></div>
-    <div class="stat"><b>10,137명</b><span>1882년 연해주 고려인</span></div>
-    <div class="stat"><b>34,399명</b><span>1906년 (1904년 32개 마을)</span></div>
-    <div class="stat"><b>59,715명</b><span>1912년</span></div>
-    <div class="stat red"><b>8~10만</b><span>1910년 무렵 추정(비공식 30% 포함)</span></div>
-  </div>
-
-  <div class="split rev">
-    <div>
-      <h3>신한촌, 고려인의 대부 최재형</h3>
-      <div class="txt">
-        <div class="ko"><p>블라디보스토크 신한촌은 1920년까지 고려인의 문화와 항일운동의 근거지가 되었다. 그리고 그 바탕에는 자신의 모든 역량을 동원해서 고려인사회를 바람직한 미래로 이끌어온 고려인의 대부 최재형이 있었다.</p></div>
-        <div class="ru"><p>Деревня Синханчон в пригороде Владивостока превратилась в островок корейской культуры и служила базой антияпонского движения до 1920 года. Его основателем был Чхве Джэ Хён, крестный отец приморских корейцев, отдававший всего себя ради достижения светлого будущего для своих соотечественников.</p></div>
-      </div>
-    </div>
-    <div class="pics">
-      <figure><div style="display:grid;grid-template-columns:110px 1fr">
-        <button type="button" style="cursor:zoom-in"><img src="images/choi-jaehyung.jpg" alt="최재형" loading="lazy" style="height:100%;object-fit:cover"></button>
-        <figcaption style="padding:12px">
-          <div class="ko"><b>최재형 (1860~1920)</b>고려인사회의 단합, 교육과 계몽, 언론, 독립운동, 의병 활동 등 모든 부분에서 고려인사회를 이끈 탁월한 지도자다. 을사늑약(1905년)으로 조국이 위급해지자 평생을 국권회복과 민족을 위해 헌신하였다. 1920년 4월 4~5일 일본군이 연해주 지역 여러 고려인 항일운동 단체와 개인을 무차별 공격해 살상하는 만행을 저질렀을 때(4월 참변) 그들에게 체포되어 총살당했다.</div>
-          <div class="ru"><b>Чхве Джэ Хен (1860-1920)</b>Выдающийся деятель, педагог, просветитель, издатель, лидер партизанского освободительного движения, сыгравший важнейшую роль в деле объединения корейской общины. После заключения Правительством Кореи позорного договора (после которого Корея стала колонией Японии), Чхве Джэ Хён всю свою жизнь посвятил делу освобождения Родины. 4-5 апреля 1920 года был арестован японской жандармерией в ходе жестокой кампании по подавлению антияпонского движения среди корейцев Приморья, после чего был расстрелян.</div>
-        </figcaption></div></figure>
-      <figure><button type="button"><img src="images/kim-afanasy-group.jpg" alt="김 아파나시와 고려인 사회운동 지도자들" loading="lazy"></button>
-        <figcaption><div class="ko">항일독립운동가 김 아파나시와 고려인 사회운동지도자들. 2열 좌측 2번째가 선봉신문 농업부장 황동훈, 4번째가 고려인 자치주 획득을 위해 노력한 한명세, 안경 쓴 이가 김 아파나시다. 그 외 남준표, 채 그리고리 등의 모습도 보인다. (1923~1925년)</div>
-        <div class="ru">Совместная фотография Афанасия Кима (1900-1938), которого называли корейским Лениным, в бытность председателем Приморского отделения Коммунистической Партии, с корейскими коллегами – членами Комитета. В центре второго ряда, в очках – Афанасий Ким. Рядом с ним, Хван Дон Хун, Хан Мён Се, Нам Чжун Пё и Чо Григорий. (1923-1925)</div></figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<!-- CHAPTER II -->
-<section class="ch" id="c2">
-  <div class="chead"><span class="num">Ⅱ</span><h2>항일운동</h2><span class="yr">1905~1922</span></div>
-  <div class="chead-ru ru">Антияпонское освободительное движение (1905~1922)</div>
-
-  <div class="split">
-    <div>
-      <h3>원동과 시베리아에 울려 퍼진 대한독립만세! <small>1919. 3. 17.~18.</small></h3>
-      <div class="h3ru ru">Клич «Да здравствует независимость Кореи», нашедший отклик во всей Сибири и Дальнем Востоке! (17~18 марта 1919 г.)</div>
-      <div class="txt">
-        <div class="ko"><p>연해주로 넘어간 애국지사와 지식인들은 블라디보스토크 신한촌과 우수리스크에 집중적으로 모여들어 이 두 지역은 항일애국운동의 중심지 역할을 하였다.</p></div>
-        <div class="ru"><p>Основные силы патриотических организаций были сосредоточены в селе Синханчон во Владивостоке и Уссурийске, и эти два региона до 1920 года служили центрами антияпонского патриотического движения корейцев.</p></div>
-      </div>
-    </div>
-    <div class="pics">
-      <figure><button type="button"><img src="images/ussuriysk-gate.jpg" alt="우수리스크 삼일운동기념문" loading="lazy"></button>
-        <figcaption><div class="ko">우수리스크시에 있는 고려독립선언기념문. 3.1독립만세운동 제4주년을 기념하여 고려인들이 우수리스크에 세운 삼일운동기념문이다. 태극기와 '삼일독립운동데사회기념'이라고 쓰인 문구가 선명하다. 우수리스크는 블라디보스토크와 함께 고려인 항일운동의 주요 근거지였지만 그동안 이를 증명해줄 사진이 발견되지 않아 잘 조명되지 못한 측면이 있었다. 그런 의미에서 이 사진이 갖는 의미는 매우 크다고 볼 수 있다. (1923년 3월 1일)</div>
-        <div class="ru">Мемориал в честь провозглашения независимости Кореи, установленный в городе Никольске (ныне Уссурийск). Установлено корейской общественностью Уссурийска в ознаменование 4-й годовщины Движения за независимость 1 марта. На фото ясно видны корейский национальный флаг «тхэгыкги» и надпись «В память о Движении за независимость 1. Марта от благодарного общества». Уссурийск был основной базой антияпонского движения корейцев наряду с Владивостоком, но в виду отсутствия фотографий, свидетельствующих об этом, эта тема не была хорошо освещена. В этом смысле значение данной фотографии следует рассматривать как очень большое. (1 марта 1923 г.)</div></figcaption></figure>
-    </div>
-  </div>
-
-  <div class="quote">
-    <div class="ko"><p>3·1독립만세운동이 일어나다</p></div>
-    <div class="ru"><p>17–18 марта 1919 г.</p></div>
-  </div>
-  <div class="txt" style="max-width:none;columns:auto">
-    <div class="ko"><p>한반도에서 3.1독립만세운동이 일어났다는 소식이 들려오자 연해주 고려인들은 크게 고무되어 1919년 3월 17~18일 블라디보스토크와 우수리스크에서 최초의 대한민국임시정부인 대한국민의회의 명의로 독립선언서를 낭독했다. 선언서는 조국 독립의 뜻을 세계만방에 알리고자 <b>한국어, 러시아어, 영어, 중국어 4개 언어</b>로 작성하여 우수리스크에서 인쇄하여 블라디보스토크로 가져가 배포하였다. 군중들은 태극기를 들고 대한독립만세를 외치며 신한촌에서 시내로 행진하였다. 만세운동물결은 이후 스빠스크, 하바롭스크, 블라고베셴스크, 이루쿠츠크, 옴스크, 모스크바 등 연해주 일대와 시베리아로 널리 퍼져나갔다.</p></div>
-    <div class="ru"><p>Когда стало известно, что 1 марта на Корейском полуострове произошли демонстрации за независимость, корейцы из Приморья были очень воодушевлены и 17-18 марта 1919 года во Владивостоке и Уссурийске озвучили Декларацию независимости от имени первого временного корейского правительства - Корейского национального собрания. Декларация была написана на четырех языках - корейском, русском, английском и китайском, с целью информирования общественности всего мира о стремлении корейского народа к независимости своей страны, напечатана в Уссурийске и распространена во Владивостоке.</p>
-    <p>Толпа прошла от деревни Синхан к центру города, крича «Ура» за независимость Кореи с флагами «тхэгыкги» С тех пор волна движения за независимость распространилась на другие регионы Сибири и Приморья, такие, как Спасск, Хабаровски, Благовещенск, Иркутск, Омск Москва и др.</p></div>
-  </div>
-
-  <div class="quote" style="margin-top:56px">
-    <div class="ko"><p>펜 대신 칼을 들고,<br>삽자루 대신 총을 잡고! <span style="font-size:.6em;color:#e7cf9a">1918~1922</span></p></div>
-    <div class="ru"><p>Сабля в руках вместо ручки, ружье вместо лопаты! (1918~1922)</p></div>
-  </div>
-  <div class="txt" style="max-width:none">
-    <div class="ko"><p>젊은이들은 원동을 지키고 한반도 조국의 독립을 이루고자 홍범도, 김경천, 한창걸 같은 뛰어난 지휘관들의 지휘 아래 교사와 학생들은 펜 대신 칼을, 농민과 노동자 청년들은 삽자루 대신 총을 잡았다. 고려인들은 마을마다 빨치산부대협력위원회를 만들어 의연금을 모금하고 의복과 식량을 제공하고 부상자들을 치료해주었다.</p></div>
-    <div class="ru"><p>Чтобы защитить свою исконную страну и добиться независимости Корейского полуострова, молодые люди брали в руки сабли вместо ручек и ружья вместо лопат и шли в бой под руководством таких выдающихся полководцев, как Хон Бом До, Ким Ген Чен и Хан Чан Голь. В каждой деревне корейцы организовывали комитеты содействия партизанам, которые помогали собирать пожертвования, предоставляли одежду и продовольствие а также помогали в лечении раненых бойцов.</p></div>
-  </div>
-  <div class="stats">
-    <div class="stat"><b>1만 명+</b><span>독립군부대에 들어가 항일전투에 참가한 고려인 <em class="ru" style="border:0;padding:0;font-style:normal">более 10 000</em></span></div>
-    <div class="stat"><b>46개</b><span>독립군부대 <em class="ru" style="border:0;padding:0;font-style:normal">46 отдельных воинских частей</em></span></div>
-    <div class="stat red"><b>2천 명+</b><span>민간인 포함 사망자 <em class="ru" style="border:0;padding:0;font-style:normal">более 2 000</em></span></div>
-  </div>
-  <p class="ko" style="color:var(--mute);font-size:14px">시베리아 내전 기간, 민간인까지 포함한 수치입니다.</p>
-</section>
-
-<!-- HEROES -->
-<section class="ch" id="heroes">
-  <div class="chead"><h2>연해주 항일무장투쟁의 영웅들</h2></div>
-  <div class="chead-ru ru">Герои антияпонской вооруженной борьбы</div>
-
-  <div class="split" style="margin-top:8px">
-    <div class="card">
-      <span class="hero-tag">항일의병운동의 영웅</span>
-      <h3>홍범도 장군 <span class="hanja">洪範圖 · 1868–1943</span></h3>
-      <div class="h3ru ru">Генерал Хон Бом До (1868~1943), герой вооруженного антияпонского движения</div>
-      <div class="txt">
-        <div class="ko"><p>홍범도는 천민출신으로 의병장이 되어 타고난 게릴라전술을 구사하여 일본군의 간담을 서늘케 한 명장이다. 홍범도는 1894년부터 항일무장 투쟁의 길에 들어섰고 1907년 11월부터 1908년 9월까지 연해주를 넘나들며 40여 차례의 크고 작은 전투를 치렀다. 1920년 6월에는 보잘 것 없는 병력으로 봉오동에서 일본군을 크게 무찔렀고(봉오동전투), 같은 해 10월에는 대한독립군단을 이끌고 김좌진의 북로군정서군을 도와 일본 정규군 1개 대대병력을 섬멸하는(청산리 대첩) 혁혁한 전과를 올렸다. 1937년에 연해주의 모든 고려인과 함께 강제이주를 당했고 이후 카자흐스탄 크즐오르다에서 고려극장의 수위장으로 일하다가 1943년에 사망했다.</p></div>
-        <div class="ru"><p>Хонг Бом До родом из деревни, дослужился до звания сержанта-командиром и использовал хитроумную партизанскую тактику, чтобы успешно сражаться против японских отрядов. Хонг Бом-до вступил на путь антияпонской вооруженной борьбы с 1894 года и провел со своим отрядом более 40 больших и малых сражений в Приморье с ноября 1907 года по сентябрь 1908 года. В июне 1920 года он с малочисленным отрядом разбил превосходящие силы японцев у Бонго-донга (битва при Бонго-донге), а в октябре того же года он возглавил Корпус независимости Кореи и помог Букногундёнсо армии Ким Джва Чжина полностью уничтожить один батальон японских регулярных войск (Победа при Чонсанри). В 1937 году он вместе со всеми Приморскими корейцами был депортирован, работал сторожем Корейского театра в Кызыл Орде, Казахстан, и умер в 1943 году.</p></div>
-      </div>
-      <div class="pair" style="margin-top:22px">
-        <figure><button type="button"><img src="images/hong-family.jpg" alt="홍범도와 아내, 아이" loading="lazy"></button>
-          <figcaption><div class="ko">홍범도와 새 아내 이인복과 그녀의 아이. 홍범도는 본처와 자식들이 모두 일경과 일본군에게 죽음을 당해 오랫동안 혼자 살아왔었다. (1929년 연해주 한까호수 부근)</div>
-          <div class="ru">Хон Бом-до, его вторая жена Ли Ин Бок и ее дети. Хон Бом До долгое время жил один после того, как его жена и дети были убиты японскими военными. (Окрестности озера Ханка, 1929 год)</div></figcaption></figure>
-        <figure><button type="button"><img src="images/hong-newspaper.jpg" alt="레닌기치 홍범도 기사" loading="lazy"></button>
-          <figcaption><div class="ko">홍범도의 일대기와 흉상건립 내력을 다룬 신문기사 (레닌기치 1984년 11월 21일)</div>
-          <div class="ru">Газетная статья о Хон Бом До и предыстория установки бюста в его честь. (Ленин Кичи, 21 ноября 1984 г.)</div></figcaption></figure>
+      <div class="stats">
+        <div class="stat"><b>13가구</b><span>1863년, 두만강을 건너다</span></div>
+        <div class="stat"><b>10,137명</b><span>1882년 연해주 고려인</span></div>
+        <div class="stat"><b>34,399명</b><span>1906년 (1904년 32개 마을)</span></div>
+        <div class="stat"><b>59,715명</b><span>1912년</span></div>
+        <div class="stat"><b>8~10만</b><span>1910년 무렵 추정 (비공식 30% 포함)</span></div>
       </div>
     </div>
 
-    <div class="card">
-      <span class="hero-tag">연해주 항일무장투쟁의 별</span>
-      <h3>김경천 사령관 <span class="hanja">金擎天 · 1888~1942</span></h3>
-      <div class="h3ru ru">Герой антияпонской вооруженной борьбы генерал Ким Ген Чен</div>
-      <div class="txt">
-        <div class="ko"><p>김경천은 1920년대 노령 연해주에서 영웅적으로 항일무장투쟁을 전개한 전설적인 항일의병장이다. 그는 3.1운동 직후 일제에 빼앗긴 조국을 되찾겠다는 일념으로 연해주로 망명하여 조국과 민족을 위해 일관된 헌신과 희생의 삶을 살았다. 1919~1922년에 마적과 일본군 및 러시아 백군과 싸워 혁혁한 전과를 올렸으며 이를 바탕으로 전설적인 김 장군으로 널리 알려지게 되었다. 1936년 소련 정부로부터 근거 없이 탄압받아 체포되었고 러시아 북부 꼬미자치공화국 수용소에서 복역하다가 1942년 1월에 사망하였다. 1956년과 1959년에 소련 군사재판소에서 재심되어 무죄를 선고받았다.</p></div>
-        <div class="ru"><p>Ким Ген Чен (Ким Гёнг Чхон) легендарный командир, развернувший героическую антияпонскую вооруженную борьбу в российском Приморье в 1920-х годах. Сразу после Событий 1 марта он эмигрировал в Приморье с твердой целью вернуть своей стране независимость, украденную японским империализмом, и прожил жизнь, полную самопожертвования ради своей страны и народа. В 1919-1922 годах он с большим успехом воевал против хунхузов, японцев, белогвардейцев, и получил широкую известность как «легендарный командир Ким Ген Чен». В 1936 году он был подвергнут репрессиям со стороны советского правительства, арестован по ложному доносу, и умер в январе 1942 года в лагере в Автономной Республике Коми на севере России. В 1956 и 1959 годах его дело было рассмотрено повторно советским военным трибуналом, в результате чего его признали невиновным.</p></div>
-      </div>
-      <div class="pair" style="margin-top:22px">
-        <figure><button type="button"><img src="images/kim-couple.jpg" alt="김경천과 아내 유정화" loading="lazy"></button>
-          <figcaption><div class="ko">김경천과 아내 유정화. 이 사진은 김경천이 오랜만에 환국 하여 유정화와 혼인을 치르고 다시 일본으로 돌아가 1~2년이 지난 1915년 봄에 찍은 것으로 보인다.</div>
-          <div class="ru">Ким Гён Чхон и жена Ю Чон Хва. Похоже, что эта фотография была сделана весной 1915 года, через год или два после того, как Ким Гён Чхон вернулся в Корею после долгого перерыва, женился на Ю Чон Хва и снова уехал в Японию.</div></figcaption></figure>
-        <figure><button type="button"><img src="images/kim-diary.jpg" alt="경천아일록 일기" loading="lazy"></button>
-          <figcaption><div class="ko"><b>일기 「경천아일록(擎天兒日錄)」 (1921년 10월 11일)</b>자신의 생애와 망명 과정, 항일무장투쟁 전개 과정, 전우와 부하에 대한 사랑, 서울에 두고 온 가족에 대한 애끓는 그리움 등이 절절히 기록되어 있다.</div>
-          <div class="ru">В его дневнике 《Кёнчхонаилок》 отражены его жизнь и перипетии жизни в эмиграции, развитие антияпонской вооруженной борьбы, его отеческая любовь к товарищам и подчиненным, а также его страстная тоска по всей семье, оставшейся в Сеуле.</div></figcaption></figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CHAPTER III -->
-<section class="ch" id="c3">
-  <div class="chead"><span class="num">Ⅲ</span><h2>문화운동</h2><span class="yr">1923~1937</span></div>
-  <div class="chead-ru ru">Культурное движение (1923~1937)</div>
-
-  <div class="split rev">
-    <div>
-      <h3>항일무장투쟁에서 문화운동으로 <small>1923~1937</small></h3>
-      <div class="h3ru ru">От антияпонской вооруженной борьбы к культурному движению</div>
-      <div class="txt">
-        <div class="ko"><p>1922년 10월 25일 연해주에서 일본군이 철병하자 러시아는 고려인 항일무장 투쟁 부대를 서둘러 무장해제 시켰다. 러시아 측은 원동 주권을 지키고 일본군을 몰아내기 위해 피와 목숨을 바쳐가며 싸웠던 고려인들의 희생을 잊어버린 것은 아니었지만 일본과의 관계를 고려해 무장해제에 단호한 입장을 취했다.</p>
-        <p>1925년에는 소비에트 러시아가 일본과 정식으로 외교 관계를 수립하면서 고려인 항일운동을 완전히 금지시켰다. 다행히 소련은 문화적 항일표현을 억압하지는 않아 고려인의 항일투쟁 역량은 자연스럽게 문화 계몽운동으로 전환되었다. 한반도에서 넘어간 다수의 인텔리와 애국지사들은 새로 건설된 집단농장의 농민학교에 들어가 청소년들에게 들끓는 애국사상을 심어주었다. 연해주 전역에 민족문화 부흥 운동이 활발히 일어나 <b>1923년에 모국어 신문 《선봉》</b>이, <b>1931년에 한민족 최초의 민족대학인 《고려사범대학교》</b>가, <b>1932년에 한민족 최초의 우리말 전문연극극장인 《고려극장》</b>이 설립되었다.</p></div>
-        <div class="ru"><p>25 октября 1922 года, когда японские войска ушли из Приморья, Россия в спешном порядке разоружила корейские партизанские отряды. Российская сторона не забыла о жертвах корейцев, которые, не жалея своей крови и жизни сражались за защиту суверенитета Дальнего Востока и изгнание японских войск, тем не менее, заняла твердую позицию по разоружению корейских военных подразделений с учетом отношений с Японией.</p>
-        <p>В 1925 году Советская Россия официально установила дипломатические отношения с Японией, в связи с чем полностью запретила вооруженное антияпонское движение в среде корейцев. К счастью, Советская власть не подавляла антияпонских настроений в культуре и искусстве. Таким образом, желание корейского народа бороться против Японии естественным образом трансформировалась культурно-просветительное движение. Ряд представителей корейской интеллигенции и филиалов патриотических организаций, пришедших с Корейского полуострова, нашли свое место в школах недавно созданных колхозов и распространяли среди молодежи патриотические идеи. На фоне этих позитивных тенденций была создана корейская газета (1923 г.), были основаны Корейский Педагогический Институт (1931 г ) и Корейский Театр (1932 г.), благодаря чему национальная культура переживала период расцвета.</p></div>
-      </div>
-    </div>
-    <div class="pics">
-      <figure>
-        <button type="button"><img src="images/cho-myeonghui.jpg" alt="조명희" loading="lazy"></button>
-        <figcaption><div class="ko"><b>조국독립을 열망하는 고려인의 의지를 가장 잘 드러낸 상징 — 「짓밟힌 고려!」</b>저항시 '짓밟힌 고려!'와 고려인한글 문학의 시조 조명희(趙明熙 1894–1938). 조명희가 쓴 저항시 '짓밟힌 고려'는 연해주 일대 모든 고려인의 심금을 울렸다. 이 시는 발표되자마자 고려인사회에 널리 퍼져나가 학생은 물론이고 청장년 지식이라면 누구나 이 시를 외우는 것을 당연하게 여겼다. 1970–80년대까지도 중장년 고려인들은 이 시를 널리 낭송하곤 했다.</div>
-        <div class="ru"><b>«Растоптанная Корея!» Протестные стихи Чо Мён Хи(1894-1938), основателя советской корейской литературы</b>Стихотворение «Растоптанная Корея», написанная Чо Мён Хи, запало в сердца всех корейцев Приморья. Как только стихотворение было опубликовано, оно широко распространилось среди корейцев, и считалось само собой разумеющимся, что все, и не только студенты, но и рабочая молодежь, знали его наизусть. Даже в 1970-х и 1980-х годах многие корейцы среднего возраста помнили это стихотворение.</div></figcaption>
-      </figure>
-      <div class="pair">
-        <figure><button type="button"><img src="images/book-1.jpg" alt="채포업자의 지남 표지" loading="lazy"></button><figcaption><div class="ko">전시된 한글 서적 — 『채포업자의 지남』 (모스크바·하바롭스크, 1934)</div></figcaption></figure>
-        <figure><button type="button"><img src="images/book-2.jpg" alt="생의 기원과 발전 표지" loading="lazy"></button><figcaption><div class="ko">전시된 한글 서적 — 『생의 기원과 발전』(生의起源과發展)</div></figcaption></figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CHAPTER IV -->
-<section class="ch" id="c4">
-  <div class="chead"><span class="num">Ⅳ</span><h2>강제이주와 시련의 극복</h2><span class="yr">1937~1953</span></div>
-  <div class="chead-ru ru">Депортация и преодоление испытании (1937~1953)</div>
-
-  <div class="quote">
-    <div class="ko"><p>삶 전체를 가방 하나에 옮겨<br>그렇게 영문도 모를<br><em>강제 이주가 시작되었다.</em></p>
-    <p>기차는 <em>6,500km</em>를<br>우슈토베까지 쉬지 않고 달렸다.</p>
-    <p>사람들이 내린 곳은<br>혹독한 추위와 척박한 땅</p>
-    <p>혹독한 추위를 피하고자<br>허허벌판 토굴을 파고<br>창고, 마구간에서 겨울을 나다.</p></div>
-    <div class="ru"><p>Вся жизнь в один миг превратилась в одну дорожную сумку. Началась неизвестная, и оттого еще более страшная депортация. Поезд медленно, но верно, прибыл на станцию Уштобе, преодолев расстояние в 6,500 км. Люди выходили из вагонов на безжизненную землю, в лютую стужу. Спасались от суровых морозов в землянках, амбарах, конюшнях.</p></div>
-  </div>
-
-  <div class="split">
-    <div>
-      <h3>강제이주와 민족문화의 시련 <small>1937</small></h3>
-      <div class="h3ru ru">Насильственное переселение и кризис национальной культуры (1937 г.)</div>
-      <div class="txt">
-        <div class="ko"><p>1937년 8월 21일 스탈린은 고려인강제이주명령서에 서명했다. 이주는 9월 9일부터 시작되어 연해주 아무르주, 자바이칼주에 살던 17만 명의 고려인이 모조리 강제이주 열차에 실려 중앙아시아로 끌려갔다. 강제이주는 고려인의 모든 것을 앗아가 버렸다. 그들은 피땀 흘려 일구어놓은 집과 토지를 잃었고 이주 과정에서 가족과 친척을 잃었으며 하루아침에 타민족들로부터 믿음을 잃었다.</p>
-        <p>강제이주 두어 해 전부터 민족운동의 지도자와 명망가, 지식인 2,500여 명은 아무런 죄도 없이 체포되어 대부분이 처형되었다. 이주 첫해에 추위와 풍토병으로 1만 5천여 명의 어린이와 노약자들이 죽어 나갔다. 강제이주는 해외 한민족 역사상 가장 큰 비극이었다.</p></div>
-        <div class="ru"><p>21 августа 1937 года Сталин подписал приказ о принудительном переселении корейцев. Переселение началось 9 сентября и продолжалась до января следующего года. Всё 170 000 - е корейское население, проживавшие в Приморье, Амурской и Забайкальской областях, были доставлены в Среднюю Азию поездами принудительного перемещения. Вынужденная миграция забрала у корейцев все. Они потеряли свои дома и земли, которые обрабатывали кровью и потом, потеряли свои семьи и родственников в процессе миграции и потеряли веру других народов одночасье.</p>
-        <p>За два года до депортации более 2500 лидеров, известных интеллектуалов и деятелей национального движения были арестованы без серьезных на то оснований, большинство из них было расстреляно. В первый год насильственной миграции около 15 000 детей и стариков умерли от простуды и эндемических заболеваний.</p></div>
-      </div>
-    </div>
-    <div class="pics sticky">
-      <figure><button type="button"><img src="images/deportation-hut.jpg" alt="토굴 앞의 고려인 여성과 아이들" loading="lazy"></button>
-        <figcaption><div class="ko">전시 사진 (1937년 강제이주 패널) — 흙집 앞에 선 사람들</div></figcaption></figure>
-    </div>
-  </div>
-
-  <div class="stats">
-    <div class="stat"><b>1937.8.21</b><span>스탈린, 강제이주 명령서 서명</span></div>
-    <div class="stat"><b>17만 명</b><span>중앙아시아로 이송된 고려인</span></div>
-    <div class="stat"><b>6,500km</b><span>우슈토베까지 달린 거리</span></div>
-    <div class="stat red"><b>2,500여 명</b><span>이주 두어 해 전부터 체포된 지도자·지식인</span></div>
-    <div class="stat red"><b>1만 5천여 명</b><span>이주 첫해 추위와 풍토병으로 사망한 어린이·노약자</span></div>
-  </div>
-
-  <h3 style="margin-top:44px">보이찌크(Войцик) 교수와 5명의 이방인 <small>1937</small></h3>
-  <div class="split rev" style="margin-top:14px">
-    <div>
-      <div class="txt">
-        <div class="ko"><p>강제이주의 절망 속에서 눈물겨운 휴먼드라마도 생겨났다. 블라디보스토크 《고려사범학교》 타민족교원 5명은 아끼던 제자들을 차마 버려둘 수 없어 자발적으로 강제이주 열차를 타고 고려인 학생들과 함께 중앙아시아로 들어갔던 것이다.</p>
-        <p>1937년 9월 10일 《고려사범학교》 시당위원회는 사범대학교 학생총회를 개최하고 고려인이 곧 강제이주 된다는 사실과 사범대학교 학생들은 25일에 이주 열차를 타게 된다는 것을 처음으로 통보했다. 이 이야기를 들은 몇 명의 다른 민족 교원들은 얼마 후 따로 모여 이야기를 나누었다. 그리고 그들은 학생들에게 다음과 같이 말했다.</p>
-        <p style="font-family:var(--serif);color:var(--red);font-size:1.12em">“너희들은 우리의 제자다. 우리는 제자들을 버려둘 수 없다. 우리는 너희와 함께 가겠다.”</p>
-        <p>그렇게 따라나선 이들은 사범대학장(유대인), 러시아어문학박사로 세계문학 및 문학원론을 강의했던 보이찌크 교수, 보이찌크의 아내인 러시아어 교수, 수학교수, 그리고 또 한 명의 교수였다. 또 학교 식당에서 일하던 러시아 처녀가 있었는데 그녀도 울면서 “나에게 가장 좋은 인상을 준 백성은 고려인이다. 나도 당신들과 함께 가겠다.”고 나섰다. 그들은 가족과 지인들의 간곡한 만류도 뿌리치고 고려인 학생들과 함께 강제이주 열차를 타고 카자흐스탄 크즐오르다로 들어갔다. 그리고 끝까지 고려인과 함께 살았다.</p></div>
-        <div class="ru">
-          <p>Посреди отчаяния и слез, сопровождавших эпопею с переселением, имела место и трогательная человеческая драма. Пятеро преподавателей Корейского педагогического Института» некорейской национальности добровольно сели в поезд для переселенцев и приехали в Среднюю Азию вместе с корейскими студентами, посчитав, что не вправе оставлять своих любимых учеников.</p>
-          <p>10 сентября 1937 года представители горкома Партии и парткома «Корейского педагогического института» провели общее собрание студентов Пединститута, объявив о предстоящем переселении лиц корейской национальности, и дату отправления студентов Пединститута – 25 сентября. Услышав эту новость, несколько преподавателей института - представители других национальностей, собрались вместе, чтобы обсудить свое будущее. И они сказали студентам: «Вы - наши ученики. Мы не можем оставить своих учеников. Мы едем с вами».</p>
-          <p>Таким образом, в путь из Владивостока в Казахстан отправились ректор пединститута (еврей по национальности), профессор мировой литературы Войцик, супруга Войцика - преподаватель русской литературы, 1 профессор математики и еще один преподаватель. Еще была русская девушка, которая работала в институтской столовой, которая не смогла сдержать слез и сказала: «Для меня самые лучшие люди – корейцы. Я поеду вместе с вами». Как ни отговаривали от переезда члены их семей, друзья и знакомые, они решительно погрузили свои саквояжи в поезд, и вместе со своими подопечными отправились в далекий казахстанский город Кызыл Орда. И прожили там бок о бок с корейцами всю оставшуюся жизнь.</p>
+    <div class="blk">
+      <div class="row rev">
+        <div class="txt">
+          <span class="tag">1905~1920</span>
+          <h3>신한촌과 고려인의 대부 최재형</h3>
+          <p>블라디보스토크 <mark>신한촌</mark>은 1920년까지 고려인의 문화와 항일운동의 근거지가 되었다.</p>
+          <p>그리고 그 바탕에는 자신의 모든 역량을 동원해서 고려인사회를 바람직한 미래로 이끌어온 <mark>고려인의 대부 최재형</mark>이 있었다.</p>
+          <div class="person" style="margin-top:28px">
+            <h3 style="font-size:24px">최재형 <span class="life">1860~1920</span></h3>
+            <div class="txt">
+              <p>고려인사회의 단합, 교육과 계몽, 언론, 독립운동, 의병 활동 등 모든 부분에서 고려인사회를 이끈 탁월한 지도자다. 을사늑약(1905년)으로 조국이 위급해지자 평생을 국권회복과 민족을 위해 헌신하였다.</p>
+              <p>1920년 4월 4~5일 일본군이 연해주 지역 여러 고려인 항일운동 단체와 개인을 무차별 공격해 살상하는 만행을 저질렀을 때(4월 참변) 그들에게 체포되어 총살당했다.</p>
+            </div>
+          </div>
+        </div>
+        <div class="pics">
+          <figure style="max-width:320px"><button type="button"><img src="images/choi-jaehyung.jpg" alt="최재형" loading="lazy"></button>
+            <figcaption><b>최재형 (1860~1920)</b>블라디보스토크 신한촌을 이끈 고려인의 대부.</figcaption></figure>
+          <figure><button type="button"><img src="images/kim-afanasy-group.jpg" alt="김 아파나시와 고려인 사회운동 지도자들" loading="lazy"></button>
+            <figcaption><b>김 아파나시와 고려인 사회운동 지도자들 (1923~1925년)</b>2열 좌측 2번째가 선봉신문 농업부장 황동훈, 4번째가 고려인 자치주 획득을 위해 노력한 한명세, 안경 쓴 이가 김 아파나시다. 그 외 남준표, 채 그리고리 등의 모습도 보인다.</figcaption></figure>
         </div>
       </div>
     </div>
-    <div class="pics">
-      <figure><button type="button"><img src="images/kyzylorda-graduates.jpg" alt="크즐오르다 사범대학 제1회 졸업 기념 사진" loading="lazy"></button>
-        <figcaption><div class="ko">전시 사진 — 사진 속 문구: «1-й ВЫПУСК ГОС. ПЕД. ИНСТИТУТА города КЗЫЛ-ОРДА»</div></figcaption></figure>
-      <figure><button type="button"><img src="images/kor-newspaper-2007.jpg" alt="내가 직접 겪은 강제이주 신문 기고문" loading="lazy"></button>
-        <figcaption><div class="ko">재소고려인 한글문학평론가 정상진의 신문 기고문 「내가 직접 겪은 강제이주」 (고려일보 2007년 8월 24일)</div>
-        <div class="ru">Статья Тен Сан Дина, литературного критика, писавшего на корейском языке, «Депортация, которую я пережил» (Корё Ильбо, 24 августа 2007 г.)</div></figcaption></figure>
+  </div>
+</section>
+
+<!-- ═══════════ Ⅱ 1905~1922 ═══════════ -->
+<section class="era e2" id="e2">
+  <div class="eh" data-n="1919"><div class="wrap">
+    <span class="roman">Ⅱ</span>
+    <div class="yr">1905~1922</div>
+    <h2>항일운동</h2>
+    <p>애국지사와 지식인이 모여들고, 청년들은 펜 대신 칼을 잡았습니다.</p>
+  </div></div>
+
+  <div class="wrap">
+    <div class="blk">
+      <div class="row">
+        <div class="txt">
+          <span class="tag">1919. 3. 17.~18.</span>
+          <h3>원동과 시베리아에 울려 퍼진 대한독립만세!</h3>
+          <p>연해주로 넘어간 애국지사와 지식인들은 블라디보스토크 신한촌과 우수리스크에 집중적으로 모여들어 이 두 지역은 <mark>항일애국운동의 중심지</mark> 역할을 하였다.</p>
+          <p>한반도에서 3.1독립만세운동이 일어났다는 소식이 들려오자 연해주 고려인들은 크게 고무되어 1919년 3월 17~18일 블라디보스토크와 우수리스크에서 최초의 대한민국임시정부인 <mark>대한국민의회</mark>의 명의로 독립선언서를 낭독했다.</p>
+          <p>선언서는 조국 독립의 뜻을 세계만방에 알리고자 <mark>한국어, 러시아어, 영어, 중국어 4개 언어</mark>로 작성하여 우수리스크에서 인쇄하여 블라디보스토크로 가져가 배포하였다.</p>
+          <p>군중들은 태극기를 들고 대한독립만세를 외치며 신한촌에서 시내로 행진하였다. 만세운동물결은 이후 스빠스크, 하바롭스크, 블라고베셴스크, 이루쿠츠크, 옴스크, 모스크바 등 연해주 일대와 시베리아로 널리 퍼져나갔다.</p>
+        </div>
+        <div class="pics stick">
+          <figure><button type="button"><img src="images/ussuriysk-gate.jpg" alt="우수리스크 삼일운동기념문" loading="lazy"></button>
+            <figcaption><b>우수리스크 고려독립선언기념문 (1923년 3월 1일)</b>3.1독립만세운동 제4주년을 기념하여 고려인들이 우수리스크에 세운 삼일운동기념문이다. 태극기와 '삼일독립운동데사회기념'이라고 쓰인 문구가 선명하다. 우수리스크는 블라디보스토크와 함께 고려인 항일운동의 주요 근거지였지만 그동안 이를 증명해줄 사진이 발견되지 않아 잘 조명되지 못한 측면이 있었다. 그런 의미에서 이 사진이 갖는 의미는 매우 크다.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <span class="tag">1918~1922</span>
+      <div class="quote" style="margin-top:6px">
+        <p>펜 대신 칼을 들고,<br>삽자루 대신 총을 잡고!</p>
+      </div>
+      <div class="txt" style="margin-top:34px">
+        <p>젊은이들은 원동을 지키고 한반도 조국의 독립을 이루고자 <mark>홍범도, 김경천, 한창걸</mark> 같은 뛰어난 지휘관들의 지휘 아래 교사와 학생들은 펜 대신 칼을, 농민과 노동자 청년들은 삽자루 대신 총을 잡았다.</p>
+        <p>고려인들은 마을마다 빨치산부대협력위원회를 만들어 의연금을 모금하고 의복과 식량을 제공하고 부상자들을 치료해주었다.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>1만 명+</b><span>독립군부대에 들어가 항일전투에 참가한 고려인</span></div>
+        <div class="stat"><b>46개</b><span>고려인이 참여한 독립군부대</span></div>
+        <div class="stat"><b>2천 명+</b><span>민간인 포함 사망자 (시베리아 내전 기간)</span></div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <span class="tag">연해주의 영웅들</span>
+      <h3>항일무장투쟁의 별, 홍범도와 김경천</h3>
+
+      <div class="person">
+        <div class="role">항일의병운동의 영웅</div>
+        <h3>홍범도 장군 <span class="life">洪範圖 · 1868~1943</span></h3>
+        <div class="row even" style="gap:36px;margin-top:14px">
+          <div class="txt">
+            <p>홍범도는 천민출신으로 의병장이 되어 타고난 <mark>게릴라전술</mark>을 구사하여 일본군의 간담을 서늘케 한 명장이다.</p>
+            <p>1894년부터 항일무장 투쟁의 길에 들어섰고 1907년 11월부터 1908년 9월까지 연해주를 넘나들며 40여 차례의 크고 작은 전투를 치렀다.</p>
+            <p>1920년 6월에는 보잘 것 없는 병력으로 봉오동에서 일본군을 크게 무찔렀고(<mark>봉오동전투</mark>), 같은 해 10월에는 대한독립군단을 이끌고 김좌진의 북로군정서군을 도와 일본 정규군 1개 대대병력을 섬멸하는(<mark>청산리 대첩</mark>) 혁혁한 전과를 올렸다.</p>
+            <p>1937년에 연해주의 모든 고려인과 함께 강제이주를 당했고 이후 카자흐스탄 크즐오르다에서 고려극장의 수위장으로 일하다가 1943년에 사망했다.</p>
+          </div>
+          <div class="pics">
+            <figure><button type="button"><img src="images/hong-family.jpg" alt="홍범도와 아내, 아이" loading="lazy"></button>
+              <figcaption>홍범도와 새 아내 이인복과 그녀의 아이. 홍범도는 본처와 자식들이 모두 일경과 일본군에게 죽음을 당해 오랫동안 혼자 살아왔었다. (1929년 연해주 한까호수 부근)</figcaption></figure>
+            <figure><button type="button"><img src="images/hong-newspaper.jpg" alt="레닌기치 홍범도 기사" loading="lazy"></button>
+              <figcaption>홍범도의 일대기와 흉상건립 내력을 다룬 신문기사 (레닌기치 1984년 11월 21일)</figcaption></figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="person">
+        <div class="role">연해주 항일무장투쟁의 별</div>
+        <h3>김경천 사령관 <span class="life">金擎天 · 1888~1942</span></h3>
+        <div class="row even" style="gap:36px;margin-top:14px">
+          <div class="txt">
+            <p>김경천은 1920년대 노령 연해주에서 영웅적으로 항일무장투쟁을 전개한 전설적인 항일의병장이다.</p>
+            <p>그는 3.1운동 직후 일제에 빼앗긴 조국을 되찾겠다는 일념으로 연해주로 망명하여 조국과 민족을 위해 일관된 헌신과 희생의 삶을 살았다.</p>
+            <p>1919~1922년에 마적과 일본군 및 러시아 백군과 싸워 혁혁한 전과를 올렸으며 이를 바탕으로 <mark>전설적인 김 장군</mark>으로 널리 알려지게 되었다.</p>
+            <p>1936년 소련 정부로부터 근거 없이 탄압받아 체포되었고 러시아 북부 꼬미자치공화국 수용소에서 복역하다가 1942년 1월에 사망하였다. 1956년과 1959년에 소련 군사재판소에서 재심되어 <mark>무죄를 선고</mark>받았다.</p>
+          </div>
+          <div class="pics">
+            <figure><button type="button"><img src="images/kim-couple.jpg" alt="김경천과 아내 유정화" loading="lazy"></button>
+              <figcaption>김경천과 아내 유정화. 이 사진은 김경천이 오랜만에 환국 하여 유정화와 혼인을 치르고 다시 일본으로 돌아가 1~2년이 지난 1915년 봄에 찍은 것으로 보인다.</figcaption></figure>
+            <figure><button type="button"><img src="images/kim-diary.jpg" alt="경천아일록 일기" loading="lazy"></button>
+              <figcaption><b>일기 「경천아일록(擎天兒日錄)」 (1921년 10월 11일)</b>자신의 생애와 망명 과정, 항일무장투쟁 전개 과정, 전우와 부하에 대한 사랑, 서울에 두고 온 가족에 대한 애끓는 그리움 등이 절절히 기록되어 있다.</figcaption></figure>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CHAPTER V -->
-<section class="ch" id="c5">
-  <div class="chead"><span class="num">Ⅴ</span><h2>황무지에서 피워낸 민족혼</h2><span class="yr">1938~</span></div>
-  <div class="chead-ru ru">Национальный дух, взлелеянный на степных просторах (1938-)</div>
+<!-- ═══════════ Ⅲ 1923~1937 ═══════════ -->
+<section class="era e3" id="e3">
+  <div class="eh" data-n="1923"><div class="wrap">
+    <span class="roman">Ⅲ</span>
+    <div class="yr">1923~1937</div>
+    <h2>문화운동</h2>
+    <p>총 대신 글과 무대로, 항일투쟁의 힘은 민족문화의 부흥으로 이어졌습니다.</p>
+  </div></div>
 
-  <div class="split">
-    <div>
-      <h3>황무지를 옥토로 일군 민초와 노력영웅들 <small>1938~</small></h3>
-      <div class="h3ru ru">Герои труда, превратившие пустыню в оазис (1938~ )</div>
-      <div class="txt">
-        <div class="ko"><p>중앙아시아로 강제이주 된 고려인들이 마주한 땅은 온통 진펄과 갈밭과 소금밭뿐이었다. 그러나 그들은 이에 굴하지 않고 이듬해 봄부터 갈대를 베고 땅을 고르고 수로를 내어 메마른 땅에 물을 대고 볍씨를 뿌렸다. 어느 민족보다 농경에 우수했던 고려인들은 농사에 극히 비우호적인 중앙아시아의 황무지를 푸른 옥토로 변모시켜나갔다.</p>
-        <p>고려인 집단농장 지도자와 일반조합원들의 헌신적인 노고로 강제이주 된 지 몇 년 지나지 않아 고려인들의 경제생활은 눈에 띄게 향상되었다. 경제기반이 잘 갖춰진 고려인 집단농장들은 민족지도자와 문화예술인들이 생계 걱정을 덜고 민족문화 부흥 운동에 더 열성적으로 뛰어들 수 있도록 다양한 물질적 토대도 마련해주었다.</p></div>
-        <div class="ru"><p>Первое, что увидели корейцы после переселения в Среднюю Азию и Казахстан – голые степи, камышовые заросли и солончак. Однако они не ипугались этого, и с весны следующего года они принялись косить тростник серпом, копали землю кирками, рыли каналы с помощью лопат и мотыг, поливали высушенную землю водой и засевали семенами риса. Корейцы, разбирающиеся в сельском хозяйстве лучше любого народа , превратили малопригодные для земледелия пустоши Центральной Азии, в цветущие зеленые оазисы.</p>
-        <p>Экономическое положение корейцев значительно улучшилось уже через несколько лет после того депортации, благодаря самоотверженной, тяжелой работе руководителей корейских колхозов и членов профсоюзов. Корейские колхозы с хорошей экономической базой также послужили материальной основой для становления национальных лидеров и деятелей культуры и искусства, получивших возможность совершенствоваться в своей профессии, не испытывая материальных трудностей и полноценно участвовать в движении по возрождению национальной культуры.</p></div>
+  <div class="wrap">
+    <div class="blk">
+      <div class="row">
+        <div class="txt">
+          <span class="tag">1922~1937</span>
+          <h3>항일무장투쟁에서 문화운동으로</h3>
+          <p><mark>1922년 10월 25일</mark> 연해주에서 일본군이 철병하자 러시아는 고려인 항일무장 투쟁 부대를 서둘러 무장해제 시켰다. 러시아 측은 원동 주권을 지키고 일본군을 몰아내기 위해 피와 목숨을 바쳐가며 싸웠던 고려인들의 희생을 잊어버린 것은 아니었지만 일본과의 관계를 고려해 무장해제에 단호한 입장을 취했다.</p>
+          <p><mark>1925년</mark>에는 소비에트 러시아가 일본과 정식으로 외교 관계를 수립하면서 고려인 항일운동을 완전히 금지시켰다. 다행히 소련은 문화적 항일표현을 억압하지는 않아 고려인의 항일투쟁 역량은 자연스럽게 문화 계몽운동으로 전환되었다.</p>
+          <p>한반도에서 넘어간 다수의 인텔리와 애국지사들은 새로 건설된 집단농장의 농민학교에 들어가 청소년들에게 들끓는 애국사상을 심어주었다. 연해주 전역에 민족문화 부흥 운동이 활발히 일어났다.</p>
+        </div>
+        <div class="pics">
+          <figure><button type="button"><img src="images/cho-myeonghui.jpg" alt="조명희" loading="lazy"></button>
+            <figcaption><b>「짓밟힌 고려!」와 고려인한글 문학의 시조 조명희 (趙明熙 1894~1938)</b>조국독립을 열망하는 고려인의 의지를 가장 잘 드러낸 상징. 조명희가 쓴 저항시 '짓밟힌 고려'는 연해주 일대 모든 고려인의 심금을 울렸다. 이 시는 발표되자마자 고려인사회에 널리 퍼져나가 학생은 물론이고 청장년 지식이라면 누구나 이 시를 외우는 것을 당연하게 여겼다. 1970~80년대까지도 중장년 고려인들은 이 시를 널리 낭송하곤 했다.</figcaption></figure>
+        </div>
       </div>
-    </div>
-    <div class="pics">
-      <figure><button type="button"><img src="images/kim-mansam-1950.jpg" alt="모스크바 평화옹호자 컨퍼런스 카자흐공화국 대표단" loading="lazy"></button>
-        <figcaption><div class="ko">모스크바에서 열린 평화옹호자 제2차 전연맹 컨퍼런스에 카자흐공화국의 소연방 가입 30주년을 기념하여 카자흐공화국 대표 중 한 명으로 초청받아 참석한 김만삼이 13명의 대표들과 함께 촬영한 사진. 가운데 회색 양복을 입은 이가 김만삼이다. (1950년 10월 16일)</div>
-        <div class="ru">Ким Ман Сам в составе делегации из 13 представителей Казахской ССР на 2-й конференции Союза защитников мира в Москве, посвященной 30-летию присоединения Казахской Республики к Советскому Союзу. Мужчина в сером костюме посередине - Ким Ман Сам. (16 октября 1950 г.)</div></figcaption></figure>
-      <figure><button type="button"><img src="images/lenin-kichi-staff.jpg" alt="레닌기치사 사원들" loading="lazy"></button>
-        <figcaption><div class="ko">재소고려인 한글신문 《레닌기치》사 사원들. 가운데 앉은 이가 주필 남해룡이다. (1950년대 초반)</div>
-        <div class="ru">Сотрудники корейской газеты «Ленин Кичи» В центре (сидит) Нам Хэ Рён (Начало 1950-х)</div></figcaption></figure>
-    </div>
-  </div>
-
-  <div class="quote">
-    <div class="ko"><p>소비에트화의 비바람 속에서도<br>굳건히 지켜온 전통문화<br><em>전통음식, 돌, 혼인예식, 환갑잔치 등…</em></p></div>
-    <div class="ru"><p>Корейцы бережно хранили свои традиции и обычаи.</p></div>
-  </div>
-  <div class="txt" style="max-width:none">
-    <div class="ko"><p>고려인들은 고유의 전통과 생활문화를 소중히 지켜왔다. 물론 이들은 한반도와 멀리 떨어진 곳에서 소통이 단절된 상태로 오랫동안 살아왔기 때문에 그들이 지켜온 것들의 일부는 불가피하게 굴곡과 변화를 겪기도 했다. 하지만 음식과 통과의례 같은 뿌리 깊은 전통은 강력한 소비에트화의 비바람 속에서도 원형이 거의 손상되지 않은 채 고스란히 전해지고 있다. 중앙아시아 고려인사회에서는 지금도 대부분 전통음식이 옛것 그대로 만들어지고 있으며, 돌잡이 의식과 환갑잔치와 혼인예식 같은 통과의례도 전통의 형식과 내용이 거의 변형되지 않은 채 이어져 오고 있다.</p></div>
-    <div class="ru"><p>Корейцы бережно хранили свои традиции и обычаи. Конечно, поскольку они долгое время жили далеко от Корейского полуострова, некоторые вещи, которые они хранили, неизбежно претерпели изменения. Однако глубоко укоренившиеся традиции, такие как еда и семейные обряды, передавались из поколения в поколение с небольшими отклонениями от их первоначальной формы даже в эпоху тотальной советизации. В корейских семьях Средней Азии большинство традиционных блюд по-прежнему готовятся так же, как и в прошлом, а обряды посвящения, такие как празднование первого дня рождения ребенка, юбилея по случаю 60-летия и свадебные церемонии, передавались по наследству с небольшими изменениями в форме и содержании.</p></div>
-  </div>
-
-  <h3 style="margin-top:56px">모국어와 한글문학의 계승자 — 레닌기치(고려일보) · 고려극장 <small>1938~현재</small></h3>
-  <div class="h3ru ru">Родной язык и корейская литература, сохранившиеся в условиях изоляции (с 1937 г. по настоящее время)</div>
-  <div class="txt" style="max-width:none">
-    <div class="ko"><p>소련 정부는 1938년부터 고려인들에게 모국어 고등교육을 금지시켰다. 이에 따라 강제이주 이듬해 재개교된 《고려사범대학교》의 모든 강의가 러시아어로 진행되어 민족대학의 기능은 한순간에 사라지고 말았다. 다행히 강제이주 때 폐간된 모국어 신문사는 이듬해 《레닌기치》로 재창간되었고, 연해주에서 설립된 우리말극장인 《고려극장》도 본연의 활동을 이어가 민족문화의 명맥은 끊기지 않았다.</p></div>
-    <div class="ru"><p>С 1938 года советское правительство запретило советским корейцам получение высшего образования на родном языке. Соответственно, все лекции в «Корейском педагогическом университете», открывшемся через год после вынужденной миграции, читались на русском языке, и в результате корейский национальный Пединститут в одно мгновение был преобразован в общесоветский вуз. К счастью, газета на родном языке, которая была закрыта во время депортации, возобновила деятельность через год давая надежду на сохранение национальной культуры и родного языка. Корейский театр, основанный в Приморье, также не подвергался каким-либо серьезным ограничениям в своей деятельности.</p></div>
-  </div>
-
-  <div class="split" style="margin-top:34px">
-    <div class="card">
-      <span class="hero-tag">한글문학의 계승자</span>
-      <h3>고려일보 <small>1938~현재</small></h3>
-      <div class="h3ru ru">Хранительница родного языка и корейской литературы, газета «Корё Ильбо» (1938~настоящее время)</div>
-      <div class="txt">
-        <div class="ko"><p>원동 고려인들의 사랑을 받은 《선봉》 신문은 강제이주로 인해 폐간되었다가 이듬해인 1938년 5월 15일 카자흐스탄 크즐오르다주에서 《레닌기치》라는 이름으로 복간되었다. 《레닌기치》는 강제이주 된 고려인들의 유일한 모국어신문으로 고립된 중앙아시아에서 모국어를 보존하고 발전시키는데 획기적인 역할을 담당하였다. 이 신문은 모국어문학의 발전에 크게 주목하고 다양한 모국어 작가들을 발굴하였으며 그들이 활동할 수 있는 지면을 폭넓게 제공하였다.</p>
-        <p>1991년에 《레닌기치》는 제호를 《고려일보》로 변경했다. 이 신문은 헌신적인 몇몇 인물들에 의해 모국어 신문의 기능을 잃지 않고 지금까지 발행되고 있으며 고려인 모국어 기관의 상징으로 우뚝 서 있다.</p></div>
-        <div class="ru"><p>Любимая народом корё сарам газета «Сонбон» была закрыта в связи с депортацией, а в следующем году, 15 мая 1938 г., она возобновила работу под названием «Ленин Кичи» в г. Кызыл Орда, Казахстан. «Ленин Кичи» - была единственной газетой на родном языке для корейских переселенцев и сыграла заметную роль в сохранении и развитии родного языка в Центральной Азии, географически изолированной от Кореи. Газета уделяла большое внимание развитию литературы на родном языке, открывала для себя писателей, сочиняющих произведения на родном языке и предоставляла им широкий спектр возможностей для работы.</p>
-        <p>В 1991 году название «Ленин Кичи» было изменено на «Корё Ильбо». Благодаря усилиям ряда авторитетных персон газета выходит и в настоящее время, все также выполняя почетную роль символа родного языка для корейцев суверенного Казахстана.</p></div>
+      <div class="stats">
+        <div class="stat"><b>1923</b><span>모국어 신문 《선봉》 창간</span></div>
+        <div class="stat"><b>1931</b><span>한민족 최초의 민족대학 《고려사범대학교》</span></div>
+        <div class="stat"><b>1932</b><span>한민족 최초의 우리말 전문연극극장 《고려극장》</span></div>
       </div>
-    </div>
-    <div class="card">
-      <span class="hero-tag">모국어 문화의 전파자</span>
-      <h3>고려극장 <small>1937~현재</small></h3>
-      <div class="h3ru ru">Цитадель национальной культуры и родного языка -«Корейский театр» (1937~настоящее время)</div>
-      <div class="txt">
-        <div class="ko"><p>1932년 연해주 블라디보스토크에서 창단된 《고려극장》은 강제이주로 인해 극심한 굴곡과 단절을 겪은 다른 모국어 문화기관들과 달리 이주 직후에도 곧바로 본연의 활동을 이어나가는 행운을 누렸다. 그때 극장은 여러 고려인 집거지를 찾아다니며 피폐해진 동족들의 마음을 걸출한 입담과 흥겨운 가무로 달래고 위로해주었으며, 동시에 강제이주의 와중에 가족과 흩어진 사람들의 생사를 확인하고 소식을 전달해주는 메신저 역할까지 감당했다.</p>
-        <p>1950년대 후반 들어 고려인에 대한 탄압이 누그러지자 《고려극장》은 이후 20여 년간 전무후무한 전성기를 구가하였다. 지금도 고려인문화를 대표하는 기관으로 활동하고 있다.</p></div>
-        <div class="ru"><p>Основанный в 1932 году во Владивостоке, Приморский край, Корейский театр, в отличие от других культурных учреждений на родном языке, претерпевших серьезную реорганизацию и сокращения из-за вынужденной миграции, получил возможность продолжить свою деятельность сразу после передислокации. В те годы театр бывал с гастролями в разных местах, где проживало корейское население принося в сердца людей радость и успокоение своим ярким выступлением, и в то же время, он взял на себя роль посыльного, которые передавал письма из одного населенного пункта в другой, благодаря чему люди могли узнать о судьбе членов семей, родственников, знакомых, разлученных в ходе депортации.</p>
-        <p>Со второй половины 1950-х годов, когда власти несколько ослабили ограничительные меры в отношении корейцев, «Корейский театр» достиг периода своего беспрецедентного расцвета, продолжавшегося около 20 лет. Теперь он зарекомендовал себя как учреждение, с полным правом, представляющее культурные традиции корейского народа.</p></div>
+      <div class="duo" style="margin-top:34px;max-width:520px">
+        <figure><button type="button"><img src="images/book-1.jpg" alt="채포업자의 지남 표지" loading="lazy"></button><figcaption>『채포업자의 지남』 (모스크바·하바롭스크, 1934)</figcaption></figure>
+        <figure><button type="button"><img src="images/book-2.jpg" alt="생의 기원과 발전 표지" loading="lazy"></button><figcaption>『생의 기원과 발전』 (生의起源과發展)</figcaption></figure>
       </div>
-      <figure style="margin-top:22px"><button type="button"><img src="images/koryo-theater-1982.jpg" alt="고려극장 창립 50주년 기념 공연 「산부처」" loading="lazy"></button>
-        <figcaption><div class="ko">《고려극장》 창립 50주년을 맞아 모스크바에서 공연된 연극 「산부처」(한진 작)에서 열연하는 김 블라디미르(왕건 역), 박춘섭(원회 역), 박 마이야(강씨 역) 배우 (1982년 모스크바)</div>
-        <div class="ru">Актеры Владимир Ким (в роли Ванг Гон), Пак Чун Соб (в роли Вонхве) и Майя Пак (в роли Кангсси) играют в спектакле «Живой Будда» (автор - Хан Дин), поставленном в Москве в честь 50-летия «Корейского театра». (Москва, 1982 г.)</div></figcaption></figure>
     </div>
   </div>
 </section>
 
-<!-- MAP -->
-<section class="ch" id="map">
-  <div class="chead"><h2>고려인 이주 지도</h2></div>
-  <div class="mapbox">
+<!-- ═══════════ Ⅳ 1937~1953 ═══════════ -->
+<section class="era e4" id="e4">
+  <div class="eh" data-n="1937"><div class="wrap">
+    <span class="roman">Ⅳ</span>
+    <div class="yr">1937~1953</div>
+    <h2>강제이주와 시련의 극복</h2>
+    <p>하루아침에 모든 것을 잃고 6,500km를 실려 간 사람들의 이야기입니다.</p>
+  </div></div>
+
+  <div class="wrap">
+    <div class="quote">
+      <p>삶 전체를 가방 하나에 옮겨<br>그렇게 영문도 모를<br><em>강제 이주가 시작되었다.</em></p>
+      <p>기차는 <em>6,500km</em>를<br>우슈토베까지 쉬지 않고 달렸다.</p>
+      <p>사람들이 내린 곳은<br>혹독한 추위와 척박한 땅</p>
+      <p>혹독한 추위를 피하고자<br>허허벌판 토굴을 파고<br>창고, 마구간에서 겨울을 나다.</p>
+    </div>
+
+    <div class="blk">
+      <div class="row">
+        <div class="txt">
+          <span class="tag">1937</span>
+          <h3>강제이주와 민족문화의 시련</h3>
+          <p><mark>1937년 8월 21일</mark> 스탈린은 고려인강제이주명령서에 서명했다. 이주는 9월 9일부터 시작되어 연해주 아무르주, 자바이칼주에 살던 <mark>17만 명</mark>의 고려인이 모조리 강제이주 열차에 실려 중앙아시아로 끌려갔다.</p>
+          <p>강제이주는 고려인의 모든 것을 앗아가 버렸다. 그들은 피땀 흘려 일구어놓은 집과 토지를 잃었고 이주 과정에서 가족과 친척을 잃었으며 하루아침에 타민족들로부터 믿음을 잃었다.</p>
+          <p>강제이주 두어 해 전부터 민족운동의 지도자와 명망가, 지식인 <mark>2,500여 명</mark>은 아무런 죄도 없이 체포되어 대부분이 처형되었다. 이주 첫해에 추위와 풍토병으로 <mark>1만 5천여 명</mark>의 어린이와 노약자들이 죽어 나갔다.</p>
+          <p>강제이주는 해외 한민족 역사상 가장 큰 비극이었다.</p>
+        </div>
+        <div class="pics stick">
+          <figure><button type="button"><img src="images/deportation-hut.jpg" alt="흙집 앞에 선 고려인 여성과 아이들" loading="lazy"></button>
+            <figcaption>흙집 앞에 선 사람들. (강제이주 패널 사진)</figcaption></figure>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>1937.8.21</b><span>스탈린, 강제이주 명령서 서명</span></div>
+        <div class="stat"><b>17만 명</b><span>중앙아시아로 이송된 고려인</span></div>
+        <div class="stat"><b>6,500km</b><span>우슈토베까지 달린 거리</span></div>
+        <div class="stat"><b>2,500여 명</b><span>이주 두어 해 전부터 체포된 지도자·지식인</span></div>
+        <div class="stat"><b>1만 5천여 명</b><span>이주 첫해 사망한 어린이·노약자</span></div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="row rev">
+        <div class="txt">
+          <span class="tag">1937.9.10</span>
+          <h3>보이찌크 교수와 5명의 이방인</h3>
+          <p>강제이주의 절망 속에서 눈물겨운 휴먼드라마도 생겨났다. 블라디보스토크 《고려사범학교》 타민족교원 5명은 아끼던 제자들을 차마 버려둘 수 없어 자발적으로 강제이주 열차를 타고 고려인 학생들과 함께 중앙아시아로 들어갔던 것이다.</p>
+          <p>1937년 9월 10일 《고려사범학교》 시당위원회는 사범대학교 학생총회를 개최하고 고려인이 곧 강제이주 된다는 사실과 사범대학교 학생들은 25일에 이주 열차를 타게 된다는 것을 처음으로 통보했다. 이 이야기를 들은 몇 명의 다른 민족 교원들은 얼마 후 따로 모여 이야기를 나누었다. 그리고 그들은 학생들에게 다음과 같이 말했다.</p>
+          <p style="font-family:var(--serif);font-size:1.16em;color:#8a5a12;padding:6px 0 6px 18px;border-left:4px solid #b8862f;font-weight:700">“너희들은 우리의 제자다. 우리는 제자들을 버려둘 수 없다. 우리는 너희와 함께 가겠다.”</p>
+          <p>그렇게 따라나선 이들은 사범대학장(유대인), 러시아어문학박사로 세계문학 및 문학원론을 강의했던 보이찌크 교수, 보이찌크의 아내인 러시아어 교수, 수학교수, 그리고 또 한 명의 교수였다.</p>
+          <p>또 학교 식당에서 일하던 러시아 처녀가 있었는데 그녀도 울면서 “나에게 가장 좋은 인상을 준 백성은 고려인이다. 나도 당신들과 함께 가겠다.”고 나섰다.</p>
+          <p>그들은 가족과 지인들의 간곡한 만류도 뿌리치고 고려인 학생들과 함께 강제이주 열차를 타고 카자흐스탄 크즐오르다로 들어갔다. 그리고 <mark>끝까지 고려인과 함께 살았다.</mark></p>
+        </div>
+        <div class="pics">
+          <figure><button type="button"><img src="images/kyzylorda-graduates.jpg" alt="크즐오르다 사범대학 제1회 졸업 기념 사진" loading="lazy"></button>
+            <figcaption>크즐오르다 사범대학 제1회 졸업생 기념 사진 (사진 속 문구 기준)</figcaption></figure>
+          <figure><button type="button"><img src="images/kor-newspaper-2007.jpg" alt="내가 직접 겪은 강제이주 신문 기고문" loading="lazy"></button>
+            <figcaption>재소고려인 한글문학평론가 정상진의 신문 기고문 「내가 직접 겪은 강제이주」 (고려일보 2007년 8월 24일)</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Ⅴ 1938~ ═══════════ -->
+<section class="era e5" id="e5">
+  <div class="eh" data-n="1938"><div class="wrap">
+    <span class="roman">Ⅴ</span>
+    <div class="yr">1938~</div>
+    <h2>황무지에서 피워낸 민족혼</h2>
+    <p>갈대밭을 논으로 바꾸고, 신문과 극장으로 우리말과 문화를 지켜냈습니다.</p>
+  </div></div>
+
+  <div class="wrap">
+    <div class="blk">
+      <div class="row">
+        <div class="txt">
+          <span class="tag">1938~</span>
+          <h3>황무지를 옥토로 일군 민초와 노력영웅들</h3>
+          <p>중앙아시아로 강제이주 된 고려인들이 마주한 땅은 온통 진펄과 갈밭과 소금밭뿐이었다. 그러나 그들은 이에 굴하지 않고 이듬해 봄부터 <mark>갈대를 베고 땅을 고르고 수로를 내어</mark> 메마른 땅에 물을 대고 볍씨를 뿌렸다.</p>
+          <p>어느 민족보다 농경에 우수했던 고려인들은 농사에 극히 비우호적인 중앙아시아의 황무지를 <mark>푸른 옥토</mark>로 변모시켜나갔다.</p>
+          <p>고려인 집단농장 지도자와 일반조합원들의 헌신적인 노고로 강제이주 된 지 몇 년 지나지 않아 고려인들의 경제생활은 눈에 띄게 향상되었다.</p>
+          <p>경제기반이 잘 갖춰진 고려인 집단농장들은 민족지도자와 문화예술인들이 생계 걱정을 덜고 민족문화 부흥 운동에 더 열성적으로 뛰어들 수 있도록 다양한 물질적 토대도 마련해주었다.</p>
+        </div>
+        <div class="pics">
+          <figure><button type="button"><img src="images/kim-mansam-1950.jpg" alt="모스크바 평화옹호자 컨퍼런스 카자흐공화국 대표단" loading="lazy"></button>
+            <figcaption>모스크바에서 열린 평화옹호자 제2차 전연맹 컨퍼런스에 카자흐공화국의 소연방 가입 30주년을 기념하여 카자흐공화국 대표 중 한 명으로 초청받아 참석한 김만삼이 13명의 대표들과 함께 촬영한 사진. 가운데 회색 양복을 입은 이가 김만삼이다. (1950년 10월 16일)</figcaption></figure>
+          <figure><button type="button"><img src="images/lenin-kichi-staff.jpg" alt="레닌기치사 사원들" loading="lazy"></button>
+            <figcaption>재소고려인 한글신문 《레닌기치》사 사원들. 가운데 앉은 이가 주필 남해룡이다. (1950년대 초반)</figcaption></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <span class="tag">전통문화</span>
+      <div class="quote" style="margin-top:6px">
+        <p>소비에트화의 비바람 속에서도<br>굳건히 지켜온 전통문화<br><em>전통음식, 돌, 혼인예식, 환갑잔치 등…</em></p>
+      </div>
+      <div class="txt" style="margin-top:34px">
+        <p>고려인들은 고유의 전통과 생활문화를 소중히 지켜왔다. 물론 이들은 한반도와 멀리 떨어진 곳에서 소통이 단절된 상태로 오랫동안 살아왔기 때문에 그들이 지켜온 것들의 일부는 불가피하게 굴곡과 변화를 겪기도 했다.</p>
+        <p>하지만 음식과 통과의례 같은 뿌리 깊은 전통은 강력한 소비에트화의 비바람 속에서도 원형이 거의 손상되지 않은 채 고스란히 전해지고 있다.</p>
+        <p>중앙아시아 고려인사회에서는 지금도 대부분 <mark>전통음식이 옛것 그대로</mark> 만들어지고 있으며, <mark>돌잡이 의식과 환갑잔치와 혼인예식</mark> 같은 통과의례도 전통의 형식과 내용이 거의 변형되지 않은 채 이어져 오고 있다.</p>
+      </div>
+    </div>
+
+    <div class="blk">
+      <span class="tag">1938~현재</span>
+      <h3>모국어와 한글문학의 계승자 — 레닌기치(고려일보) · 고려극장</h3>
+      <div class="txt">
+        <p>소련 정부는 1938년부터 고려인들에게 모국어 고등교육을 금지시켰다. 이에 따라 강제이주 이듬해 재개교된 《고려사범대학교》의 모든 강의가 러시아어로 진행되어 민족대학의 기능은 한순간에 사라지고 말았다.</p>
+        <p>다행히 강제이주 때 폐간된 모국어 신문사는 이듬해 《레닌기치》로 재창간되었고, 연해주에서 설립된 우리말극장인 《고려극장》도 본연의 활동을 이어가 <mark>민족문화의 명맥은 끊기지 않았다.</mark></p>
+      </div>
+
+      <div class="row even" style="margin-top:36px;gap:28px">
+        <div class="person" style="margin:0">
+          <div class="role">한글문학의 계승자</div>
+          <h3>고려일보 <span class="life">1938~현재</span></h3>
+          <div class="txt">
+            <p>원동 고려인들의 사랑을 받은 《선봉》 신문은 강제이주로 인해 폐간되었다가 이듬해인 <mark>1938년 5월 15일</mark> 카자흐스탄 크즐오르다주에서 《레닌기치》라는 이름으로 복간되었다.</p>
+            <p>《레닌기치》는 강제이주 된 고려인들의 유일한 모국어신문으로 고립된 중앙아시아에서 모국어를 보존하고 발전시키는데 획기적인 역할을 담당하였다. 이 신문은 모국어문학의 발전에 크게 주목하고 다양한 모국어 작가들을 발굴하였으며 그들이 활동할 수 있는 지면을 폭넓게 제공하였다.</p>
+            <p><mark>1991년</mark>에 《레닌기치》는 제호를 《고려일보》로 변경했다. 이 신문은 헌신적인 몇몇 인물들에 의해 모국어 신문의 기능을 잃지 않고 지금까지 발행되고 있으며 고려인 모국어 기관의 상징으로 우뚝 서 있다.</p>
+          </div>
+        </div>
+        <div class="person" style="margin:0">
+          <div class="role">모국어 문화의 전파자</div>
+          <h3>고려극장 <span class="life">1937~현재</span></h3>
+          <div class="txt">
+            <p>1932년 연해주 블라디보스토크에서 창단된 《고려극장》은 강제이주로 인해 극심한 굴곡과 단절을 겪은 다른 모국어 문화기관들과 달리 <mark>이주 직후에도 곧바로 본연의 활동</mark>을 이어나가는 행운을 누렸다.</p>
+            <p>그때 극장은 여러 고려인 집거지를 찾아다니며 피폐해진 동족들의 마음을 걸출한 입담과 흥겨운 가무로 달래고 위로해주었으며, 동시에 강제이주의 와중에 가족과 흩어진 사람들의 생사를 확인하고 소식을 전달해주는 <mark>메신저 역할</mark>까지 감당했다.</p>
+            <p>1950년대 후반 들어 고려인에 대한 탄압이 누그러지자 《고려극장》은 이후 20여 년간 전무후무한 전성기를 구가하였다. 지금도 고려인문화를 대표하는 기관으로 활동하고 있다.</p>
+          </div>
+        </div>
+      </div>
+      <div style="max-width:520px;margin:36px auto 0">
+        <figure><button type="button"><img src="images/koryo-theater-1982.jpg" alt="고려극장 창립 50주년 기념 공연 「산부처」" loading="lazy"></button>
+          <figcaption>《고려극장》 창립 50주년을 맞아 모스크바에서 공연된 연극 「산부처」(한진 작)에서 열연하는 김 블라디미르(왕건 역), 박춘섭(원회 역), 박 마이야(강씨 역) 배우 (1982년 모스크바)</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 지도 ═══════════ -->
+<section class="maph" id="map">
+  <div class="wrap">
+    <h2>고려인 이주 지도</h2>
+    <p class="note">연해주에서 시작해 1937년 강제이주로 중앙아시아에 이르고, 이후 러시아 각지와 다시 연해주·한반도 방향으로 이어진 4단계의 이주 경로입니다. 지도를 누르면 크게 볼 수 있습니다.</p>
     <figure><button type="button"><img src="images/migration-map.jpg" alt="고려인 이주 지도" loading="lazy"></button>
-      <figcaption>
-        <div class="ko">연해주(블라디보스토크·우수리스크·하바롭스크)에서 시작해 1937년 강제이주로 중앙아시아(우슈토베·크즐오르다·타슈켄트·알마티·비슈케크 등)에 이르고, 이후 러시아 각지와 다시 연해주·한반도 방향으로 이어지는 이주 경로를 4단계로 나타낸 지도입니다. 지도를 눌러 크게 볼 수 있습니다.</div>
+      <figcaption style="border:0;padding:0;margin-top:16px">
         <div class="legend">
           <span><i style="background:#d69a2b"></i>1차 이주 : 연해주 이주 (1863~1937)</span>
           <span><i style="background:#2b2f3d"></i>2차 이주 : 강제이주 (1937)</span>
@@ -518,33 +543,34 @@ dialog .x{position:absolute;right:16px;top:12px;font-size:32px;line-height:1;col
   </div>
 </section>
 
-</div>
-
 <footer>
-  <p>이 페이지는 연해주 고려인 역사 전시 패널 사진을 옮겨 정리한 웹 자료입니다. 한국어·러시아어 본문은 패널 표기를 따르되, 띄어쓰기·오탈자는 원문 그대로 두었습니다.</p>
-  <p>일부 작은 캡션과 사진 속 문구는 촬영 화질상 판독이 어려워 확인이 필요할 수 있습니다. 「연표」와 전시 사진 설명 중 별도 표시가 없는 것은 편집 과정에서 붙인 안내입니다.</p>
+  <p>연해주 고려인 역사 전시 패널 사진을 옮겨 정리한 웹 자료입니다. 본문은 패널의 한글 표기를 따르되 읽기 쉽도록 문단을 나누고 핵심어를 강조했습니다.</p>
+  <p>일부 작은 캡션과 사진 속 문구는 촬영 화질상 판독이 어려워 확인이 필요할 수 있습니다. 연표와 시대별 한 줄 소개는 편집 과정에서 붙인 안내입니다.</p>
 </footer>
 
 <dialog id="lb"><div class="box"><button class="x" aria-label="닫기">×</button><img alt=""><div class="cap"></div></div></dialog>
 
 <script>
 (function(){
-  var body=document.body;
-  document.querySelectorAll('.lang button').forEach(function(b){
-    b.addEventListener('click',function(){
-      body.dataset.lang=b.dataset.l;
-      document.querySelectorAll('.lang button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
-    });
-  });
   var lb=document.getElementById('lb'),img=lb.querySelector('img'),cap=lb.querySelector('.cap');
   document.querySelectorAll('figure button').forEach(function(b){
     b.addEventListener('click',function(){
-      var i=b.querySelector('img'); img.src=i.src; img.alt=i.alt;
-      var c=b.closest('figure').querySelector('.ko'); cap.textContent=c?c.textContent.slice(0,180):i.alt;
+      var i=b.querySelector('img'),c=b.closest('figure').querySelector('figcaption');
+      img.src=i.src;img.alt=i.alt;cap.textContent=c?c.textContent.trim().slice(0,200):i.alt;
       lb.showModal();
     });
   });
   lb.addEventListener('click',function(){lb.close()});
+  var links=[].slice.call(document.querySelectorAll('#nav a'));
+  var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){links.forEach(function(a){a.classList.remove('on')});var a=map[e.target.id];if(a)a.classList.add('on')}
+      });
+    },{rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el)});
+  }
 })();
 </script>
 </body>
