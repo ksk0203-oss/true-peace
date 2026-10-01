@@ -532,10 +532,12 @@ body.dark-mode .email-wrap { border: 1px solid rgba(255,255,255,0.06); }
 
 @media (max-width: 1040px) {
   .index-tabs {
-    top: auto;
-    bottom: 0;
+    top: 3px;
+    bottom: auto;
     left: 0;
     right: 0;
+    max-height: none;
+    overflow-y: visible;
     transform: none;
     flex-direction: row;
     justify-content: flex-start;
@@ -544,7 +546,7 @@ body.dark-mode .email-wrap { border: 1px solid rgba(255,255,255,0.06); }
     -webkit-overflow-scrolling: touch;
     gap: 8px;
     background: var(--white);
-    box-shadow: 0 -2px 10px rgba(18,51,58,0.15);
+    box-shadow: 0 2px 10px rgba(18,51,58,0.15);
     padding: 6px 10px;
   }
   .index-tab {
@@ -561,8 +563,8 @@ body.dark-mode .email-wrap { border: 1px solid rgba(255,255,255,0.06); }
   }
   .index-tab:hover { transform: none; }
   .index-tab .roman { display: inline; margin-bottom: 0; margin-right: 4px; font-size: 10px; }
-  body { padding-bottom: 60px; }
-  .float-controls { bottom: 70px; }
+  body { padding-top: 58px; }
+  .article { scroll-margin-top: 70px; }
 }
 
 @media (max-width: 640px) {
