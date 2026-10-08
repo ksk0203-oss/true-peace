@@ -471,9 +471,10 @@ body.dark-mode .tk-date { color: #9FC9CD; }
 .acct-row span:last-child { width: 150px; text-align: left; font-weight: 600; color: var(--forest-900); }
 .acct-owner { margin-top: 10px; font-size: 13px; color: var(--text-gray); text-align: center; }
 
-.qr-box { margin: 24px 0 8px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.qr-box { margin: 24px 0 8px; display: flex; flex-direction: row; justify-content: center; align-items: flex-start; gap: 40px; flex-wrap: wrap; }
+.qr-col { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .qr-label {
-  font-family: 'Noto Sans KR'; font-size: 13px; font-weight: 700; letter-spacing: 1px;
+  font-family: 'Noto Serif KR'; font-size: 15px; font-weight: 700; letter-spacing: 1px;
   color: var(--forest-900); margin-bottom: 12px;
 }
 .qr-box img {
@@ -481,8 +482,15 @@ body.dark-mode .tk-date { color: #9FC9CD; }
   border: 1px solid var(--border-light); border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
 }
+.qr-link-wrap { display: flex; flex-direction: column; align-items: center; text-decoration: none; }
+.qr-link-hint {
+  font-family: 'Noto Sans KR'; font-size: 12.5px; line-height: 1.6; color: var(--text-gray);
+  border: 1px solid var(--border-light); border-radius: var(--radius-md);
+  padding: 10px 16px; background: var(--white); box-shadow: var(--shadow-card);
+}
+.qr-link-arrow { font-size: 14px; line-height: 1.2; color: var(--text-gray); margin: 4px 0; }
 .qr-donate-link {
-  display: inline-block; margin-top: 10px;
+  display: inline-block;
   font-family: 'Noto Sans KR'; font-size: 13px; font-weight: 700;
   color: var(--forest-700); text-decoration: underline;
 }
@@ -1315,11 +1323,20 @@ body.dark-mode .font-controls { background: var(--terracotta); }
     <p class="acct-owner">예금주 (사)참된평화를만드는사람들</p>
 
     <div class="qr-box">
-      <div class="qr-label">법인 후원 QR코드</div>
-      <a href="https://v3.ngocms.co.kr/system/member_signup/join_option_select_03.html?id=hvap1004" target="_blank">
-        <img src="images/donate-qr.png" alt="법인 후원 QR코드">
-      </a>
-      <a class="qr-donate-link" href="https://v3.ngocms.co.kr/system/member_signup/join_option_select_03.html?id=hvap1004" target="_blank">후원 링크</a>
+      <div class="qr-col">
+        <div class="qr-label">후원</div>
+        <a href="https://v3.ngocms.co.kr/system/member_signup/join_option_select_03.html?id=hvap1004" target="_blank">
+          <img src="images/donate-qr.png" alt="법인 후원 QR코드">
+        </a>
+      </div>
+      <div class="qr-col">
+        <div class="qr-label">링크</div>
+        <a class="qr-link-wrap" href="https://v3.ngocms.co.kr/system/member_signup/join_option_select_03.html?id=hvap1004" target="_blank">
+          <div class="qr-link-hint">눌러주세요<br>바로 연결됩니다</div>
+          <div class="qr-link-arrow">↓</div>
+          <div class="qr-donate-link">후원 링크</div>
+        </a>
+      </div>
     </div>
 
     <div class="closing-block">
