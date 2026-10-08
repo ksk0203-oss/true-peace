@@ -337,21 +337,47 @@ body.dark-mode .email-wrap { border: 1px solid rgba(255,255,255,0.06); }
 .note-box { margin: 30px 28px 8px; }
 .note-box strong { color: var(--forest-900); }
 
-/* ── 항공권 명단 표 ── */
+/* ── 항공권 명단 표 ──
+   좁은 화면(모바일)에서는 기존처럼 가로 스크롤로 보고, 카드가 680px 최대
+   너비까지 벌어지는 데스크톱(≥768px)에서는 table-layout:fixed + 줄바꿈으로
+   전환해 가로 스크롤 없이 한 화면에 바로 들어오도록 한다. */
 .table-scroll {
   overflow-x: auto; margin: 4px 0 18px; -webkit-overflow-scrolling: touch;
   border-radius: var(--radius-md); box-shadow: var(--shadow-card);
 }
-.ticket-table { border-collapse: collapse; width: 100%; min-width: 780px; font-size: 12.5px; white-space: nowrap; overflow: hidden; border-radius: var(--radius-md); }
-.ticket-table th, .ticket-table td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); text-align: center; }
+.ticket-table {
+  border-collapse: collapse; width: 100%; min-width: 720px; font-size: 12.5px;
+  white-space: nowrap; border-radius: var(--radius-md);
+}
+.ticket-table th, .ticket-table td {
+  padding: 10px 12px; border-bottom: 1px solid var(--border-light); text-align: center;
+}
 .ticket-table thead th {
   background: var(--forest-900); color: var(--white); font-weight: 700;
-  font-size: 12px; letter-spacing: 0.3px; white-space: nowrap;
+  font-size: 12px; letter-spacing: 0.3px;
 }
 .ticket-table tbody tr:last-child td { border-bottom: none; }
 .ticket-table tbody tr:nth-child(even) td { background: var(--off-white); }
 .ticket-table td:nth-child(2) { text-align: left; font-family: 'Noto Sans KR'; }
 .ticket-table td:nth-child(3) { text-align: left; font-weight: 700; color: var(--forest-900); }
+.ticket-table td:nth-child(2) .pax-photo { margin: 0 6px 2px 0; float: left; }
+.tk-date { display: block; font-weight: 700; color: var(--forest-900); }
+.tk-time { display: block; margin-top: 2px; color: var(--text-gray); }
+body.dark-mode .tk-date { color: #9FC9CD; }
+
+@media (min-width: 768px) {
+  .ticket-table { table-layout: fixed; min-width: 0; white-space: normal; font-size: 11.5px; }
+  .ticket-table th, .ticket-table td { padding: 8px 6px; overflow-wrap: break-word; }
+  .ticket-table thead th { font-size: 10.5px; letter-spacing: 0.1px; }
+  .ticket-table col.tk-no { width: 5%; }
+  .ticket-table col.tk-en { width: 22%; }
+  .ticket-table col.tk-kr { width: 7%; }
+  .ticket-table col.tk-ticket { width: 12%; }
+  .ticket-table col.tk-pnr { width: 12%; }
+  .ticket-table col.tk-dep { width: 16%; }
+  .ticket-table col.tk-arr { width: 18%; }
+  .ticket-table col.tk-seat { width: 7%; }
+}
 .pax-photo {
   width: 26px; height: 34px; object-fit: cover; object-position: top center;
   border-radius: 4px; vertical-align: middle; margin-right: 8px;
@@ -645,60 +671,6 @@ body.dark-mode .email-wrap { border: 1px solid rgba(255,255,255,0.06); }
 body.dark-mode .float-btn { background: var(--terracotta); }
 body.dark-mode .font-controls { background: var(--terracotta); }
 
-/* ── 11. 개인별 메모 ── */
-.memo-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 2px 0 20px; }
-.memo-meta label { font-family: 'Noto Serif KR'; font-size: 13.5px; font-weight: 700; color: var(--forest-700); flex-shrink: 0; }
-.memo-input, .memo-ta {
-  font-family: 'Noto Sans KR', sans-serif; font-size: 14px; line-height: 1.7;
-  color: var(--text-black); background: var(--white);
-  border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 10px 12px;
-  -webkit-appearance: none; appearance: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-.memo-input { flex: 1 1 180px; min-width: 0; }
-.memo-ta { display: block; width: 100%; min-height: 78px; resize: vertical; overflow: hidden; }
-.memo-input:focus, .memo-ta:focus {
-  outline: none; border-color: var(--forest-700); box-shadow: 0 0 0 3px rgba(44,107,115,0.14);
-}
-.memo-input::placeholder, .memo-ta::placeholder { color: var(--text-gray); opacity: 0.6; }
-
-.memo-card {
-  border: 1px solid var(--border-light); border-left: 3px solid var(--sage);
-  border-radius: var(--radius-md); padding: 16px 18px 18px; margin-bottom: 14px; background: var(--off-white);
-  box-shadow: var(--shadow-card); transition: box-shadow 0.2s ease;
-}
-.memo-card:focus-within { box-shadow: var(--shadow-card-hover); }
-.memo-card-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 9px; }
-.memo-day { font-family: 'Noto Serif KR'; font-size: 14.5px; font-weight: 700; color: var(--forest-900); flex-shrink: 0; }
-.memo-plan { font-size: 12.5px; line-height: 1.5; color: var(--text-gray); }
-
-.memo-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 18px; }
-.memo-btn {
-  font-family: 'Noto Sans KR'; font-size: 13px; font-weight: 700; cursor: pointer;
-  padding: 10px 16px; border-radius: var(--radius-sm);
-  border: 1px solid var(--forest-700); background: var(--forest-700); color: #FFFFFF;
-  transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
-}
-.memo-btn:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(18,51,58,0.18); }
-.memo-btn:active { transform: translateY(0); }
-.memo-btn--ghost { background: transparent; color: var(--forest-700); box-shadow: none; }
-.memo-btn--ghost:hover { box-shadow: none; }
-.memo-btn--danger { background: transparent; border-color: var(--terracotta); color: var(--terracotta); box-shadow: none; }
-.memo-btn--danger:hover { box-shadow: none; }
-.memo-status { font-size: 12.5px; color: var(--text-gray); margin-left: auto; }
-
-body.dark-mode .memo-meta label, body.dark-mode .memo-day { color: #9FC9CD; }
-body.dark-mode .memo-btn { background: var(--forest-line); border-color: var(--forest-line); }
-body.dark-mode .memo-btn--ghost { background: transparent; color: #8FBFC4; border-color: #8FBFC4; }
-body.dark-mode .memo-btn--danger { background: transparent; color: #E2937A; border-color: #E2937A; }
-body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
-  border-color: #8FBFC4; box-shadow: 0 0 0 2px rgba(143,191,196,0.18);
-}
-
-@media (max-width: 640px) {
-  .memo-status { margin-left: 0; width: 100%; }
-}
-
 /* ── 인쇄(Ctrl+P) 시 버튼/팝업류는 숨기고 본문만 깔끔하게 출력 ── */
 @media print {
   body.dark-mode { background: #fff !important; color: #101010 !important; }
@@ -713,9 +685,6 @@ body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
   .photo-grid img, .photo-single img { opacity: 1 !important; transform: none !important; }
   .article-title, .article-num { opacity: 1 !important; transform: none !important; }
   .hero-title-text { opacity: 1 !important; transform: none !important; animation: none !important; }
-  .memo-actions { display: none !important; }
-  .memo-card { page-break-inside: avoid; background: #fff !important; }
-  .memo-input, .memo-ta { background: #fff !important; color: #101010 !important; border-color: #C9C4BA !important; }
   .article, .body-copy, p.body-text { page-break-inside: avoid; }
 }
 </style>
@@ -727,14 +696,13 @@ body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
   <a class="index-tab index-tab--02" href="#article-02"><span><span class="roman">Ⅱ</span>항공권명단</span></a>
   <a class="index-tab index-tab--03" href="#article-03"><span><span class="roman">Ⅲ</span>비상연락</span></a>
   <a class="index-tab index-tab--04" href="#article-04"><span><span class="roman">Ⅳ</span>주요일정</span></a>
-  <a class="index-tab index-tab--05" href="#article-05"><span><span class="roman">Ⅴ</span>개인메모</span></a>
-  <a class="index-tab index-tab--06" href="#article-06"><span><span class="roman">Ⅵ</span>사역자소개</span></a>
-  <a class="index-tab index-tab--07" href="#article-07"><span><span class="roman">Ⅶ</span>명소안내</span></a>
-  <a class="index-tab index-tab--08" href="#article-08"><span><span class="roman">Ⅷ</span>역할분담</span></a>
-  <a class="index-tab index-tab--09" href="#article-09"><span><span class="roman">Ⅸ</span>준비물</span></a>
-  <a class="index-tab index-tab--10" href="#article-10"><span><span class="roman">Ⅹ</span>기행문</span></a>
-  <a class="index-tab index-tab--11" href="#article-11"><span><span class="roman">Ⅺ</span>참고자료</span></a>
-  <a class="index-tab index-tab--12" href="#article-12"><span><span class="roman">Ⅻ</span>고려인박물관</span></a>
+  <a class="index-tab index-tab--05" href="#article-05"><span><span class="roman">Ⅴ</span>사역자소개</span></a>
+  <a class="index-tab index-tab--06" href="#article-06"><span><span class="roman">Ⅵ</span>명소안내</span></a>
+  <a class="index-tab index-tab--07" href="#article-07"><span><span class="roman">Ⅶ</span>역할분담</span></a>
+  <a class="index-tab index-tab--08" href="#article-08"><span><span class="roman">Ⅷ</span>준비물</span></a>
+  <a class="index-tab index-tab--09" href="#article-09"><span><span class="roman">Ⅸ</span>기행문</span></a>
+  <a class="index-tab index-tab--10" href="#article-10"><span><span class="roman">Ⅹ</span>참고자료</span></a>
+  <a class="index-tab index-tab--11" href="#article-11"><span><span class="roman">Ⅺ</span>고려인박물관</span></a>
 </div>
 
 <div class="email-wrap">
@@ -783,61 +751,53 @@ body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
       <li><a href="#article-05">
         <span class="index-num">05</span>
         <span class="index-text">
-          <span class="index-title">개인별 메모</span>
-          <span class="index-sub">일정별로 남기는 나만의 기록</span>
+          <span class="index-title">현지 사역자 소개</span>
+          <span class="index-sub">김상길 목사 · 김상욱 박사</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
       <li><a href="#article-06">
         <span class="index-num">06</span>
         <span class="index-text">
-          <span class="index-title">현지 사역자 소개</span>
-          <span class="index-sub">김상길 목사 · 김상욱 박사</span>
+          <span class="index-title">카자흐스탄 명소 안내</span>
+          <span class="index-sub">함께 둘러볼 알마티와 근교의 대표 명소 9곳</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
       <li><a href="#article-07">
         <span class="index-num">07</span>
         <span class="index-text">
-          <span class="index-title">카자흐스탄 명소 안내</span>
-          <span class="index-sub">함께 둘러볼 알마티와 근교의 대표 명소 9곳</span>
+          <span class="index-title">참석자 역할 분담</span>
+          <span class="index-sub">함께 준비하는 여덟 가지 역할</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
       <li><a href="#article-08">
         <span class="index-num">08</span>
         <span class="index-text">
-          <span class="index-title">참석자 역할 분담</span>
-          <span class="index-sub">함께 준비하는 여덟 가지 역할</span>
+          <span class="index-title">준비물 세부사항</span>
+          <span class="index-sub">개별 준비물과 수화물 안내</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
       <li><a href="#article-09">
         <span class="index-num">09</span>
         <span class="index-text">
-          <span class="index-title">준비물 세부사항</span>
-          <span class="index-sub">개별 준비물과 수화물 안내</span>
+          <span class="index-title">카자흐스탄 평화 기행문</span>
+          <span class="index-sub">2025년 참가자 김소원 학생의 소감문</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
       <li><a href="#article-10">
         <span class="index-num">10</span>
         <span class="index-text">
-          <span class="index-title">카자흐스탄 평화 기행문</span>
-          <span class="index-sub">2025년 참가자 김소원 학생의 소감문</span>
-        </span>
-        <span class="index-arrow">→</span>
-      </a></li>
-      <li><a href="#article-11">
-        <span class="index-num">11</span>
-        <span class="index-text">
           <span class="index-title">참고자료</span>
           <span class="index-sub">참고 글 3편</span>
         </span>
         <span class="index-arrow">→</span>
       </a></li>
-      <li><a href="#article-12">
-        <span class="index-num">12</span>
+      <li><a href="#article-11">
+        <span class="index-num">11</span>
         <span class="index-text">
           <span class="index-title">우슈토베 고려인 박물관</span>
           <span class="index-sub">연해주 이주 · 항일운동 · 강제이주 · 정착의 역사</span>
@@ -889,25 +849,29 @@ body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
   <div class="body-copy">
     <div class="table-scroll">
       <table class="ticket-table">
+        <colgroup>
+          <col class="tk-no"><col class="tk-en"><col class="tk-kr"><col class="tk-ticket">
+          <col class="tk-pnr"><col class="tk-dep"><col class="tk-arr"><col class="tk-seat">
+        </colgroup>
         <thead>
           <tr>
             <th>No</th><th>영문 이름</th><th>한글 이름</th><th>항공권 번호</th><th>예약번호</th>
-            <th>가는편 날짜</th><th>가는편 시간</th><th>오는편 날짜</th><th>오는편 시간</th><th>좌석등급</th>
+            <th>가는편</th><th>오는편</th><th>좌석등급</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td><img class="pax-photo" src="images/participants/kim-sungkuk.jpg" alt="김성국">KIM/SUNGKUK MR</td><td>김성국</td><td>9885030155389</td><td>F3IUQB</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
-          <tr><td>2</td><td><img class="pax-photo" src="images/participants/kim-jooyong.jpg" alt="김주용">KIM/JOOYONG MR</td><td>김주용</td><td>9885030155390</td><td>F3IUQB</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
-          <tr><td>3</td><td><img class="pax-photo" src="images/participants/park-younsok.jpg" alt="박연숙">PARK/YOUNSOK MS</td><td>박연숙</td><td>9885030155391</td><td>F3IUQB</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
-          <tr><td>4</td><td><img class="pax-photo" src="images/participants/park-jaena.jpg" alt="박재나">PARK/JAENA MS</td><td>박재나</td><td>9885030155392</td><td>F3IUQB</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
-          <tr><td>5</td><td><img class="pax-photo" src="images/participants/park-jungrim.jpg" alt="박정림">PARK/JUNGRIM MS</td><td>박정림</td><td>9885030155393</td><td>F3IUQB</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
-          <tr><td>6</td><td><img class="pax-photo" src="images/participants/so-jaewoong.jpg" alt="소재웅">SO/JAEWOONG MR</td><td>소재웅</td><td>9885030155396</td><td>F3J763</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
-          <tr><td>7</td><td><img class="pax-photo" src="images/participants/ryu-heeseok.jpg" alt="유희석">RYU/HEESEOK MR</td><td>유희석</td><td>9885030155397</td><td>F3J763</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
-          <tr><td>8</td><td><img class="pax-photo" src="images/participants/yun-shinyoung.jpg" alt="윤신영">YUN/SHINYOUNG MR</td><td>윤신영</td><td>9885030155399</td><td>F3J763</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
-          <tr><td>9</td><td><img class="pax-photo" src="images/participants/hong-sangtae.jpg" alt="홍상태">HONG/SANGTAE MR</td><td>홍상태</td><td>9885030155400</td><td>F3J763</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
-          <tr><td>10</td><td><img class="pax-photo" src="images/participants/youn-moojin.jpg" alt="윤무진">YOUN/MOOJIN MR</td><td>윤무진</td><td>9885030246776</td><td>FKJBBL</td><td>09.28(월)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(T)</td></tr>
-          <tr><td>11</td><td><img class="pax-photo" src="images/participants/cho-soyoung.jpg" alt="조소영">CHO/SOYOUNG MS</td><td>조소영</td><td>9885030514884</td><td>E4KAS7</td><td>09.27(일)</td><td>ICN 18:10 → ALA 20:50</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30</td><td>일반석(V)</td></tr>
-          <tr><td>12</td><td><img class="pax-photo" src="images/participants/ahn-hongcheol.jpg" alt="안홍철">AHN/HONGCHEOL MR</td><td>안홍철</td><td>1804825411936</td><td>HQRH4R(KE:D9RAH7)</td><td>09.23(수)</td><td>ICN 16:35 → TAS 20:15 (KE5949)</td><td>10.02(금)</td><td>ALA 22:10 → ICN 07:30(익일) (KE5948)</td><td>일반석(K/U)</td></tr>
+          <tr><td>1</td><td><img class="pax-photo" src="images/participants/kim-sungkuk.jpg" alt="김성국">KIM/SUNGKUK MR</td><td>김성국</td><td>9885030155389</td><td>F3IUQB</td><td><span class="tk-date">09.27(일)</span><span class="tk-time">ICN 18:10 → ALA 20:50</span></td><td><span class="tk-date">10.02(금)</span><span class="tk-time">ALA 22:10 → ICN 07:30</span></td><td>일반석(T)</td></tr>
+          <tr><td>2</td><td><img class="pax-photo" src="images/participants/kim-jooyong.jpg" alt="김주용">KIM/JOOYONG MR</td><td>김주용</td><td>9885030155390</td><td>F3IUQB</td><td><span class="tk-date">09.27(일)</span><span class="tk-time">ICN 18:10 → ALA 20:50</span></td><td><span class="tk-date">10.02(금)</span><span class="tk-time">ALA 22:10 → ICN 07:30</span></td><td>일반석(T)</td></tr>
+          <tr><td>3</td><td><img class="pax-photo" src="images/participants/park-younsok.jpg" alt="박연숙">PARK/YOUNSOK MS</td><td>박연숙</td><td>9885030155391</td><td>F3IUQB</td><td><span class="tk-date">09.27(일)</span><span class="tk-time">ICN 18:10 → ALA 20:50</span></td><td><span class="tk-date">10.02(금)</span><span class="tk-time">ALA 22:10 → ICN 07:30</span></td><td>일반석(T)</td></tr>
+          <tr><td>4</td><td><img class="pax-photo" src="images/participants/park-jaena.jpg" alt="박재나">PARK/JAENA MS</td><td>박재나</td><td>9885030155392</td><td>F3IUQB</td><td><span class="tk-date">09.27(일)</span><span class="tk-time">ICN 18:10 → ALA 20:50</span></td><td><span class="tk-date">10.02(금)</span><span class="tk-time">ALA 22:10 → ICN 07:30</span></td><td>일반석(T)</td></tr>
+          <tr><td>5</td><td><img class="pax-photo" src="images/participants/park-jungrim.jpg" alt="박정림">PARK/JUNGRIM MS</td><td>박정림</td><td>9885030155393</td><td>F3IUQB</td><td><span class="tk-date">09.27(일)</span><span class="tk-time">ICN 18:10 → ALA 20:50</span></td><td><span class="tk-date">10.02(금)</span><span class="tk-time">ALA 22:10 → ICN 07:30</span></td><td>일반석(T)</td></tr>
+          <tr><td>6</td><td><img class="pax-photo" src="images/participants/so-jaewoong.jpg" alt="소재웅">SO/JAEWOONG MR</td><td>소재웅</td><td>9885030155396</td><td>F3J763</td><td><span class="tk-date">09.27(일)</span><span class="tk-time">ICN 18:10 → ALA 20:50</span></td><td><span class="tk-date">10.02(금)</span><span class="tk-time">ALA 22:10 → ICN 07:30</span></td><td>일반석(T)</td></tr>
+          <tr><td>7</td><td><img class="pax-photo" src="images/participants/ryu-heeseok.jpg" alt="유희석">RYU/HEESEOK MR</td><td>유희석</td><td>9885030155397</td><td>F3J763</td><td><span class="tk-date">09.27(일)</span><span class="tk-time">ICN 18:10 → ALA 20:50</span></td><td><span class="tk-date">10.02(금)</span><span class="tk-time">ALA 22:10 → ICN 07:30</span></td><td>일반석(T)</td></tr>
+          <tr><td>8</td><td><img class="pax-photo" src="images/participants/yun-shinyoung.jpg" alt="윤신영">YUN/SHINYOUNG MR</td><td>윤신영</td><td>9885030155399</td><td>F3J763</td><td><span class="tk-date">09.27(일)</span><span class="tk-time">ICN 18:10 → ALA 20:50</span></td><td><span class="tk-date">10.02(금)</span><span class="tk-time">ALA 22:10 → ICN 07:30</span></td><td>일반석(T)</td></tr>
+          <tr><td>9</td><td><img class="pax-photo" src="images/participants/hong-sangtae.jpg" alt="홍상태">HONG/SANGTAE MR</td><td>홍상태</td><td>9885030155400</td><td>F3J763</td><td><span class="tk-date">09.27(일)</span><span class="tk-time">ICN 18:10 → ALA 20:50</span></td><td><span class="tk-date">10.02(금)</span><span class="tk-time">ALA 22:10 → ICN 07:30</span></td><td>일반석(T)</td></tr>
+          <tr><td>10</td><td><img class="pax-photo" src="images/participants/youn-moojin.jpg" alt="윤무진">YOUN/MOOJIN MR</td><td>윤무진</td><td>9885030246776</td><td>FKJBBL</td><td><span class="tk-date">09.28(월)</span><span class="tk-time">ICN 18:10 → ALA 20:50</span></td><td><span class="tk-date">10.02(금)</span><span class="tk-time">ALA 22:10 → ICN 07:30</span></td><td>일반석(T)</td></tr>
+          <tr><td>11</td><td><img class="pax-photo" src="images/participants/cho-soyoung.jpg" alt="조소영">CHO/SOYOUNG MS</td><td>조소영</td><td>9885030514884</td><td>E4KAS7</td><td><span class="tk-date">09.27(일)</span><span class="tk-time">ICN 18:10 → ALA 20:50</span></td><td><span class="tk-date">10.02(금)</span><span class="tk-time">ALA 22:10 → ICN 07:30</span></td><td>일반석(V)</td></tr>
+          <tr><td>12</td><td><img class="pax-photo" src="images/participants/ahn-hongcheol.jpg" alt="안홍철">AHN/HONGCHEOL MR</td><td>안홍철</td><td>1804825411936</td><td>HQRH4R(KE:D9RAH7)</td><td><span class="tk-date">09.23(수)</span><span class="tk-time">ICN 16:35 → TAS 20:15 (KE5949)</span></td><td><span class="tk-date">10.02(금)</span><span class="tk-time">ALA 22:10 → ICN 07:30(익일) (KE5948)</span></td><td>일반석(K/U)</td></tr>
         </tbody>
       </table>
     </div>
@@ -953,105 +917,16 @@ body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
     <div class="tl-row"><div class="tl-year">9/28(월)</div><div class="tl-desc">오전 침볼락 · 오후 고려문화원 방문 — 카자흐스탄과 고려인 역사 강의, 장학금·기부금 전달, 카자흐스탄 참된평화를만드는사람들 현판식</div></div>
     <div class="tl-row"><div class="tl-year">9/29(화)</div><div class="tl-desc">우슈토베 방문 — 방문 선물 나눔, 헌금 전달</div></div>
     <div class="tl-row"><div class="tl-year tl-year--span">9/30(수)~10/1(목)</div><div class="tl-desc">쿨사이 호수, 차른 계곡, 카인디 호수</div></div>
-    <div class="tl-row"><div class="tl-year">10/2(금)</div><div class="tl-desc">오전 사과농장 · 시내 관광(시장 방문, 선물의 집) · 점심·만찬 후 공항으로 — 교제의 시간</div></div>
+    <div class="tl-row"><div class="tl-year">10/2(금)</div><div class="tl-desc">오전 국립 중앙박물관, 미술관 탐방 · 시내 관광(시장 방문, 선물의 집) · 점심·만찬 후 공항으로 — 교제의 시간</div></div>
     <div class="tl-row"><div class="tl-year">10/3(토)</div><div class="tl-desc">오전 인천공항 도착</div></div>
   </div>
 
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
-  <!-- 05. 개인별 메모 -->
+  <!-- 05. 현지 사역자 소개 -->
   <div class="article" id="article-05">
     <div class="article-head">
       <div class="article-num">05</div>
-      <div class="article-heading">
-        <div class="article-title">개인별 메모</div>
-        <div class="article-byline">일정별로 남기는 나만의 기록 · 적는 즉시 자동 저장됩니다</div>
-      </div>
-    </div>
-  </div>
-  <div class="body-copy">
-
-    <div class="note-box">
-      <strong>메모는 이 기기(브라우저)에만 저장됩니다</strong> — 다른 분에게 보이지 않고 서버로 전송되지도 않습니다. 다만 브라우저 기록·캐시를 지우거나 다른 기기에서 열면 메모가 보이지 않으니, 남기고 싶은 내용은 아래 <strong>메모 전체 복사</strong>나 <strong>파일로 저장</strong>으로 따로 보관해 주세요.
-    </div>
-
-    <div class="memo-meta">
-      <label for="memoWriter">작성자</label>
-      <input class="memo-input" type="text" id="memoWriter" placeholder="이름을 입력하세요" autocomplete="name">
-    </div>
-
-    <div class="memo-card">
-      <div class="memo-card-head">
-        <span class="memo-day">9/27(일)</span>
-        <span class="memo-plan">저녁 알마티 도착</span>
-      </div>
-      <textarea class="memo-ta" data-memo="d0927" data-memo-label="9/27(일)" aria-label="9/27(일) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
-    </div>
-    <div class="memo-card">
-      <div class="memo-card-head">
-        <span class="memo-day">9/28(월)</span>
-        <span class="memo-plan">오전 침볼락 · 오후 고려문화원 방문, 현판식</span>
-      </div>
-      <textarea class="memo-ta" data-memo="d0928" data-memo-label="9/28(월)" aria-label="9/28(월) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
-    </div>
-    <div class="memo-card">
-      <div class="memo-card-head">
-        <span class="memo-day">9/29(화)</span>
-        <span class="memo-plan">우슈토베 방문</span>
-      </div>
-      <textarea class="memo-ta" data-memo="d0929" data-memo-label="9/29(화)" aria-label="9/29(화) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
-    </div>
-    <div class="memo-card">
-      <div class="memo-card-head">
-        <span class="memo-day">9/30(수)</span>
-        <span class="memo-plan">쿨사이 호수 · 차른 계곡 · 카인디 호수 (수~목 이틀 일정)</span>
-      </div>
-      <textarea class="memo-ta" data-memo="d0930" data-memo-label="9/30(수)" aria-label="9/30(수) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
-    </div>
-    <div class="memo-card">
-      <div class="memo-card-head">
-        <span class="memo-day">10/1(목)</span>
-        <span class="memo-plan">쿨사이 호수 · 차른 계곡 · 카인디 호수 (수~목 이틀 일정)</span>
-      </div>
-      <textarea class="memo-ta" data-memo="d1001" data-memo-label="10/1(목)" aria-label="10/1(목) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
-    </div>
-    <div class="memo-card">
-      <div class="memo-card-head">
-        <span class="memo-day">10/2(금)</span>
-        <span class="memo-plan">오전 사과농장 · 시내 관광 · 교제 후 공항으로</span>
-      </div>
-      <textarea class="memo-ta" data-memo="d1002" data-memo-label="10/2(금)" aria-label="10/2(금) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
-    </div>
-    <div class="memo-card">
-      <div class="memo-card-head">
-        <span class="memo-day">10/3(토)</span>
-        <span class="memo-plan">오전 인천공항 도착</span>
-      </div>
-      <textarea class="memo-ta" data-memo="d1003" data-memo-label="10/3(토)" aria-label="10/3(토) 메모" placeholder="오늘 보고 들은 것, 감사한 일, 기도제목을 자유롭게 적어보세요."></textarea>
-    </div>
-    <div class="memo-card">
-      <div class="memo-card-head">
-        <span class="memo-day">자유 메모</span>
-        <span class="memo-plan">날짜와 상관없이 남기고 싶은 이야기</span>
-      </div>
-      <textarea class="memo-ta" data-memo="free" data-memo-label="자유 메모" aria-label="자유 메모" placeholder="돌아와서 나눌 이야기, 준비물 메모, 연락처 등 무엇이든 적어두세요."></textarea>
-    </div>
-
-    <div class="memo-actions">
-      <button type="button" class="memo-btn" id="memoCopyBtn">메모 전체 복사</button>
-      <button type="button" class="memo-btn memo-btn--ghost" id="memoDownloadBtn">파일로 저장</button>
-      <button type="button" class="memo-btn memo-btn--danger" id="memoClearBtn">전체 지우기</button>
-      <span class="memo-status" id="memoStatus">적으면 자동으로 저장됩니다</span>
-    </div>
-
-  </div>
-
-  <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
-
-  <!-- 06. 현지 사역자 소개 -->
-  <div class="article" id="article-06">
-    <div class="article-head">
-      <div class="article-num">06</div>
       <div class="article-heading">
         <div class="article-title">현지 사역자 소개</div>
         <div class="article-byline">이번 여정에서 만나게 될 두 분을 소개합니다</div>
@@ -1083,14 +958,6 @@ body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
       <p class="body-text">그때부터 교회는 사역을 더욱 확충할 수 있었다. 특히 어린이 사역과 장학금 사역이 활기를 띠어 많은 학생들에게 교회에서 장학금을 줄 수 있었고 그 학생들이 30년이 지난 지금도 교회에 일꾼으로 남아 있다.</p>
       <p class="place-credit">출처: 가스펠투데이(www.gospeltoday.co.kr)</p>
 
-    <div class="sublist-head">고려문화원 · 한인일보</div>
-    <div class="role-row"><span class="role-title">한인일보</span><span>haninnews.info (발행인: 김상욱)</span></div>
-    <div class="role-row"><span class="role-title">주소</span><span>Mukanova 96, Almaty, Kazakhstan</span></div>
-    <div class="role-row"><span class="role-title">전화</span><span>+7 727 255 5188</span></div>
-    <div class="role-row"><span class="role-title">휴대전화</span><span>+7 701 755 9759</span></div>
-    <div class="role-row"><span class="role-title">카카오톡 ID</span><span>almatykim</span></div>
-    <div class="role-row"><span class="role-title">이메일</span><span>almatykim@hotmail.com</span></div>
-
     <div class="section-major">
       <div class="section-num">Ⅱ</div>
       <div class="section-title">김상욱 박사</div>
@@ -1119,14 +986,22 @@ body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
       <p class="body-text">김상욱 원장이 이루고 싶은 작은 소원은 고려인들에게 막걸리를 부활시키는 것이다. 27년 전 잃어버린 우리의 말을 찾기 위해 모국어 재생 사업을 했던 그는, 이제 잃어버린 우리의 맛을 찾아줄 시기가 왔다고 생각한다. "우리 선조들이 즐겨 마시던 막걸리를 고려인들에게 다시 알게 해주고 싶어요. '고려막걸리'라고 이미 이름도 만들어뒀어요." "저는 고려인과 카자흐스탄을 매우 사랑해요. 지금까지 한국과 카자흐스탄을 잇는 다리 역할을 해왔다고 생각하고, 앞으로도 그러고 싶어요."</p>
       <p class="place-credit">출처: 고대신문(www.kunews.ac.kr)</p>
 
+    <div class="sublist-head">고려문화원 · 한인일보</div>
+    <div class="role-row"><span class="role-title">한인일보</span><span>haninnews.info (발행인: 김상욱)</span></div>
+    <div class="role-row"><span class="role-title">주소</span><span>Mukanova 96, Almaty, Kazakhstan</span></div>
+    <div class="role-row"><span class="role-title">전화</span><span>+7 727 255 5188</span></div>
+    <div class="role-row"><span class="role-title">휴대전화</span><span>+7 701 755 9759</span></div>
+    <div class="role-row"><span class="role-title">카카오톡 ID</span><span>almatykim</span></div>
+    <div class="role-row"><span class="role-title">이메일</span><span>almatykim@hotmail.com</span></div>
+
   </div>
 
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
-  <!-- 07. 카자흐스탄 명소 안내 -->
-  <div class="article" id="article-07">
+  <!-- 06. 카자흐스탄 명소 안내 -->
+  <div class="article" id="article-06">
     <div class="article-head">
-      <div class="article-num">07</div>
+      <div class="article-num">06</div>
       <div class="article-heading">
         <div class="article-title">카자흐스탄 명소 안내</div>
         <div class="article-byline">함께 둘러볼 알마티와 근교의 대표 명소 9곳</div>
@@ -1194,10 +1069,10 @@ body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
 
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
-  <!-- 08. 참석자 역할 분담 -->
-  <div class="article" id="article-08">
+  <!-- 07. 참석자 역할 분담 -->
+  <div class="article" id="article-07">
     <div class="article-head">
-      <div class="article-num">08</div>
+      <div class="article-num">07</div>
       <div class="article-heading">
         <div class="article-title">참석자 역할 분담</div>
         <div class="article-byline">함께 준비하는 여덟 가지 역할</div>
@@ -1232,10 +1107,10 @@ body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
 
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
-  <!-- 09. 준비물 세부사항 -->
-  <div class="article" id="article-09">
+  <!-- 08. 준비물 세부사항 -->
+  <div class="article" id="article-08">
     <div class="article-head">
-      <div class="article-num">09</div>
+      <div class="article-num">08</div>
       <div class="article-heading">
         <div class="article-title">준비물 세부사항</div>
         <div class="article-byline">개별 준비물과 수화물 안내</div>
@@ -1255,10 +1130,10 @@ body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
 
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
-  <!-- 10. 카자흐스탄 평화 기행문 -->
-  <div class="article" id="article-10">
+  <!-- 09. 카자흐스탄 평화 기행문 -->
+  <div class="article" id="article-09">
     <div class="article-head">
-      <div class="article-num">10</div>
+      <div class="article-num">09</div>
       <div class="article-heading">
         <div class="article-title">카자흐스탄 평화 기행문</div>
         <div class="article-byline">김소원 학생 · 2025년 비전트립 참가 소감문</div>
@@ -1309,10 +1184,10 @@ body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
 
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
-  <!-- 11. 참고자료 -->
-  <div class="article" id="article-11">
+  <!-- 10. 참고자료 -->
+  <div class="article" id="article-10">
     <div class="article-head">
-      <div class="article-num">11</div>
+      <div class="article-num">10</div>
       <div class="article-heading">
         <div class="article-title">참고자료</div>
         <div class="article-byline">평화세상에 실렸던 참고 글 3편</div>
@@ -1452,10 +1327,10 @@ body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
 
   <div class="ornament-divider"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
-  <!-- 12. 우슈토베 고려인 박물관 -->
-  <div class="article" id="article-12">
+  <!-- 11. 우슈토베 고려인 박물관 -->
+  <div class="article" id="article-11">
     <div class="article-head">
-      <div class="article-num">12</div>
+      <div class="article-num">11</div>
       <div class="article-heading">
         <div class="article-title">우슈토베 고려인 박물관</div>
         <div class="article-byline">연해주 이주부터 강제이주, 정착까지 — 전시 패널로 보는 고려인의 역사</div>
@@ -1737,140 +1612,6 @@ body.dark-mode .memo-input:focus, body.dark-mode .memo-ta:focus {
       heroLogo.style.transform = 'scale(1)';
     });
   }
-})();
-</script>
-
-<script>
-(function() {
-  var STORE_KEY = 'kzh-memo-v1';
-  var writer = document.getElementById('memoWriter');
-  var statusEl = document.getElementById('memoStatus');
-  var fields = Array.prototype.slice.call(document.querySelectorAll('.memo-ta[data-memo]'));
-  if (!writer || !statusEl || !fields.length) return;
-
-  var canStore = (function() {
-    try {
-      localStorage.setItem('kzh-memo-test', '1');
-      localStorage.removeItem('kzh-memo-test');
-      return true;
-    } catch (e) { return false; }
-  })();
-
-  function pad(n) { return (n < 10 ? '0' : '') + n; }
-  function setStatus(msg) { statusEl.textContent = msg; }
-
-  function autoGrow(ta) {
-    ta.style.height = 'auto';
-    ta.style.height = Math.max(78, ta.scrollHeight) + 'px';
-  }
-
-  function collect() {
-    var data = { writer: writer.value };
-    fields.forEach(function(ta) { data[ta.getAttribute('data-memo')] = ta.value; });
-    return data;
-  }
-
-  function load() {
-    if (!canStore) { setStatus('이 브라우저에서는 저장할 수 없습니다'); return; }
-    var raw = localStorage.getItem(STORE_KEY);
-    if (raw) {
-      var data = null;
-      try { data = JSON.parse(raw); } catch (e) { data = null; }
-      if (data && typeof data === 'object') {
-        if (typeof data.writer === 'string') writer.value = data.writer;
-        fields.forEach(function(ta) {
-          var v = data[ta.getAttribute('data-memo')];
-          if (typeof v === 'string') ta.value = v;
-        });
-        setStatus('저장된 메모를 불러왔습니다');
-      }
-    }
-    fields.forEach(autoGrow);
-  }
-
-  var saveTimer = null;
-  function save() {
-    if (!canStore) return;
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(function() {
-      try {
-        localStorage.setItem(STORE_KEY, JSON.stringify(collect()));
-        var t = new Date();
-        setStatus('저장됨 · ' + pad(t.getHours()) + ':' + pad(t.getMinutes()));
-      } catch (e) {
-        setStatus('저장 공간이 부족해 저장하지 못했습니다');
-      }
-    }, 400);
-  }
-
-  function asText() {
-    var lines = ['카자흐스탄 평화기행 · 개인 메모'];
-    var name = writer.value.trim();
-    lines.push('작성자: ' + (name || '(이름 없음)'));
-    lines.push('');
-    var any = false;
-    fields.forEach(function(ta) {
-      var v = ta.value.trim();
-      if (!v) return;
-      any = true;
-      lines.push('[' + ta.getAttribute('data-memo-label') + ']');
-      lines.push(v);
-      lines.push('');
-    });
-    return any ? lines.join('\n').replace(/\n+$/, '') : '';
-  }
-
-  writer.addEventListener('input', save);
-  fields.forEach(function(ta) {
-    ta.addEventListener('input', function() { autoGrow(ta); save(); });
-  });
-
-  document.getElementById('memoCopyBtn').addEventListener('click', function() {
-    var text = asText();
-    if (!text) { setStatus('아직 작성한 메모가 없습니다'); return; }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function() {
-        setStatus('메모를 복사했습니다. 붙여넣기 해주세요');
-      }).catch(function() {
-        window.prompt('아래 내용을 복사해 주세요:', text);
-      });
-    } else {
-      window.prompt('아래 내용을 복사해 주세요:', text);
-    }
-  });
-
-  document.getElementById('memoDownloadBtn').addEventListener('click', function() {
-    var text = asText();
-    if (!text) { setStatus('아직 작성한 메모가 없습니다'); return; }
-    var name = writer.value.trim().replace(/[\\/:*?"<>|\s]+/g, '');
-    var fileName = '카자흐스탄메모' + (name ? '-' + name : '') + '.txt';
-    try {
-      var blob = new Blob(['\ufeff' + text], { type: 'text/plain;charset=utf-8' });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = fileName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
-      setStatus('파일로 저장했습니다');
-    } catch (e) {
-      window.prompt('저장이 지원되지 않아 내용을 표시합니다. 복사해 주세요:', text);
-    }
-  });
-
-  document.getElementById('memoClearBtn').addEventListener('click', function() {
-    if (!window.confirm('작성한 메모를 모두 지웁니다. 되돌릴 수 없습니다. 계속할까요?')) return;
-    writer.value = '';
-    fields.forEach(function(ta) { ta.value = ''; autoGrow(ta); });
-    if (canStore) { try { localStorage.removeItem(STORE_KEY); } catch (e) {} }
-    setStatus('메모를 모두 지웠습니다');
-  });
-
-  window.addEventListener('beforeprint', function() { fields.forEach(autoGrow); });
-
-  load();
 })();
 </script>
 
