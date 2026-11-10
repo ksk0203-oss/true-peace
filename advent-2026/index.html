@@ -218,7 +218,7 @@ footer small{display:block;margin-top:24px;opacity:.7;line-height:1.7}
 
 
 /* ---------- 후원 안내 ---------- */
-.donate{margin-top:26px;border:1px solid rgba(230,205,138,.45);border-radius:20px;background:rgba(255,255,255,.05);padding:26px 22px}
+.donate{margin-top:26px;border:1px solid rgba(230,205,138,.45);border-radius:20px;background:radial-gradient(600px 240px at 90% 0%,rgba(230,205,138,.16),transparent 70%),linear-gradient(135deg,#34195C,#1B0C38);color:#E9E0F6;padding:26px 22px;box-shadow:var(--shadow)}
 .donate h4{font-family:var(--serif);font-size:1.25rem;margin:0 0 6px;color:#F0D58E;letter-spacing:.02em}
 .donate .lead{margin:0 0 16px;font-size:.95rem;color:#E9E0F6}
 .donate dl{margin:0 0 18px;display:grid;gap:8px}
@@ -271,6 +271,7 @@ footer small{display:block;margin-top:24px;opacity:.7;line-height:1.7}
   <div class="hero-actions">
     <a class="btn solid" href="#today" id="todayBtn">오늘의 묵상 읽기</a>
     <a class="btn" href="#calendar">일정 한눈에 보기</a>
+    <a class="btn" href="#donate">후원 안내</a>
   </div>
 </header>
 
@@ -312,17 +313,16 @@ footer small{display:block;margin-top:24px;opacity:.7;line-height:1.7}
   </section>
 
   <div id="weeks"></div>
-</main>
 
-<footer>
-  <div class="wrap">
-    <h3>사단법인 참된평화를만드는사람들</h3>
-    <p>기독교 관점에서 평화 사역을 하기 위해 설립된 NGO로, 평화를 만들기 위한 연구·교육·사업이 균형을 이루도록 한국사회와 동북아 지역에서 나눔과 봉사를 통해 평화를 만들어 가고 있습니다. 매년 대림절과 사순절에 묵상집을 펴내 한국교회 그리스도인들이 평화를 위해 일하는 것을 돕고 있습니다.</p>
-    <p>“평화를 위하여 일하는 사람은 행복하다. 그들은 하나님의 자녀가 될 것이다.” (마 5:9)</p>
-    
-    <div class="donate" id="donate">
-      <h4>후원 안내</h4>
-      <p class="lead">평화를 위해 일하고 기도하는 일은 주님께서 기뻐하시는 사역입니다. 여러분의 기도와 후원이 평화를 만드는 힘이 됩니다.</p>
+  <section class="block letter" id="donate">
+    <p class="kicker">후원 안내</p>
+    <h2 class="title">대림절 묵상집을 함께 만들어 주세요</h2>
+    <p>2012년 겨울, 작은 묵상집 한 권으로 시작했습니다. 그 뒤로 해마다 대림절과 사순절이면 성서정과를 따라 매일의 말씀을 묵상하고 작은 실천으로 옮길 수 있도록 묵상집을 엮어 왔습니다. 이 책은 여러 목사님들의 기도와 수고로 쓰이고, 후원해 주시는 분들의 손길로 한국교회와 성도들의 손에 닿았습니다.</p>
+    <p>사단법인 참된평화를만드는사람들은 재정이 넉넉하지 않은 작은교회와 여성목회자 교회에도 묵상집을 보내 드리고자 애쓰고 있습니다. 올해 사순절 묵상집도 2,000부를 펴내 후원자와 교회, 개인에게 전했습니다. 인쇄와 발송에는 적지 않은 비용이 들지만, 말씀을 기다리는 교회와 성도들에게 이 책이 닿을 수 있도록 여러분의 마음을 나누어 주시기를 청합니다.</p>
+    <p>여러분의 후원은 대림절 묵상집의 편집과 인쇄, 발송, 그리고 평화를 만드는 법인의 사역에 소중하게 쓰입니다. 한 번의 후원도, 매달 드리는 작은 정성도 모두 귀합니다. 아기 예수의 오심을 기다리는 이 절기에, 평화의 일에 함께해 주십시오.</p>
+    <p class="sign">사단법인 참된평화를만드는사람들 드림</p>
+    <div class="donate">
+      <h4>후원하는 방법</h4>
       <dl>
         <div><dt>정기후원</dt><dd>후원자님의 은행 계좌에서 지정하신 날짜에 자동 이체됩니다.</dd></div>
         <div><dt>일시후원</dt><dd>정기후원자를 포함한 모든 분들이 언제든 참여하실 수 있습니다.</dd></div>
@@ -345,6 +345,16 @@ footer small{display:block;margin-top:24px;opacity:.7;line-height:1.7}
       </div>
       <p class="owner">예금주 (사)참된평화를만드는사람들</p>
     </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h3>사단법인 참된평화를만드는사람들</h3>
+    <p>기독교 관점에서 평화 사역을 하기 위해 설립된 NGO로, 평화를 만들기 위한 연구·교육·사업이 균형을 이루도록 한국사회와 동북아 지역에서 나눔과 봉사를 통해 평화를 만들어 가고 있습니다. 매년 대림절과 사순절에 묵상집을 펴내 한국교회 그리스도인들이 평화를 위해 일하는 것을 돕고 있습니다.</p>
+    <p>“평화를 위하여 일하는 사람은 행복하다. 그들은 하나님의 자녀가 될 것이다.” (마 5:9)</p>
+    
     <div class="contact">
       <b style="color:#F0D58E">피드백(Feedback)을 해 주세요</b><br>
       전화 02-3675-7220 · 팩스 02-3675-7221<br>
@@ -1457,7 +1467,7 @@ function weeksHTML(){
 }
 
 function nav(){
-  const items=[1,2,3,4,5].map(w=>`<a class="tab" href="#w${w}" data-w="${w}" style="--c:var(--w${w})"><i></i>${W[w].name==='성탄절'?'성탄절':W[w].name+' '+W[w].theme}</a>`).join('');
+  const items=[1,2,3,4,5].map(w=>`<a class="tab" href="#w${w}" data-w="${w}" style="--c:var(--w${w})"><i></i>${W[w].name==='성탄절'?'성탄절':W[w].name+' '+W[w].theme}</a>`).join('')+`<a class="tab" href="#donate" style="--c:var(--w5)"><i></i>후원 안내</a>`;
   $('#nav').innerHTML=items+`<div class="tools"><button class="tool" id="fsDown" aria-label="글자 작게">가-</button><button class="tool" id="fsUp" aria-label="글자 크게">가+</button><button class="tool" id="theme" aria-label="어두운 화면">◐</button><button class="tool" id="memoBtn" aria-pressed="false">편집 메모</button><button class="tool" id="printBtn">인쇄</button></div>`;
 }
 
