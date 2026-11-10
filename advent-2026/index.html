@@ -492,6 +492,8 @@ button.itab{appearance:none;-webkit-appearance:none;width:100%}
 
 .orglogo{margin-top:34px;padding-top:28px;border-top:1px solid rgba(230,205,138,.3);text-align:center}
 .orglogo img{display:inline-block;width:min(78%,300px);height:auto;opacity:.95}
+/* 숫자 원형 배지: 글꼴 여백 차이로 숫자가 아래로 처지지 않게, 숫자 전용 글꼴 + 정확한 가운데 정렬 */
+.steps b{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:1rem;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;font-variant-numeric:lining-nums tabular-nums;letter-spacing:0}
 /* ---------- 인쇄: 하루 = A4 한 장 ---------- */
 @media print{
   @page{size:A4;margin:16mm 16mm 14mm}
