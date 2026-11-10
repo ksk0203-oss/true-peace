@@ -432,6 +432,39 @@ button.itab{appearance:none;-webkit-appearance:none;width:100%}
 .candle{cursor:default}
 .candle .lbl{font-family:var(--sans);font-size:13px;font-weight:600;text-anchor:middle;fill:rgba(255,255,255,.5);transition:fill .6s}
 .candle.on .lbl{fill:#F0D58E;font-weight:800}
+
+/* ================= 모바일·날짜 균형 다듬기 ================= */
+/* 달력: 칸이 줄 밖으로 삐져나가던 문제(비율 고정이 칸을 넓힘) 해결 */
+.cal .head,.cal .row{grid-template-columns:repeat(7,minmax(0,1fr))}
+.cal .row>*{min-width:0}
+.cal a.cell{aspect-ratio:auto;height:64px;min-height:0;padding:0;overflow:hidden;gap:2px}
+.cal a.cell span{font-size:1.22rem;line-height:1.1}
+.cal a.cell small{font-size:.66rem;margin-top:2px;line-height:1}
+/* 날짜 배지: 월 / 날짜 / 요일(알약) */
+.dnum{width:76px;height:94px;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 0}
+.dnum .dm{font-style:normal;font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.04em;opacity:.85;line-height:1}
+.dnum b{font-size:2.15rem;line-height:1}
+.dnum .dw{font-style:normal;font-family:var(--sans);font-size:.72rem;font-weight:700;line-height:1;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.75);color:var(--wk-text);white-space:nowrap}
+.day.sun .dnum .dw{background:rgba(255,255,255,.24);color:#fff}
+.day[data-w="5"] .dnum .dw{background:rgba(255,255,255,.62);color:#4A3306}
+@media (max-width:560px){
+  .cal{padding:12px 10px}
+  .cal .head,.cal .row{gap:4px}
+  .cal a.cell{height:56px;border-radius:10px}
+  .cal a.cell span{font-size:1.08rem}
+  .cal a.cell small{font-size:.6rem}
+  .cal .head span{font-size:.7rem}
+  .dnum{width:62px;height:82px;border-radius:16px;gap:2px}
+  .dnum b{font-size:1.8rem}
+  .dnum .dm{font-size:.66rem}
+  .dnum .dw{font-size:.64rem;padding:3px 7px}
+  .dh{align-items:center}
+  .ttl{font-size:1.12rem;line-height:1.38}
+  .refs{font-size:.8rem;line-height:1.5}
+  .tags{gap:4px}.tag{font-size:.7rem;padding:2px 8px}
+}
+
+.refs .rf{display:inline-block;white-space:nowrap}
 /* ---------- 인쇄: 하루 = A4 한 장 ---------- */
 @media print{
   @page{size:A4;margin:16mm 16mm 14mm}
@@ -2180,7 +2213,7 @@ function weeksHTML(){
       const src=d.source; const who=src.author?`집필 ${esc(src.author)}`:'집필자 확인 필요';
       const tag=d.label?`<span class="tag gold">${d.label}</span>`:'';
       out+=`<article class="day${d.sunday?' sun':''}" data-w="${d.week}" id="${id(d)}">
-<h3 class="dhw"><button type="button" class="dh" aria-expanded="false" aria-controls="b-${id(d)}"><span class="dnum"><b>${d.day}</b><span>${d.month}월 · ${d.sunday?'주일':d.weekday+'요일'}</span></span><span class="dtitle"><span class="tags">${d.sunday?'<span class="tag">주일</span>':''}${tag}<span class="tag">${w===5?'성탄':'대림 '+info.name+' · '+info.theme}</span></span><span class="ttl">${esc(d.title)}</span><span class="refs">${d.readings.map(esc).join(' · ')}</span></span><span class="chev" aria-hidden="true"></span></button></h3>
+<h3 class="dhw"><button type="button" class="dh" aria-expanded="false" aria-controls="b-${id(d)}"><span class="dnum"><i class="dm">${d.month}월</i><b>${d.day}</b><i class="dw">${d.sunday?'주일':d.weekday+'요일'}</i></span><span class="dtitle"><span class="tags">${d.sunday?'<span class="tag">주일</span>':''}${tag}<span class="tag">${w===5?'성탄':'대림 '+info.name+' · '+info.theme}</span></span><span class="ttl">${esc(d.title)}</span><span class="refs">${d.readings.map(r=>`<span class="rf">${esc(r)}</span>`).join(' · ')}</span></span><span class="chev" aria-hidden="true"></span></button></h3>
 <div class="dbw" id="b-${id(d)}"><div class="dbi"><div class="db">
 <div class="label">오늘의 말씀</div>
 <blockquote class="q">${d.verses&&d.verses.length?d.verses.map(v=>`<sup class="vn">${v.n}</sup>${esc(v.t)}`).join(' '):esc(d.quote)}${d.quoteRef?`<cite>${esc(d.quoteRef)}</cite>`:''}</blockquote>
