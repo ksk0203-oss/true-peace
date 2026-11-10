@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2026 대림절 묵상집</title>
+<meta name="theme-color" content="#2A1552">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232A1552'/%3E%3Crect x='25' y='28' width='14' height='26' rx='3' fill='%237A5AC0'/%3E%3Cpath d='M32 8c6 8 6 14 0 18-6-4-6-10 0-18z' fill='%23FFC94D'/%3E%3C/svg%3E">
 <meta name="description" content="2026년 대림절(11월 29일~12월 25일) 매일 묵상집 — 희망·평화·사랑·기쁨">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="사단법인 참된평화를만드는사람들">
@@ -494,11 +496,29 @@ button.itab{appearance:none;-webkit-appearance:none;width:100%}
 .orglogo img{display:inline-block;width:min(78%,300px);height:auto;opacity:.95}
 /* 숫자 원형 배지: 글꼴 여백 차이로 숫자가 아래로 처지지 않게, 숫자 전용 글꼴 + 정확한 가운데 정렬 */
 .steps b{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:1rem;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;font-variant-numeric:lining-nums tabular-nums;letter-spacing:0}
+@media (max-width:360px){.refs .rf{white-space:normal;display:inline}.ttl{font-size:1.05rem}}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.pn-b{display:flex;flex-direction:column;gap:3px;padding:13px 16px;border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);text-align:left;font:inherit;cursor:pointer;min-width:0;transition:background .2s,border-color .2s,transform .2s}
+.pn-b:hover{background:var(--wk-tint);border-color:color-mix(in srgb,var(--wk) 45%,var(--line));transform:translateY(-1px)}
+.pn-b small{font-size:.72rem;font-weight:800;color:var(--wk-text);letter-spacing:.02em}
+.pn-b b{font-family:var(--serif);font-size:.95rem;line-height:1.4;font-weight:700;overflow-wrap:anywhere}
+.pn-b.next{text-align:right;align-items:flex-end}
+.pn-b.next:only-child{grid-column:2}
+@media (max-width:480px){.pn{grid-template-columns:1fr}.pn-b.next:only-child{grid-column:1}}
+/* 어두운 화면: 요일 알약·보기 설정 글자 대비 */
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .day:not(.sun):not([data-w="5"]) .dnum .dw{background:rgba(255,255,255,.14);color:var(--wk-text)}
+  :root:not([data-theme="light"]) .itab.view b{color:#CBD5E8}
+  :root:not([data-theme="light"]) .itab.view small{color:#AEB9CE}
+}
+:root[data-theme="dark"] .day:not(.sun):not([data-w="5"]) .dnum .dw{background:rgba(255,255,255,.14);color:var(--wk-text)}
+:root[data-theme="dark"] .itab.view b{color:#CBD5E8}
+:root[data-theme="dark"] .itab.view small{color:#AEB9CE}
 /* ---------- 인쇄: 하루 = A4 한 장 ---------- */
 @media print{
   @page{size:A4;margin:16mm 16mm 14mm}
   body{background:#fff;color:#000;font-size:10.5pt;line-height:1.6}
-  .hero,.nav,.cal,.fabs,.totop,.dsupport,.steps,#howto,.rowcap,footer,.weekmeaning,details.note,.check,.memo,.legend,#intro .kicker+h2+*+.cal{display:none!important}
+  .hero,.nav,.cal,.fabs,.totop,.pn,.dsupport,.steps,#howto,.rowcap,footer,.weekmeaning,details.note,.check,.memo,.legend,#intro .kicker+h2+*+.cal{display:none!important}
   section.block#calendar{display:none}
   .wrap{width:100%}
   .week{margin:0}
@@ -2215,6 +2235,7 @@ const W = {
   5:{name:'성탄절',theme:'성탄',range:'12월 25일(금)',verse:'그 안에 생명이 있었으니 이 생명은 사람들의 빛이라',ref:'요한복음 1:4',color:'var(--w5)'}
 };
 const WD=['일','월','화','수','목','금','토'];
+const EDIT=/(^|[?&#])edit(=|&|$)/.test(location.search+location.hash);
 const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -2314,6 +2335,7 @@ function weeksHTML(){
 <div class="label">오늘의 실천</div><div class="practice">${d.practice.length>1?'<ul>'+d.practice.map(p=>`<li>${esc(p)}</li>`).join('')+'</ul>':`<p>${esc(d.practice[0]||'')}</p>`}<label class="check"><input type="checkbox" data-k="${key(d)}:done" aria-label="오늘의 실천 완료"> 실천함</label></div>
 <details class="note"><summary>나의 실천 기록 쓰기</summary><textarea data-k="${key(d)}:note" placeholder="오늘의 말씀과 실천에서 느낀 점을 적어 보세요. (이 기기에만 저장됩니다)"></textarea></details>
 <div class="dsupport"><span class="hh" aria-hidden="true">♥</span><p>이 묵상집은 여러분의 후원으로 만들어집니다. 평화를 만드는 일에 함께해 주세요.</p><a class="dlink" href="https://v3.ngocms.co.kr/system/member_signup/join_option_select_03.html?id=hvap1004" target="_blank" rel="noopener">정기후원 신청하기 →</a><a class="dlink2" href="#donate">후원 안내</a></div>
+${d.slot>0||d.slot<DAYS.length-1?`<nav class="pn" aria-label="이전·다음 묵상">${d.slot>0?`<button type="button" class="pn-b prev" data-go="${id(DAYS[d.slot-1])}"><small>← 이전 묵상</small><b>${DAYS[d.slot-1].month}/${DAYS[d.slot-1].day} ${esc(DAYS[d.slot-1].title)}</b></button>`:''}${d.slot<DAYS.length-1?`<button type="button" class="pn-b next" data-go="${id(DAYS[d.slot+1])}"><small>다음 묵상 →</small><b>${DAYS[d.slot+1].month}/${DAYS[d.slot+1].day} ${esc(DAYS[d.slot+1].title)}</b></button>`:''}</nav>`:''}
 <div class="memo"><b>편집 메모</b> · 출처: ${src.year}년 ${esc(src.date)} 「${esc(src.title)}」 · ${who}<br>${d.changes.map(c=>'· '+esc(c)).join('<br>')}</div>
 </div></div></div></article>`;
     });
@@ -2324,7 +2346,7 @@ function weeksHTML(){
 
 function nav(){
   const items=[1,2,3,4,5].map(w=>`<a class="itab" href="#w${w}" data-w="${w}" style="--c:var(--w${w})"><small>${w===5?'12/25':w+'주'}</small><b>${W[w].theme}</b></a>`).join('');
-  const extra=`<a class="itab xt dtab" href="#donate"><small>후원</small><b>안내</b></a><div class="vwrap"><button type="button" class="itab xt view" id="viewBtn" aria-expanded="false" aria-controls="toolpanel"><small>보기</small><b>설정</b></button><div class="toolpanel" id="toolpanel" hidden><button class="tool" id="fsDown">글자 작게 가-</button><button class="tool" id="fsUp">글자 크게 가+</button><button class="tool" id="theme">밝게/어둡게 ◐</button><button class="tool" id="allBtn">모두 펼치기</button><button class="tool" id="memoBtn" aria-pressed="false">편집 메모</button><button class="tool" id="printBtn">인쇄</button></div></div>`;
+  const extra=`<a class="itab xt dtab" href="#donate"><small>후원</small><b>안내</b></a><div class="vwrap"><button type="button" class="itab xt view" id="viewBtn" aria-expanded="false" aria-controls="toolpanel"><small>보기</small><b>설정</b></button><div class="toolpanel" id="toolpanel" hidden><button class="tool" id="fsDown">글자 작게 가-</button><button class="tool" id="fsUp">글자 크게 가+</button><button class="tool" id="theme">밝게/어둡게 ◐</button><button class="tool" id="allBtn">모두 펼치기</button>${EDIT?'<button class="tool" id="memoBtn" aria-pressed="false">편집 메모</button>':''}<button class="tool" id="copyBtn">링크 복사</button><button class="tool" id="printBtn">인쇄</button></div></div>`;
   $('#nav').innerHTML=`<div class="itabs">${items}${extra}</div>`;
   const vb=$('#viewBtn'),tp=$('#toolpanel');
   vb.addEventListener('click',e=>{e.stopPropagation();const open=tp.hidden;tp.hidden=!open;vb.setAttribute('aria-expanded',String(open));});
@@ -2352,6 +2374,7 @@ function openFromHash(){
 function accordion(){
   $$('.day .dh').forEach(b=>b.addEventListener('click',()=>{const day=b.closest('.day');setOpen(day,!day.classList.contains('open'));}));
   document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="#d-"],a[href="#today"]');if(!a)return;const day=dayFrom(document.getElementById(a.getAttribute('href').slice(1)));if(day)setOpen(day,true);});
+  document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.pn-b');if(!b)return;const cur=b.closest('.day'),tg=document.getElementById(b.dataset.go);if(!tg)return;setOpen(tg,true);setOpen(cur,false);setTimeout(()=>tg.scrollIntoView({block:'start',behavior:REDUCE?'auto':'smooth'}),REDUCE?30:620);});
   addEventListener('hashchange',openFromHash);
   if(location.hash)openFromHash(); else if(todayDay)setOpen($('#'+id(todayDay)),true);
   const all=$('#allBtn');
@@ -2364,7 +2387,8 @@ function tools(){
   $('#fsDown').onclick=()=>{fs=Math.max(.85,+(fs-.1).toFixed(2));applyFs();store.set('adv2026:fs',fs)};
   const th=store.get('adv2026:theme'); if(th) document.documentElement.dataset.theme=th;
   $('#theme').onclick=()=>{const cur=document.documentElement.dataset.theme|| (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');const n=cur==='dark'?'light':'dark';document.documentElement.dataset.theme=n;store.set('adv2026:theme',n)};
-  $('#memoBtn').onclick=e=>{const on=document.body.classList.toggle('show-memo');e.currentTarget.setAttribute('aria-pressed',on)};
+  const mb=$('#memoBtn');if(mb)mb.onclick=e=>{const on=document.body.classList.toggle('show-memo');e.currentTarget.setAttribute('aria-pressed',on)};
+  const cb=$('#copyBtn');if(cb)cb.onclick=async()=>{const u=location.href.split('#')[0].replace(/[?&]edit(=[^&]*)?/,'');try{await navigator.clipboard.writeText(u);cb.textContent='복사했습니다 ✓';}catch(e){window.prompt('아래 주소를 복사하세요',u);}setTimeout(()=>cb.textContent='링크 복사',1800);};
   $('#printBtn').onclick=()=>print();
   const pg=$('#progress');const upd=()=>{const h=document.documentElement.scrollHeight-innerHeight;pg.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%';};addEventListener('scroll',upd,{passive:true});upd();
   const tt=$('#totop');addEventListener('scroll',()=>tt.classList.toggle('show',scrollY>900),{passive:true});tt.onclick=()=>scrollTo({top:0});
