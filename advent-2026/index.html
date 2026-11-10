@@ -587,6 +587,8 @@ body.nb-lock{overflow:hidden}
   .nbmodal{display:none}
 }
 
+.dsupport p b{font-family:var(--serif);font-size:1.02rem}
+.dsupport .acct-no{font-size:1.08rem;letter-spacing:.02em;color:#0A6B73;font-weight:800;user-select:all}
 /* ---------- 인쇄: 하루 = A4 한 장 ---------- */
 @media print{
   @page{size:A4;margin:16mm 16mm 14mm}
@@ -2437,7 +2439,7 @@ function weeksHTML(){
 <div class="label">오늘의 기도</div><div class="prayer">${esc(d.prayer)}</div>
 <div class="label">오늘의 실천</div><div class="practice">${d.practice.length>1?'<ul>'+d.practice.map(p=>`<li>${esc(p)}</li>`).join('')+'</ul>':`<p>${esc(d.practice[0]||'')}</p>`}<label class="check"><input type="checkbox" class="nb-done" data-nd="${d.date}" aria-label="오늘의 실천 완료"> 실천함</label></div>
 <details class="note"><summary>묵상 노트 쓰기</summary><textarea class="nb-text" data-nd="${d.date}" maxlength="6000" placeholder="오늘의 말씀과 실천에서 느낀 점을 적어 보세요. 적은 내용은 자동으로 저장되고, 「묵상 노트」에서 모아 볼 수 있습니다."></textarea><div class="nb-foot"><span class="nb-status" data-nd-status="${d.date}" aria-live="polite"></span><button type="button" class="nb-open">묵상 노트 전체 보기 →</button></div></details>
-<div class="dsupport"><span class="hh" aria-hidden="true">♥</span><p>이 묵상집은 여러분의 후원으로 만들어집니다. 평화를 만드는 일에 함께해 주세요.</p><a class="dlink" href="https://v3.ngocms.co.kr/system/member_signup/join_option_select_03.html?id=hvap1004" target="_blank" rel="noopener">정기후원 신청하기 →</a><a class="dlink2" href="#donate">후원 안내</a></div>
+<div class="dsupport"><span class="hh" aria-hidden="true">♥</span><p><b>대림절 묵상집 후원 안내</b><br>우리은행 <strong class="acct-no">1005-301-334416</strong> (참된평화를만드는사람들)</p></div>
 ${d.slot>0||d.slot<DAYS.length-1?`<nav class="pn" aria-label="이전·다음 묵상">${d.slot>0?`<button type="button" class="pn-b prev" data-go="${id(DAYS[d.slot-1])}"><small>← 이전 묵상</small><b>${DAYS[d.slot-1].month}/${DAYS[d.slot-1].day} ${esc(DAYS[d.slot-1].title)}</b></button>`:''}${d.slot<DAYS.length-1?`<button type="button" class="pn-b next" data-go="${id(DAYS[d.slot+1])}"><small>다음 묵상 →</small><b>${DAYS[d.slot+1].month}/${DAYS[d.slot+1].day} ${esc(DAYS[d.slot+1].title)}</b></button>`:''}</nav>`:''}
 <div class="memo"><b>편집 메모</b> · 출처: ${src.year}년 ${esc(src.date)} 「${esc(src.title)}」 · ${who}<br>${d.changes.map(c=>'· '+esc(c)).join('<br>')}</div>
 </div></div></div></article>`;
