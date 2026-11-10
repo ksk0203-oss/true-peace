@@ -408,23 +408,24 @@ html{scroll-padding-top:84px}
 .day,.week{scroll-margin-top:84px}
 
 
-/* ================= 인덱스 줄: 주차 탭 5개 + 후원 안내 · 보기 설정(각각 다른 모양) ================= */
+/* ================= 인덱스 줄: 주차 탭과 같은 모양의 탭 7개 — 후원 안내(초록)·보기 설정(회청)만 색을 달리 ================= */
 .nav .wrap{width:min(100%,920px)}
-.itabs{grid-template-columns:repeat(5,minmax(0,1fr))}
-.itab:last-child{border-right:1px solid var(--line)}
-.navtools{display:flex;align-items:center;gap:9px;padding:0 14px;border-left:2px solid var(--line);background:var(--surface-2)}
-.nt{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 16px;border-radius:12px;font:inherit;font-size:.9rem;font-weight:800;letter-spacing:-.005em;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .2s,box-shadow .2s,background .2s}
-.nt:hover{transform:translateY(-2px)}
-.nt em{font-style:normal}
-.nt span{font-size:1.02rem;line-height:1}
-.nt.donate{background:linear-gradient(135deg,#F7E3A0,#D6A93A);color:#3F2C05;border:0;box-shadow:0 5px 12px -5px rgba(160,115,20,.8)}
-.nt.donate span{color:#B3213F}
-.nt.view{background:var(--surface);color:var(--ink);border:2px solid var(--ink)}
-.nt.view span{font-family:var(--serif);font-weight:700;letter-spacing:-.02em}
-.nt.view[aria-expanded="true"]{background:var(--ink);color:var(--surface)}
-.vwrap{position:relative;display:flex}
-.navtools .toolpanel{position:absolute;right:-6px;top:calc(100% + 16px);width:min(92vw,300px);z-index:60}
-@media (max-width:700px){.navtools{padding:0 8px;gap:6px}.nt{width:44px;padding:0}.nt em{display:none}.nt span{font-size:1.1rem}.itab b{font-size:1.02rem}}
+.itabs{grid-template-columns:repeat(7,minmax(0,1fr))}
+.itab{font:inherit;cursor:pointer;border-left:0;border-bottom:0}
+button.itab{appearance:none;-webkit-appearance:none;width:100%}
+.itab.xt{border-right:1px solid var(--line)}
+.itab.donate{--c:#1F7A57;background:var(--surface);box-shadow:-3px 0 0 var(--line)}
+.itab.view{--c:#55637E;background:var(--surface)}
+.itab.donate:hover{background:color-mix(in srgb,#1F7A57 14%,var(--surface))}
+.itab.view:hover,.itab.view[aria-expanded="true"]{background:color-mix(in srgb,#55637E 16%,var(--surface))}
+.itab.donate b,.itab.view b{color:var(--c)}
+.itab.view[aria-expanded="true"]{background:#55637E}
+.itab.view[aria-expanded="true"] small,.itab.view[aria-expanded="true"] b{color:#fff}
+.itab:last-child,.vwrap:last-child .itab{border-right:0}
+.vwrap{position:relative;display:flex;min-width:0}
+.vwrap .itab{flex:1;min-width:0}
+.toolpanel{position:absolute;right:0;top:calc(100% + 8px);width:min(92vw,300px);z-index:60}
+@media (max-width:560px){.itab b{font-size:.98rem}.itab small{font-size:.64rem;letter-spacing:0}}
 .candle{cursor:default}
 .candle .lbl{font-family:var(--sans);font-size:13px;font-weight:600;text-anchor:middle;fill:rgba(255,255,255,.5);transition:fill .6s}
 .candle.on .lbl{fill:#F0D58E;font-weight:800}
@@ -2194,7 +2195,8 @@ function weeksHTML(){
 
 function nav(){
   const items=[1,2,3,4,5].map(w=>`<a class="itab" href="#w${w}" data-w="${w}" style="--c:var(--w${w})"><small>${w===5?'12/25':w+'주'}</small><b>${W[w].theme}</b></a>`).join('');
-  $('#nav').innerHTML=`<div class="itabs">${items}</div><div class="navtools"><a class="nt donate" href="#donate" aria-label="후원 안내"><span aria-hidden="true">♥</span><em>후원 안내</em></a><div class="vwrap"><button class="nt view" id="viewBtn" aria-expanded="false" aria-controls="toolpanel" aria-label="보기 설정"><span aria-hidden="true">Aa</span><em>보기 설정</em></button><div class="toolpanel" id="toolpanel" hidden><button class="tool" id="fsDown">글자 작게 가-</button><button class="tool" id="fsUp">글자 크게 가+</button><button class="tool" id="theme">밝게/어둡게 ◐</button><button class="tool" id="allBtn">모두 펼치기</button><button class="tool" id="memoBtn" aria-pressed="false">편집 메모</button><button class="tool" id="printBtn">인쇄</button></div></div></div>`;
+  const extra=`<a class="itab xt donate" href="#donate"><small>후원</small><b>안내</b></a><div class="vwrap"><button type="button" class="itab xt view" id="viewBtn" aria-expanded="false" aria-controls="toolpanel"><small>보기</small><b>설정</b></button><div class="toolpanel" id="toolpanel" hidden><button class="tool" id="fsDown">글자 작게 가-</button><button class="tool" id="fsUp">글자 크게 가+</button><button class="tool" id="theme">밝게/어둡게 ◐</button><button class="tool" id="allBtn">모두 펼치기</button><button class="tool" id="memoBtn" aria-pressed="false">편집 메모</button><button class="tool" id="printBtn">인쇄</button></div></div>`;
+  $('#nav').innerHTML=`<div class="itabs">${items}${extra}</div>`;
   const vb=$('#viewBtn'),tp=$('#toolpanel');
   vb.addEventListener('click',e=>{e.stopPropagation();const open=tp.hidden;tp.hidden=!open;vb.setAttribute('aria-expanded',String(open));});
   document.addEventListener('click',e=>{if(!tp.hidden&&!tp.contains(e.target)){tp.hidden=true;vb.setAttribute('aria-expanded','false');}});
