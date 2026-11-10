@@ -407,11 +407,32 @@ footer{margin-top:80px}
 html{scroll-padding-top:84px}
 .day,.week{scroll-margin-top:84px}
 
+
+/* ================= 인덱스 줄: 주차 탭 5개 + 후원 안내 · 보기 설정(각각 다른 모양) ================= */
+.nav .wrap{width:min(100%,920px)}
+.itabs{grid-template-columns:repeat(5,minmax(0,1fr))}
+.itab:last-child{border-right:1px solid var(--line)}
+.navtools{display:flex;align-items:center;gap:9px;padding:0 14px;border-left:2px solid var(--line);background:var(--surface-2)}
+.nt{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 16px;border-radius:12px;font:inherit;font-size:.9rem;font-weight:800;letter-spacing:-.005em;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .2s,box-shadow .2s,background .2s}
+.nt:hover{transform:translateY(-2px)}
+.nt em{font-style:normal}
+.nt span{font-size:1.02rem;line-height:1}
+.nt.donate{background:linear-gradient(135deg,#F7E3A0,#D6A93A);color:#3F2C05;border:0;box-shadow:0 5px 12px -5px rgba(160,115,20,.8)}
+.nt.donate span{color:#B3213F}
+.nt.view{background:var(--surface);color:var(--ink);border:2px solid var(--ink)}
+.nt.view span{font-family:var(--serif);font-weight:700;letter-spacing:-.02em}
+.nt.view[aria-expanded="true"]{background:var(--ink);color:var(--surface)}
+.vwrap{position:relative;display:flex}
+.navtools .toolpanel{position:absolute;right:-6px;top:calc(100% + 16px);width:min(92vw,300px);z-index:60}
+@media (max-width:700px){.navtools{padding:0 8px;gap:6px}.nt{width:44px;padding:0}.nt em{display:none}.nt span{font-size:1.1rem}.itab b{font-size:1.02rem}}
+.candle{cursor:default}
+.candle .lbl{font-family:var(--sans);font-size:13px;font-weight:600;text-anchor:middle;fill:rgba(255,255,255,.5);transition:fill .6s}
+.candle.on .lbl{fill:#F0D58E;font-weight:800}
 /* ---------- 인쇄: 하루 = A4 한 장 ---------- */
 @media print{
   @page{size:A4;margin:16mm 16mm 14mm}
   body{background:#fff;color:#000;font-size:10.5pt;line-height:1.6}
-  .hero,.nav,.cal,.totop,footer,.weekmeaning,details.note,.check,.memo,.legend,#intro .kicker+h2+*+.cal{display:none!important}
+  .hero,.nav,.cal,.fabs,.totop,footer,.weekmeaning,details.note,.check,.memo,.legend,#intro .kicker+h2+*+.cal{display:none!important}
   section.block#calendar{display:none}
   .wrap{width:100%}
   .week{margin:0}
@@ -2074,7 +2095,8 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 const key=d=>'adv2026:'+d.date;
 const dateOf=d=>new Date(+d.date.slice(0,4),+d.date.slice(5,7)-1,+d.date.slice(8,10));
-const now=new Date(); const t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+const now=(()=>{try{const m=(new URLSearchParams(location.search)).get('date');if(m&&/^\d{4}-\d{2}-\d{2}$/.test(m)){const [y,mo,da]=m.split('-').map(Number);return new Date(y,mo-1,da);}}catch(e){}return new Date();})();
+const t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
 const START=dateOf(DAYS[0]), END=dateOf(DAYS[DAYS.length-1]);
 const inSeason=t0>=START&&t0<=END;
 const todayDay=inSeason?DAYS.find(d=>dateOf(d).getTime()===t0.getTime()):null;
@@ -2086,35 +2108,35 @@ function candles(){
   const names=['첫째 주 희망','둘째 주 평화','셋째 주 사랑','넷째 주 기쁨','성탄절'];
   const xs=[48,128,208,288,368]; const hs=[96,96,96,96,128];
   let litUpTo;
-  if(!inSeason){ litUpTo = t0<START?4:5; } else { const dd=todayDay; litUpTo = dd?dd.week:1; }
-  let s='<svg viewBox="0 0 416 210" role="img" aria-label="대림절 촛불 다섯 개">';
+  if(t0<START){ litUpTo = 1; } else if(t0>END){ litUpTo = 5; } else { litUpTo = todayDay?todayDay.week:0; }
+  const lbl=['희망','평화','사랑','기쁨','성탄'];
+  let s='<svg viewBox="0 0 416 236" role="img" aria-label="대림절 촛불 다섯 개 — 주차에 맞춰 켜집니다">';
   s+='<defs><radialGradient id="glow"><stop offset="0" stop-color="#FFE9A8" stop-opacity=".95"/><stop offset="1" stop-color="#FFE9A8" stop-opacity="0"/></radialGradient></defs>';
   s+='<ellipse cx="208" cy="196" rx="190" ry="9" fill="#00000030"/>';
   xs.forEach((x,i)=>{
     const h=hs[i], top=190-h, c=cols[i], on=(i+1)<=litUpTo?' on':'';
-    s+=`<g class="candle${on}" data-i="${i}" tabindex="0" role="button" aria-label="${names[i]} 촛불"><title>${names[i]}</title>`;
+    s+=`<g class="candle${on}" data-i="${i}"><title>${names[i]}</title>`;
     s+=`<rect x="${x-13}" y="${top}" width="26" height="${h}" rx="4" fill="${c}"/>`;
     s+=`<rect x="${x-13}" y="${top}" width="9" height="${h}" rx="4" fill="#fff" opacity=".18"/>`;
     s+=`<ellipse cx="${x}" cy="${top}" rx="13" ry="4" fill="#fff" opacity=".28"/>`;
     s+=`<rect x="${x-1}" y="${top-9}" width="2" height="9" fill="#2a2433"/>`;
     s+=`<g class="lit"><circle cx="${x}" cy="${top-22}" r="26" fill="url(#glow)"/><g class="flame"><path d="M${x} ${top-40} C${x+9} ${top-27} ${x+9} ${top-14} ${x} ${top-9} C${x-9} ${top-14} ${x-9} ${top-27} ${x} ${top-40}Z" fill="#FFC94D"/><path d="M${x} ${top-30} C${x+4} ${top-22} ${x+4} ${top-15} ${x} ${top-11} C${x-4} ${top-15} ${x-4} ${top-22} ${x} ${top-30}Z" fill="#FFF3C4"/></g></g>`;
+    s+=`<text class="lbl" x="${x}" y="222">${lbl[i]}</text>`;
     s+='</g>';
   });
   s+='</svg>';
   $('#candles').innerHTML=s;
   if(!REDUCE){$$('.candle').forEach((c,i)=>{if((i+1)<=litUpTo)setTimeout(()=>c.classList.add('on'),900+i*520)});}
-  $$('.candle').forEach(c=>{
-    const toggle=()=>c.classList.toggle('on');
-    c.addEventListener('click',toggle);
-    c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();}});
-  });
 }
 
 /* 카운트다운 */
 function countdown(){
   const el=$('#countdown'); const day=864e5;
-  if(t0<START){const n=Math.round((START-t0)/day);el.innerHTML=`대림절 시작까지 <b>D-${n}</b> · 11월 29일(주일) 첫 촛불을 켭니다`;}
-  else if(inSeason){const n=Math.round((t0-START)/day)+1;el.innerHTML=`오늘은 대림절 <b>${n}</b>째 날 · ${todayDay.week===5?'성탄절':'대림절 '+W[todayDay.week].name+' '+W[todayDay.week].theme}`;}
+  if(t0<START){const n=Math.round((START-t0)/day);el.innerHTML=`대림절 시작까지 <b>D-${n}</b> · 첫째 주 촛불이 켜져 있고, 11월 29일(주일)부터 주마다 하나씩 더 켜집니다`;}
+  else if(inSeason){
+    const n=Math.round((t0-START)/day)+1, w=todayDay.week;
+    el.innerHTML=w===5?`오늘은 <b>성탄절</b> · 다섯 개의 촛불이 모두 켜졌습니다`:`오늘은 대림절 <b>${n}</b>째 날 · ${W[w].name} ${W[w].theme} — 촛불 <b>${w}</b>개가 켜져 있습니다`;
+  }
   else el.textContent='2026 대림절 묵상집 — 함께 걸어 주셔서 감사합니다';
   if(!inSeason){$('#todayBtn').textContent='첫날 묵상 미리 읽기';$('#todayBtn').setAttribute('href','#'+id(DAYS[0]));}
   else $('#todayBtn').setAttribute('href','#'+id(todayDay));
@@ -2171,8 +2193,8 @@ function weeksHTML(){
 }
 
 function nav(){
-  const items=[1,2,3,4,5].map(w=>`<a class="itab" href="#w${w}" data-w="${w}" style="--c:var(--w${w})"><small>${w===5?'12/25':w+'주'}</small><b>${W[w].theme}</b></a>`).join('')+`<a class="itab donate" href="#donate"><small>후원</small><b>안내</b></a>`;
-  $('#nav').innerHTML=`<div class="itabs">${items}</div><div class="toolwrap"><button class="viewbtn" id="viewBtn" aria-expanded="false" aria-controls="toolpanel"><span>보기</span><span>설정</span></button><div class="toolpanel" id="toolpanel" hidden><button class="tool" id="fsDown">글자 작게 가-</button><button class="tool" id="fsUp">글자 크게 가+</button><button class="tool" id="theme">밝게/어둡게 ◐</button><button class="tool" id="allBtn">모두 펼치기</button><button class="tool" id="memoBtn" aria-pressed="false">편집 메모</button><button class="tool" id="printBtn">인쇄</button></div></div>`;
+  const items=[1,2,3,4,5].map(w=>`<a class="itab" href="#w${w}" data-w="${w}" style="--c:var(--w${w})"><small>${w===5?'12/25':w+'주'}</small><b>${W[w].theme}</b></a>`).join('');
+  $('#nav').innerHTML=`<div class="itabs">${items}</div><div class="navtools"><a class="nt donate" href="#donate" aria-label="후원 안내"><span aria-hidden="true">♥</span><em>후원 안내</em></a><div class="vwrap"><button class="nt view" id="viewBtn" aria-expanded="false" aria-controls="toolpanel" aria-label="보기 설정"><span aria-hidden="true">Aa</span><em>보기 설정</em></button><div class="toolpanel" id="toolpanel" hidden><button class="tool" id="fsDown">글자 작게 가-</button><button class="tool" id="fsUp">글자 크게 가+</button><button class="tool" id="theme">밝게/어둡게 ◐</button><button class="tool" id="allBtn">모두 펼치기</button><button class="tool" id="memoBtn" aria-pressed="false">편집 메모</button><button class="tool" id="printBtn">인쇄</button></div></div></div>`;
   const vb=$('#viewBtn'),tp=$('#toolpanel');
   vb.addEventListener('click',e=>{e.stopPropagation();const open=tp.hidden;tp.hidden=!open;vb.setAttribute('aria-expanded',String(open));});
   document.addEventListener('click',e=>{if(!tp.hidden&&!tp.contains(e.target)){tp.hidden=true;vb.setAttribute('aria-expanded','false');}});
