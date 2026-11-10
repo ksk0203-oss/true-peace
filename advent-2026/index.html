@@ -1318,7 +1318,7 @@ function countdown(){
 
 /* 달력 */
 function calendar(){
-  let html='<div class="head">'+WD.map(w=>`<span>${w}</span>`).join('')+'</div>';
+  let html='<div class="head">'+WD.map(w=>`<span>${w==='일'?'주일':w}</span>`).join('')+'</div>';
   const rows=[[],[],[],[]];
   const weeks={};
   DAYS.forEach(d=>{const r=Math.min(Math.floor(d.slot/7),3);(rows[r]=rows[r]||[]).push(d);});
@@ -1331,7 +1331,7 @@ function calendar(){
     r.forEach(d=>{
       const done=store.get(key(d)+':done')==='1';
       const isT=todayDay&&todayDay.date===d.date;
-      html+=`<a class="cell${d.sunday?' sun':''}${d.week===5?' xmas':''}${done?' done':''}${isT?' today':''}" style="--c:var(--w${d.week})" href="#${id(d)}" title="${d.month}월 ${d.day}일 ${d.title}"><span>${d.day}</span><small>${d.week===5?'성탄':d.weekday}</small></a>`;
+      html+=`<a class="cell${d.sunday?' sun':''}${d.week===5?' xmas':''}${done?' done':''}${isT?' today':''}" style="--c:var(--w${d.week})" href="#${id(d)}" title="${d.month}월 ${d.day}일 ${d.title}"><span>${d.day}</span><small>${d.week===5?'성탄':(d.sunday?'주일':d.weekday)}</small></a>`;
     });
     const rest=7-(firstWd+r.length);for(let i=0;i<rest;i++)html+='<span class="blank"></span>';
     html+='</div>';
@@ -1350,7 +1350,7 @@ function weeksHTML(){
       const src=d.source; const who=src.author?`집필 ${esc(src.author)}`:'집필자 확인 필요';
       const tag=d.label?`<span class="tag gold">${d.label}</span>`:'';
       out+=`<article class="day${d.sunday?' sun':''}" data-w="${d.week}" id="${id(d)}">
-<div class="dh"><div class="dnum"><b>${d.day}</b><span>${d.month}월 · ${d.weekday}요일</span></div>
+<div class="dh"><div class="dnum"><b>${d.day}</b><span>${d.month}월 · ${d.sunday?'주일':d.weekday+'요일'}</span></div>
 <div class="dtitle"><div class="tags">${d.sunday?'<span class="tag">주일</span>':''}${tag}<span class="tag">${w===5?'성탄':'대림 '+info.name+' · '+info.theme}</span></div><h3>${esc(d.title)}</h3></div></div>
 <div class="db">
 <div class="label">오늘의 말씀 읽기</div><div class="chips">${d.readings.map(r=>`<span>${esc(r)}</span>`).join('')}</div>
