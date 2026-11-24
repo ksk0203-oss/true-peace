@@ -660,6 +660,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,textarea:focus-visibl
 .askbox .ask-amt span{display:block;margin-top:2px;font-family:var(--sans);font-size:.82rem;font-weight:700;letter-spacing:.08em;color:var(--ink-soft)}
 .askbox .ask-btn{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:14px;background:linear-gradient(135deg,#4B2A82,#2A1552);color:#F7E3A0;font-family:var(--sans);font-weight:800;font-size:1.05rem;text-decoration:none;box-shadow:0 10px 22px -12px rgba(42,21,82,.9);transition:transform .2s,box-shadow .2s}
 .askbox .ask-btn:hover{transform:translateY(-2px);box-shadow:0 14px 26px -12px rgba(42,21,82,.95)}
+.acctbox{scroll-margin-top:110px}
 .askbox small{display:block;margin-top:14px;font-family:var(--sans);font-size:.86rem;color:var(--ink-soft)}
 @media (max-width:480px){.askbox{padding:24px 16px 20px;margin:26px 0}.askbox h3{font-size:1.14rem}.askbox .ask-amt b{font-size:1.75rem}}
 </style>
@@ -704,7 +705,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,textarea:focus-visibl
       <h3 id="askt">묵상집 한 권의 마음, 평화의 한 걸음</h3>
       <p class="ask-lead">말씀은 누구에게나 열려 있습니다.<br>묵상집 한 권을 구입하는 마음으로<br>평화를 만들어 가는 일에 함께해 주세요.</p>
       <div class="ask-amt"><b>10,000원</b><span>권장 후원금</span></div>
-      <a class="ask-btn" href="#donate">묵상집 후원하기</a>
+      <a class="ask-btn" href="#acct">묵상집 후원하기</a>
       <small>사단법인 참된평화를만드는사람들</small>
     </aside>
     <p>평화의 왕으로 오시는 아기 예수님을 기다리는 이 대림절에, 말씀을 묵상하는 기쁨과 평화를 실천하는 은혜를 함께 나누기를 소망합니다.</p>
@@ -787,7 +788,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,textarea:focus-visibl
       <div class="pay">
         <div>
           <a class="btn-donate" href="https://v3.ngocms.co.kr/system/member_signup/join_option_select_03.html?id=hvap1004" target="_blank" rel="noopener">정기후원(CMS 자동이체) 신청하기 →</a>
-          <div class="acctbox">
+          <div class="acctbox" id="acct">
             <span class="ah" aria-hidden="true">♥</span>
             <div class="at">
               <b>대림절 묵상집 후원 안내</b>
