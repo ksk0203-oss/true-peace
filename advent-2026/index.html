@@ -649,6 +649,19 @@ a:focus-visible,button:focus-visible,summary:focus-visible,textarea:focus-visibl
   .dbw{grid-template-rows:1fr!important;visibility:visible!important;transition:none!important}.dbi{overflow:visible}.chev{display:none}.dh{cursor:default}
   .rv,.hero .fx,.day .dnum,.day blockquote.q{opacity:1!important;transform:none!important;clip-path:none!important;animation:none!important}
 }
+
+/* ================= 여는 글 속 후원 요청 박스 ================= */
+.askbox{margin:30px auto;max-width:560px;padding:28px 24px 22px;text-align:center;border-radius:22px;border:1px solid color-mix(in srgb,var(--gold) 55%,var(--line));background:radial-gradient(420px 180px at 50% -10%,color-mix(in srgb,var(--gold) 20%,transparent),transparent 70%),var(--surface);box-shadow:0 14px 34px -20px rgba(60,35,95,.5)}
+.askbox .ask-ic{display:inline-grid;place-items:center;width:42px;height:42px;margin-bottom:10px;border-radius:50%;background:linear-gradient(135deg,#F7E3A0,#D6A93A);color:#B3213F;font-size:1.2rem;line-height:1;box-shadow:0 6px 14px -6px rgba(214,169,58,.9)}
+.askbox h3{margin:0 0 10px;font-family:var(--serif);font-size:1.28rem;line-height:1.45;color:var(--ink);font-weight:700}
+.askbox .ask-lead{margin:0 0 16px;font-family:var(--sans);font-size:.97rem;line-height:1.85;color:var(--ink-soft)}
+.askbox .ask-amt{margin:0 0 16px}
+.askbox .ask-amt b{display:block;font-family:var(--serif);font-size:2rem;line-height:1.2;color:var(--ink);font-weight:700;letter-spacing:.01em}
+.askbox .ask-amt span{display:block;margin-top:2px;font-family:var(--sans);font-size:.82rem;font-weight:700;letter-spacing:.08em;color:var(--ink-soft)}
+.askbox .ask-btn{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:14px;background:linear-gradient(135deg,#4B2A82,#2A1552);color:#F7E3A0;font-family:var(--sans);font-weight:800;font-size:1.05rem;text-decoration:none;box-shadow:0 10px 22px -12px rgba(42,21,82,.9);transition:transform .2s,box-shadow .2s}
+.askbox .ask-btn:hover{transform:translateY(-2px);box-shadow:0 14px 26px -12px rgba(42,21,82,.95)}
+.askbox small{display:block;margin-top:14px;font-family:var(--sans);font-size:.86rem;color:var(--ink-soft)}
+@media (max-width:480px){.askbox{padding:24px 16px 20px;margin:26px 0}.askbox h3{font-size:1.14rem}.askbox .ask-amt b{font-size:1.75rem}}
 </style>
 </head>
 <body>
@@ -686,6 +699,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible,textarea:focus-visibl
     <p>올해는 디지털·AI 시대를 맞아 새로운 시도를 합니다. 그동안 책으로 발간해 온 대림절 묵상집을 웹페이지 형식의 온라인 묵상집으로 제작하여 선보입니다. 누구나 시간과 장소에 구애받지 않고 말씀을 묵상하며, 가족과 이웃, 교회 공동체와 함께 나눌 수 있기를 기대합니다.</p>
     <p>묵상집의 형식은 달라지지만, 말씀을 깊이 묵상하고 그 말씀을 삶으로 살아 내며 평화를 이루어 가고자 하는 우리의 마음은 변함이 없습니다.</p>
     <p>새로운 모습으로 이어 가는 대림절 묵상집에도 여러분의 기도와 관심, 따뜻한 후원을 부탁드립니다. 보내 주시는 정성은 온라인 묵상집의 제작과 운영, 그리고 평화를 만들어 가는 법인의 귀한 사역에 사용하겠습니다.</p>
+    <aside class="askbox" aria-labelledby="askt">
+      <span class="ask-ic" aria-hidden="true">♥</span>
+      <h3 id="askt">묵상집 한 권의 마음, 평화의 한 걸음</h3>
+      <p class="ask-lead">말씀은 누구에게나 열려 있습니다.<br>묵상집 한 권을 구입하는 마음으로<br>평화를 만들어 가는 일에 함께해 주세요.</p>
+      <div class="ask-amt"><b>10,000원</b><span>권장 후원금</span></div>
+      <a class="ask-btn" href="#donate">묵상집 후원하기</a>
+      <small>사단법인 참된평화를만드는사람들</small>
+    </aside>
     <p>평화의 왕으로 오시는 아기 예수님을 기다리는 이 대림절에, 말씀을 묵상하는 기쁨과 평화를 실천하는 은혜를 함께 나누기를 소망합니다.</p>
     <p class="sign">사단법인 참된평화를만드는사람들</p>
   </section>
